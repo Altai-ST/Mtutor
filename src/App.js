@@ -1,10 +1,10 @@
-import Register from "./components/Register/register";
-import Catalog from "./components/Catalog";
+import { ContentReg } from './components/contentReg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assects/styles/App.scss'
 function App() {
   return (
     <div className="App">
-      <Catalog/>
+      <ContentReg/>
     </div>
   );
 }
