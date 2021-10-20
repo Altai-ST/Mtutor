@@ -1,6 +1,7 @@
-import { ContentReg } from './components/contentReg';
+import { ContentReg } from './components/ContentReg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './assects/styles/App.scss'
+import './assects/styles/_App.scss'
+import './assects/styles/allStyles.scss'
 function App() {
   return (
     <div className="App">

@@ -1,21 +1,23 @@
-.col1{
+.mainColumn{
     width: 370px;
     text-align: center;
     margin: 0 auto;
+    color:#000;
 }
 
-.row1{
+.firstRow{
     height: 120px;
     background-color: azure;
     margin-bottom: 80px;
 }
 
-.row1 p{
+.firstRow p{
     font-weight: 600;
 }
 
-.btnViolet{
-    background-color: #673ab7;
+.btnPerson{
+    width: 370px;
+    background-color: #16A374;
     border-radius: 800px;
     border:none;
     font-size:17px;

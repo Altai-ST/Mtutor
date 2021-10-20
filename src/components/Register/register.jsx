@@ -1,10 +1,9 @@
 import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
-import style from './register.module.scss'
+import style from './_register.module.scss'
+import { Link } from "react-router-dom";
 
 const Register =()=>{
-
-
     return(
         <div className={style.register}>
             <div className={style.Cards}>
@@ -37,23 +36,17 @@ const Register =()=>{
                                 <div className={style.control}>
                                     <Form.Control type="telefon"></Form.Control>
                                 </div>
-                                <Button variant='primary'><div className={style.btns}>Прислать СМС с кодом</div></Button>
-                            </div>
-                        </Form.Group>
-                        <Form.Group className='mt-3'>
-                            <div className={style.formGroup3}>
-                                <Form.Label className={style.formLabel}>Код из СМС (OTP)</Form.Label>
-                                <div className={style.control}>
-                                    <Form.Control type="Code"></Form.Control>
-                                </div>
                             </div>
                         </Form.Group>
                         <Form.Group className='mt-3'>
                             <div className={style.btnGroup}>
-                                <Button className={style.btn}>Подтвердить</Button>
-                                <Button className={style.btn}>Отмена</Button>
+                                <Link to='/password'>
+                                    <Button className={style.btn}>Подтвердить</Button>
+                                </Link>
+                                <Link to='/'>
+                                    <Button className={style.btn}>Отмена</Button>
+                                </Link>
                             </div>
-                            
                         </Form.Group>
                     </Form>
                 </Card.Body>
