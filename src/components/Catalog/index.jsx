@@ -4,8 +4,15 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
 import { Link } from "react-router-dom";
+import { HttpRequest } from "../../container/httpRequest";
 
 const Catalog =()=>{
+
+
+    const test=()=>{
+        console.log('hello')
+        HttpRequest({role:10})
+    }
     return(
         <div>
             <Container className='mt-5'>
@@ -23,7 +30,7 @@ const Catalog =()=>{
                             <h1>Я</h1>
                         </Row>
                             <Row className='mb-2 px-2'>
-                                <Link to='/register'>
+                                <Link to='/register' onClick={test}>
                                     <button className={styles.btnPerson +' '+ 'py-2'}>
                                     Студент
                                     </button>
