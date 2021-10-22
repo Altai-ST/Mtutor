@@ -9,12 +9,11 @@ import {
   Route,
 } from "react-router-dom";
 
-export function ContentReg() {
+export function Routers() {
   return (
-    <div>
       <Router>
         <Switch>
-          <Route exact path='/'>
+          <Route path='/chooseRole'>
             <Catalog/>
           </Route>
           <Route path='/register'>
@@ -28,6 +27,5 @@ export function ContentReg() {
           </Route>
         </Switch>
       </Router>
-    </div>
   );
 }

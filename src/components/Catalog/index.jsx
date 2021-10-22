@@ -4,14 +4,12 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
 import { Link } from "react-router-dom";
-import { HttpRequest } from "../../container/httpRequest";
 
 const Catalog =()=>{
 
 
     const test=()=>{
         console.log('hello')
-        HttpRequest({role:10})
     }
     return(
         <div>

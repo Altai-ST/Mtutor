@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from './_putPassword.module.scss'
-import { HttpRequest } from '../../container/httpRequest';
+import { sendData } from '../../container/httpRequest';
 import Register from '../Register/register';
 
 const PutPassword =(data)=>{
@@ -18,7 +18,7 @@ const PutPassword =(data)=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        HttpRequest(formDataPassword)
+        sendData(formDataPassword)
     }
 
 
@@ -32,7 +32,7 @@ const PutPassword =(data)=>{
         }
         if(val.target.value === passwords){
             setStateBtn(false)
-        }else{
+        }else if(val.target.value === ''){
             setStateBtn(true)
         }
     }
@@ -76,11 +76,11 @@ const PutPassword =(data)=>{
                 </Card.Body>
                 <Card.Footer className='mt-3'>
                     <div className={style.btnGroup}>
-                        <Button type='submit 'disabled={stateBtn} className={style.btn}>Зарегистрировать</Button>
+                        <Link></Link>
+                        <Button type='submit ' disabled={stateBtn} className={style.btn}>   Зарегистрировать</Button>
                     </div>
                 </Card.Footer>
                 </Form>
-                <HttpRequest/>
             </Card> 
             </div>
             
