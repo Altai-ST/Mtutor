@@ -1,10 +1,9 @@
-import Register from "./components/Register/register";
-import Catalog from "./components/Catalog";
+import { Routers } from './components/Routers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
-      <Catalog/>
+      <Routers/>
     </div>
   );
 }
