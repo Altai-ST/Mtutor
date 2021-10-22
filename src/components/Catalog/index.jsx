@@ -6,8 +6,6 @@ import styles from './style.module.css'
 import { Link } from "react-router-dom";
 
 const Catalog =()=>{
-
-
     const test=()=>{
         console.log('hello')
     }
