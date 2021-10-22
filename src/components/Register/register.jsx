@@ -13,6 +13,18 @@ const Register =()=>{
     })
 
 
+    const [emailError, setEmailError]=useState(false)
+    const [submits, setSubmits]=useState(true)
+
+
+    const stateForm = useEffect(()=>{
+        if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 10){
+            setSubmits(false)
+        }else{
+            setSubmits(true)
+        }
+    },[formData])
+
     const hadleSubmit=(e)=>{
         e.preventDefault()
         console.log(formData)
@@ -20,11 +32,17 @@ const Register =()=>{
     }
     
     const hadleChange=(val)=>{
-        if(val.target.name == 'email'){
-            setFormData({...formData, email: val.target.value})
-        }else if(val.target.name == 'phone'){
+        if(val.target.name === 'email'){
+            if(val.target.value.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/)){
+                setEmailError(false)
+                setFormData({...formData, email: val.target.value})
+            }else{
+                setEmailError(true)
+                setFormData({...formData, email: val.target.value})
+            }
+        }else if(val.target.name === 'phone'){
             setFormData({...formData, phone: val.target.value})
-        }else if(val.target.name =='fullName'){
+        }else if(val.target.name ==='fullName'){
             setFormData({...formData, fullName: val.target.value})
         }
     }
@@ -62,6 +80,9 @@ const Register =()=>{
                                     type="email"
                                     name='email'
                                     placeholder="example@gmail.com"></Form.Control>
+                                    {(emailError) && <div style={{color:'red'}}>
+                                    Не правильно веден логин
+                                    </div>}
                                 </div>
                                 
                             </div>
@@ -80,8 +101,10 @@ const Register =()=>{
                         </Form.Group>
                         <Form.Group className='mt-3'>
                             <div className={style.btnGroup}>
-                                <Link to='/password'>
-                                    <Button className={style.btn}>Подтвердить</Button>
+                                <Link to={!submits ? '/password' : '/register'}>
+                                    <Button disabled={submits}  className={style.btn}>
+                                        Подтвердить
+                                        </Button>
                                 </Link>
                                 <Link to='/'>
                                     <Button className={style.btn}>Отмена</Button>

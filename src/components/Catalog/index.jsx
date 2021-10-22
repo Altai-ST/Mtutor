@@ -6,9 +6,6 @@ import styles from './style.module.css'
 import { Link } from "react-router-dom";
 
 const Catalog =()=>{
-    const test=()=>{
-        console.log('hello')
-    }
     return(
         <div>
             <Container className='mt-5'>
@@ -26,7 +23,7 @@ const Catalog =()=>{
                             <h1>Я</h1>
                         </Row>
                             <Row className='mb-2 px-2'>
-                                <Link to='/register' onClick={test}>
+                                <Link to='/register'>
                                     <button className={styles.btnPerson +' '+ 'py-2'}>
                                     Студент
                                     </button>

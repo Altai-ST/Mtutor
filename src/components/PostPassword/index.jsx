@@ -3,7 +3,6 @@ import { Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from './_putPassword.module.scss'
 import { sendData } from '../../container/httpRequest';
-import Register from '../Register/register';
 
 const PutPassword =(data)=>{
     const [formDataPassword, setFormDataPassword]=useState({
@@ -15,27 +14,61 @@ const PutPassword =(data)=>{
     })
     const [passwords, setPasswords]=useState('')
     const [stateBtn, setStateBtn]=useState(true)
+    const [passwordError, setPasswordError]=useState({
+        password:false,
+        checkPassword:false,
+    })
+    const [passwordNull, setPasswordNull]=useState({
+        password: 'Пароль не должен быть пустым',
+        checkPassword: 'Пароль не совпадает',
+    })
 
     const handleSubmit=(e)=>{
         e.preventDefault()
         sendData(formDataPassword)
     }
 
-
-    const handleChangePassword=(val)=>{
-        setPasswords(val.target.value)
-    }
-
     const handleChange=(val)=>{
-        if(val.target.name =='checkPassword'){
+        if(val.target.name ==='checkPassword'){
+            if(val.target.value === '' || passwords === '' || val.target.value !== passwords){
+                setPasswordNull({...passwordNull,checkPassword:'Пароли не совпадают'})
+                setPasswordError({...passwordError, checkPassword: true})
+                setStateBtn(true)
+            }else if(val.target.value === passwords){
+                setPasswordError({...passwordError, checkPassword: false})
+                setStateBtn(false)
+            }
             setFormDataPassword({...formDataPassword, password: val.target.value})
         }
-        if(val.target.value === passwords){
-            setStateBtn(false)
-        }else if(val.target.value === ''){
-            setStateBtn(true)
+        if(val.target.name === 'password'){
+            if(val.target.value === ''){
+                setPasswordError({...passwordError, password: true})
+                setPasswordNull({...passwordNull,password:'Пароль не должен быть пустым'})
+            }else if(val.target.value.length < 8){
+                setPasswordError({...passwordError, password: true})
+                setPasswordNull({...passwordNull,password:'Пароль не должен быть меньше 8'})
+            }else if(val.target.value > 15){
+                setPasswordError({...passwordError, password: true})
+                setPasswordNull({...passwordNull,password:'Пароль не должен быть небольше 15'})
+            }else if(val.target.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)){
+                setPasswordError({...passwordError, password: false})
+            }else{
+                setPasswordError({...passwordError, password: true})
+                setPasswordNull({...passwordNull,password:'Пароль не должен быть со специальным символом и с цифрой'})
+            }
+            if(val.target.value === '' || formDataPassword.password === '' 
+            || val.target.value !== formDataPassword.password){
+                setPasswordNull({...passwordNull,checkPassword:'Пароли не совпадают'})
+                setPasswordError({...passwordError, checkPassword: true})
+                setStateBtn(true)
+            }else if(val.target.value === formDataPassword.password ){
+                
+                setStateBtn(false)
+            }
+            setPasswords(val.target.value)
         }
     }
+
 
     return(
         <div className={style.register}>
@@ -50,14 +83,18 @@ const PutPassword =(data)=>{
                         <h5>Для завершения регистрации введите пароль</h5>
                     </div>
                         <Form.Group className={style.formBlock}>
-                            <div className={style.formGroup}>d
+                            <div className={style.formGroup}>
                                 <Form.Label className={style.formLabel}>Пароль</Form.Label>
                                 <div className={style.control}>
                                     <Form.Control 
-                                    onChange={e => handleChangePassword(e)}
+                                    name='password'
+                                    onChange={e => handleChange(e)}
                                     value={passwords} 
                                     type="password"></Form.Control>
                                 </div>
+                                {(passwordError.password) && <div style={{color:'red'}}>
+                                    {passwordNull.password}
+                                    </div>}
                                 <small>Не менее 6 символов (букв, цифр)</small>
                             </div>
                         </Form.Group>
@@ -67,10 +104,13 @@ const PutPassword =(data)=>{
                                 <div className={style.control}>
                                     <Form.Control
                                     name='checkPassword'
-                                    value={formDataPassword.password} 
+                                    value={formDataPassword.password}
                                     onChange={e=>handleChange(e)} 
                                     type="password"></Form.Control>
                                 </div>
+                                {(passwordError.checkPassword) && <div style={{color:'red'}}>
+                                    {passwordNull.checkPassword}
+                                    </div>}
                             </div>
                         </Form.Group>
                 </Card.Body>
