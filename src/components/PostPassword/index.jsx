@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from './_putPassword.module.scss'
+import { useDispatch } from 'react-redux';
+import { FormSet, SetPassword } from '../../redux/actions';
 import { sendData } from '../../container/httpRequest';
+import { useSelector } from 'react-redux';
 
-const PutPassword =(data)=>{
+const PutPassword =()=>{
     const [formDataPassword, setFormDataPassword]=useState({
-        email:data.email,
-        phone:data.phone,
-        fullName:data.fullName,
-        role:'',
         password:'',
     })
     const [passwords, setPasswords]=useState('')
@@ -18,32 +17,32 @@ const PutPassword =(data)=>{
         password:false,
         checkPassword:false,
     })
+
+
+
+    const [checkPasswordError,setCheckPasswordError]=useState(false)
+    const [checkPasswordNull, setCheckPasswordNull]=useState('Пароль не совпадает')
+
     const [passwordNull, setPasswordNull]=useState({
         password: 'Пароль не должен быть пустым',
         checkPassword: 'Пароль не совпадает',
     })
 
+    const dispatch=useDispatch()
+    const states = useSelector(state=>state.formEmail)
     const handleSubmit=(e)=>{
         e.preventDefault()
-        sendData(formDataPassword)
+        console.log(formDataPassword)
+        dispatch(SetPassword(formDataPassword))
+        sendData(states);
     }
 
     const handleChange=(val)=>{
-        if(val.target.name ==='checkPassword'){
-            if(val.target.value === '' || passwords === '' || val.target.value !== passwords){
-                setPasswordNull({...passwordNull,checkPassword:'Пароли не совпадают'})
-                setPasswordError({...passwordError, checkPassword: true})
-                setStateBtn(true)
-            }else if(val.target.value === passwords){
-                setPasswordError({...passwordError, checkPassword: false})
-                setStateBtn(false)
-            }
-            setFormDataPassword({...formDataPassword, password: val.target.value})
-        }
         if(val.target.name === 'password'){
             if(val.target.value === ''){
-                setPasswordError({...passwordError, password: true})
+                console.log(passwordError.password)
                 setPasswordNull({...passwordNull,password:'Пароль не должен быть пустым'})
+                setPasswordError({...passwordError, password: true})
             }else if(val.target.value.length < 8){
                 setPasswordError({...passwordError, password: true})
                 setPasswordNull({...passwordNull,password:'Пароль не должен быть меньше 8'})
@@ -58,14 +57,22 @@ const PutPassword =(data)=>{
             }
             if(val.target.value === '' || formDataPassword.password === '' 
             || val.target.value !== formDataPassword.password){
-                setPasswordNull({...passwordNull,checkPassword:'Пароли не совпадают'})
-                setPasswordError({...passwordError, checkPassword: true})
+                setCheckPasswordError(true)
                 setStateBtn(true)
             }else if(val.target.value === formDataPassword.password ){
-                
                 setStateBtn(false)
             }
             setPasswords(val.target.value)
+        }
+        if(val.target.name ==='checkPassword'){
+            if(val.target.value === '' || passwords === '' || val.target.value !== passwords){
+                setCheckPasswordError(true)
+                setStateBtn(true)
+            }else if(val.target.value === passwords){
+                setCheckPasswordError(false)
+                setStateBtn(false)
+            }
+            setFormDataPassword({...formDataPassword, password: val.target.value})
         }
     }
 
@@ -108,8 +115,8 @@ const PutPassword =(data)=>{
                                     onChange={e=>handleChange(e)} 
                                     type="password"></Form.Control>
                                 </div>
-                                {(passwordError.checkPassword) && <div style={{color:'red'}}>
-                                    {passwordNull.checkPassword}
+                                {(checkPasswordError) && <div style={{color:'red'}}>
+                                    {checkPasswordNull}
                                     </div>}
                             </div>
                         </Form.Group>
@@ -117,7 +124,7 @@ const PutPassword =(data)=>{
                 <Card.Footer className='mt-3'>
                     <div className={style.btnGroup}>
                         <Link></Link>
-                        <Button type='submit ' disabled={stateBtn} className={style.btn}>   Зарегистрировать</Button>
+                        <Button type='submit' disabled={stateBtn} className={style.btn}>   Зарегистрировать</Button>
                     </div>
                 </Card.Footer>
                 </Form>

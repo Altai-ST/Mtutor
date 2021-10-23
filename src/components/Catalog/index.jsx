@@ -6,6 +6,9 @@ import styles from './style.module.css'
 import { Link } from "react-router-dom";
 
 const Catalog =()=>{
+
+    
+
     return(
         <div>
             <Container className='mt-5'>

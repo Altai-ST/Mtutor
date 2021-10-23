@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 const sendHttpRequest=(method, url, data)=>{
     return fetch(url,{
         Method: method,
@@ -13,6 +15,9 @@ const sendHttpRequest=(method, url, data)=>{
         return response.json()
     })
 }
+
+
+
 const getData =()=>{
     sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/role/list')
         .then(resData=>{
@@ -20,13 +25,14 @@ const getData =()=>{
         })
 }
 export const sendData=(data)=>{
-    sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/signup', data)
-    .then(responData=>{
-        console.log(responData)
-    })
-    .catch(err=>{
-        console.log(err)
-    })
+    console.log(data)
+    // sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/signup', data)
+    // .then(responData=>{
+    //     console.log(responData)
+    // })
+    // .catch(err=>{
+    //     console.log(err)
+    // })
 }
 
 

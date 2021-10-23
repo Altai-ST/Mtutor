@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import style from './_register.module.scss'
 import { Link } from "react-router-dom";
-import PutPassword from "../PostPassword";
+import {IMaskInput} from 'react-imask'
+import { useDispatch } from "react-redux";
+import { FormSet } from "../../redux/actions";
 const Register =()=>{
 
     const [formData, setFormData] = useState({
@@ -10,25 +12,30 @@ const Register =()=>{
         phone:'',
         fullName:'',
         role:'',
+        password:'',
     })
-
 
     const [emailError, setEmailError]=useState(false)
     const [submits, setSubmits]=useState(true)
 
 
     const stateForm = useEffect(()=>{
-        if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 10){
+        if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 11){
             setSubmits(false)
         }else{
             setSubmits(true)
         }
     },[formData])
 
+
+    const dispatch = useDispatch()
+
+    let count=0
     const hadleSubmit=(e)=>{
         e.preventDefault()
-        console.log(formData)
-        PutPassword(formData)
+        dispatch(FormSet(formData))
+        count++
+        console.log(count)
     }
     
     const hadleChange=(val)=>{
@@ -45,6 +52,12 @@ const Register =()=>{
         }else if(val.target.name ==='fullName'){
             setFormData({...formData, fullName: val.target.value})
         }
+    }
+
+    const handleMask=(val)=>{
+        console.log(val.length)
+        setSubmits(false)
+        setFormData({...formData, phone: val})
     }
 
     let status = useEffect(()=>{
@@ -91,18 +104,23 @@ const Register =()=>{
                             <div className={style.formGroup3}>
                                 <Form.Label className={style.formLabel}>Моб. телефон</Form.Label>
                                 <div className={style.control}>
-                                    <Form.Control
-                                     value={formData.phone} 
-                                     onChange={e=>hadleChange(e)}
-                                     name='phone'
-                                     type="phone"></Form.Control>
+                                <IMaskInput
+                                    className='form-control'
+                                    mask={'+{996}(000)000-000'}
+                                    radix='.'
+                                    value={formData.phone}
+                                    name='phone'
+                                    onAccept={(value,mask)=>handleMask(value)}
+                                    unmask={true}
+                                >
+                                </IMaskInput>
                                 </div>
                             </div>
                         </Form.Group>
                         <Form.Group className='mt-3'>
                             <div className={style.btnGroup}>
-                                <Link to={!submits ? '/password' : '/register'}>
-                                    <Button disabled={submits}  className={style.btn}>
+                                <Link to={!submits && count==1 ? '/password' : '/register'}>
+                                    <Button type='submit' disabled={submits}  className={style.btn}>
                                         Подтвердить
                                         </Button>
                                 </Link>
