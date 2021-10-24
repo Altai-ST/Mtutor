@@ -4,10 +4,15 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SetRole } from "../../redux/actions";
 
 const Catalog =()=>{
 
-    
+    const dispatch = useDispatch()
+    const setRole=(val)=>{
+        dispatch(SetRole(val))
+    }
 
     return(
         <div>
@@ -26,11 +31,9 @@ const Catalog =()=>{
                             <h1>Я</h1>
                         </Row>
                             <Row className='mb-2 px-2'>
-                                <Link to='/register'>
-                                    <button className={styles.btnPerson +' '+ 'py-2'}>
+                                    <button onClick={()=>setRole(10)} className={styles.btnPerson +' '+ 'py-2'}>
                                     Студент
                                     </button>
-                                 </Link>
                             </Row>
                         <Row className='px-2'>
                             <Link to='/register'>

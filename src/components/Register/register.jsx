@@ -3,7 +3,7 @@ import { Card, Form, Button } from "react-bootstrap";
 import style from './_register.module.scss'
 import { Link } from "react-router-dom";
 import {IMaskInput} from 'react-imask'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FormSet } from "../../redux/actions";
 const Register =()=>{
 
@@ -27,17 +27,12 @@ const Register =()=>{
         }
     },[formData])
 
-
     const dispatch = useDispatch()
-
-    let count=0
     const hadleSubmit=(e)=>{
         e.preventDefault()
         dispatch(FormSet(formData))
-        count++
-        console.log(count)
     }
-    
+
     const hadleChange=(val)=>{
         if(val.target.name === 'email'){
             if(val.target.value.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/)){
@@ -119,12 +114,12 @@ const Register =()=>{
                         </Form.Group>
                         <Form.Group className='mt-3'>
                             <div className={style.btnGroup}>
-                                <Link to={!submits && count==1 ? '/password' : '/register'}>
-                                    <Button type='submit' disabled={submits}  className={style.btn}>
+                                {/* <Link to={!submits ? '/password' : '/register'}> */}
+                                <Button type='submit' disabled={submits}  className={style.btn}>
                                         Подтвердить
                                         </Button>
-                                </Link>
-                                <Link to='/'>
+                                {/* </Link> */}
+                                <Link to='/password'>
                                     <Button className={style.btn}>Отмена</Button>
                                 </Link>
                             </div>

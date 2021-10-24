@@ -1,21 +1,25 @@
-import React from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import React,{useState} from "react";
+import { Button, Modal, Form } from "react-bootstrap";
 
 
 const LoginModal=()=>{
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return(
-        <div style={
-            {
-                width:'1440px',
-        }}>
-            <Card style={{width:'540px', margin:'0 auto'}} className='mt-5'>
-                <Card.Header className='p-0'>
-                    <div>
+        <div>
+            <Button onClick={handleShow}>Войти</Button>
+            <Modal show={show} onHide={handleClose} className='mt-5'>
+                <Modal.Header className='p-0'>
+                    <Modal.Title>
                         <h5 style={{color:'black'}} className={'mt-3'+' '+'mx-3'}>Введите Ваш логин и пароль</h5>
-                        <span>X</span>
-                    </div>
-                </Card.Header>
-                <Card.Body>
+                    </Modal.Title>
+                    <button onClick={handleClose} type="button" style={{margin:0}} class="btn-close" aria-label="Close"></button>
+                </Modal.Header>
+                <Modal.Body>
                     <Form>
                         <Form.Group>
                             <span></span>
@@ -26,12 +30,12 @@ const LoginModal=()=>{
                             <Form.Control type='password' placeholder='Password'></Form.Control>
                         </Form.Group>
                     </Form>
-                </Card.Body>
-                <Card.Footer>
-                    <Button>Вход</Button>
-                    <a href="#">Забыли пароль?</a>
-                </Card.Footer>
-            </Card>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleClose}>Вход</Button>
+                    <a href="#" onClick={handleClose}>Забыли пароль?</a>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

@@ -8,9 +8,7 @@ import { sendData } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
 
 const PutPassword =()=>{
-    const [formDataPassword, setFormDataPassword]=useState({
-        password:'',
-    })
+    const [formDataPassword, setFormDataPassword]=useState('')
     const [passwords, setPasswords]=useState('')
     const [stateBtn, setStateBtn]=useState(true)
     const [passwordError, setPasswordError]=useState({
@@ -32,10 +30,17 @@ const PutPassword =()=>{
     const states = useSelector(state=>state.formEmail)
     const handleSubmit=(e)=>{
         e.preventDefault()
-        console.log(formDataPassword)
         dispatch(SetPassword(formDataPassword))
-        sendData(states);
+        console.log(states)
     }
+
+
+    const use=useEffect(()=>{
+        console.log(states.password)
+        if(states.password !==''){
+            sendData(states)
+        }
+    },[states])
 
     const handleChange=(val)=>{
         if(val.target.name === 'password'){
@@ -72,7 +77,7 @@ const PutPassword =()=>{
                 setCheckPasswordError(false)
                 setStateBtn(false)
             }
-            setFormDataPassword({...formDataPassword, password: val.target.value})
+            setFormDataPassword(val.target.value)
         }
     }
 

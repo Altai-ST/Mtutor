@@ -2,7 +2,6 @@ import React from  'react';
 import Register from "../Register/register";
 import Catalog from "../Catalog/index";
 import PutPassword from "../PostPassword";
-import LoginModal from "../LoginModal";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,9 +20,6 @@ export function Routers() {
           </Route>
           <Route path='/password'>
             <PutPassword/>
-          </Route>
-          <Route path='/Login'>
-            <LoginModal/>
           </Route>
         </Switch>
       </Router>
