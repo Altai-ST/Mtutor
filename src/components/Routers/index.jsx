@@ -1,4 +1,7 @@
 import React from  'react';
+import Register from "../Register/register";
+import Catalog from "../Catalog/index";
+import PutPassword from "../PostPassword";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,16 +13,13 @@ export function Routers() {
       <Router>
         <Switch>
           <Route path='/chooseRole'>
-            
+            <Catalog/>
           </Route>
           <Route path='/register'>
-            
+            <Register/>
           </Route>
           <Route path='/password'>
-            
-          </Route>
-          <Route path='/Login'>
-            
+            <PutPassword/>
           </Route>
         </Switch>
       </Router>

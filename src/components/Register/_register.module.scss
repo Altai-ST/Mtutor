@@ -1,0 +1,57 @@
+%form-lab{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.register{
+    width: 1440px;
+    .Cards{
+        width: 540px;
+        margin:50px 0 0 420px ;
+        .formLabel{
+            color: #000;
+        }
+        .headCard{
+            background-color: #16A374;
+        }
+        .btnGroup{
+            margin-left: 100px;
+            .btn{
+                width: 174px;
+                margin-right: 25px;
+            }
+        }
+    }
+}
+
+
+.formGroup{
+    display: flex;
+    .control{
+        width: 337px;
+    }
+    .formLabel{
+        @extend %form-lab;
+        width: 95px;
+    }
+}
+.formGroup3{
+    display: flex;
+    .control{
+        width: 337px;
+        height: 40px;
+        margin-right: 30px
+    }
+    .formLabel{
+        @extend %form-lab;
+        width: 95px;
+    }
+        .btns{
+            display: inline-block;
+            width: 175px;
+            padding: 0 10px;
+            color: #fff;
+        } 
+}
+
+

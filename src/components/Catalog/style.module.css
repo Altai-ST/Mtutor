@@ -1,0 +1,25 @@
+.mainColumn{
+    width: 370px;
+    text-align: center;
+    margin: 0 auto;
+    color:#000;
+}
+
+.firstRow{
+    height: 120px;
+    background-color: azure;
+    margin-bottom: 80px;
+}
+
+.firstRow p{
+    font-weight: 600;
+}
+
+.btnPerson{
+    width: 370px;
+    background-color: #16A374;
+    border-radius: 800px;
+    border:none;
+    font-size:17px;
+    color:#fff;
+}
