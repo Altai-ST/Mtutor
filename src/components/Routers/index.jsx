@@ -6,6 +6,7 @@ import {
     Link
 } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import FindTutor from "../ForStudent/FindTutor";
 import Home from "../ForStudent/Home";
 import Head from '../Header/Headers'
 import HeaderForAdmin from "../Headers/HeaderForAdmin";
@@ -16,15 +17,13 @@ import HeaderForTutor from "../Headers/HeaderForTutor";
 export function Routers() {
     return (
         <Router>
-          <Switch>
             <HeaderForStudent/>
-            {/* <HeaderForTutor/> */}
-            {/* <HeaderForAdmin/> */}
+          <Switch>
             <Route exact path='/'>
               <Home/>
             </Route>
-            <Route path='/register'>
-              
+            <Route path='/findTutor'>
+              <FindTutor/>
             </Route>
             <Route path='/password'>
               
@@ -35,8 +34,8 @@ export function Routers() {
             <Route path='/'>
               
             </Route>
-            <Footer/>
           </Switch>
+          <Footer/>
         </Router>
     );
   }

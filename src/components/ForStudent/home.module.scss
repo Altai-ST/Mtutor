@@ -1,0 +1,37 @@
+.main {
+    height: 531px;
+    background-color: #e4e5e6;
+    padding: 15px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    // margin-left: 50px;
+    // margin-right: 50px;
+    font-size: 0.875rem;
+}
+
+.title_main {
+    // display: flex;
+    // flex-wrap: wrap;
+    // margin-right: 100px;
+    // justify-content: center;
+     margin-left: 400px;
+}
+
+h1 {
+    justify-content: center;
+    align-items: center;
+    font-size: 2.3rem;
+}
+
+.cards_header {
+    background-color: #16a374;
+    color: white;
+}
+
+.Mtutor {
+    color: #16a374;
+    margin-left: 190px;
+}
