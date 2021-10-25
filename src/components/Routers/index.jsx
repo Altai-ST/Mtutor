@@ -6,33 +6,18 @@ import {
     Link
 } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import FindTutor from "../ForStudent/FindTutor";
+import FindTutor from "../ForStudent/FindTutor/FindTutor";
 import Home from "../ForStudent/Home";
-import Head from '../Header/Headers'
-import HeaderForAdmin from "../Headers/HeaderForAdmin";
 import HeaderForStudent from "../Headers/HeaderForStudent";
-import Header from '../Headers/HeaderForStudent'
-import HeaderForTutor from "../Headers/HeaderForTutor";
 
 export function Routers() {
     return (
         <Router>
             <HeaderForStudent/>
           <Switch>
-            <Route exact path='/'>
-              <Home/>
+            <Route exact path='/' component={Home}>
             </Route>
-            <Route path='/findTutor'>
-              <FindTutor/>
-            </Route>
-            <Route path='/password'>
-              
-            </Route>
-            <Route path='/Login'>
-              
-            </Route>
-            <Route path='/'>
-              
+            <Route path='/findTutor' component={FindTutor}>
             </Route>
           </Switch>
           <Footer/>

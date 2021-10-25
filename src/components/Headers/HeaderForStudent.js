@@ -28,10 +28,10 @@ function HeaderForStudent() {
                     <Link to="#">Mtutor</Link>
                 </Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Главная</Nav.Link>
-                    <Nav.Link href="#findTutor">Найти репетитора</Nav.Link>
+                    <Link className={style.nav_item} to={'/'}>Главная</Link>
+                    <Link className={style.nav_item} to={'/findTutor'}>Найти репетитора</Link>
                 </Nav>
-                    <Link className={style.dropdown} href="#" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <Link className={style.dropdown} to={'/account'} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <img className={style.userAvatar} src={UserAvatar} />
                     </Link>
                 { isMenuOpen && (

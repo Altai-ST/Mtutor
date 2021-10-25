@@ -7,12 +7,18 @@
     margin-left: 20px;
 }
 
-.logo a {
+.logo Link {
     color: #fff;
 }
 
-.logo a:hover {
+.logo Link:hover {
     color: rgb(252, 249, 249);
+}
+
+.nav_item {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
 }
 
 .drop {
