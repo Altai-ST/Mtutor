@@ -4,14 +4,10 @@ import { FaWrench } from "react-icons/fa"
 import { FaLock } from "react-icons/fa"
 import style from './dropMenu.module.scss'
 
-function UserDropdownMenu(props) {
-    if(!props.open) {
-        return null
-    }
-
+function UserDropdownMenu() {
     return (
         <>
-          <div className={style.dropdown_menu}>
+            <div className={style.dropdown_menu}>
                     <div className={style.dropdown_header}>
                         <strong>
                             example@gmail.com
@@ -31,7 +27,6 @@ function UserDropdownMenu(props) {
                         Выйти
                     </button>
                 </div>
-            
         </>
     )
 }

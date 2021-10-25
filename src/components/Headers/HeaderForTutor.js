@@ -5,7 +5,7 @@ import UserAvatar from '../../assets/image/user-avatar.png'
 import style from '../../assets/styles/header.module.scss'
 import UserDropdownMenu from '../UserDropdownMenu/UserDropdownMenu';
 
-function HeaderForStudent() {
+function HeaderForTutor() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const ref = useRef()
     useEffect(() => {
@@ -28,10 +28,11 @@ function HeaderForStudent() {
                     <Link to="#">Mtutor</Link>
                 </Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Главная</Nav.Link>
-                    <Nav.Link href="#findTutor">Найти репетитора</Nav.Link>
+                    <Nav.Link href="#home">Мой календарь</Nav.Link>
+                    <Nav.Link href="#findTutor">Мои курсы</Nav.Link>
+                    <Nav.Link href="#findTutor">Мои студенты</Nav.Link>
                 </Nav>
-                    <Link className={style.dropdown} href="#" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <Link className={style.drop} href="#" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <img className={style.userAvatar} src={UserAvatar} />
                     </Link>
                 { isMenuOpen && (
@@ -42,4 +43,4 @@ function HeaderForStudent() {
     )
 }
 
-export default HeaderForStudent
+export default HeaderForTutor;
