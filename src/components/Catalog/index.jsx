@@ -3,15 +3,19 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
-import { Link } from "react-router-dom";
+import { Redirect, useHistory} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SetRole } from "../../redux/actions";
 
-const Catalog =()=>{
 
+const Catalog =()=>{
     const dispatch = useDispatch()
+    const history = useHistory()
     const setRole=(val)=>{
         dispatch(SetRole(val))
+        if (val === 10 || val === 5){
+            history.push('/register')
+        }
     }
 
     return(
@@ -36,9 +40,7 @@ const Catalog =()=>{
                                     </button>
                             </Row>
                         <Row className='px-2'>
-                            <Link to='/register'>
-                                <button className={styles.btnPerson +' '+ 'py-2'}>Репетитор</button>
-                            </Link>
+                            <button onClick={()=>setRole(5)} className={styles.btnPerson +' '+ 'py-2'}>Репетитор</button>
                         </Row>
                     </Col>
                 </Col>

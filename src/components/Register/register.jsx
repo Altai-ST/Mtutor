@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import style from './_register.module.scss'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {IMaskInput} from 'react-imask'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FormSet } from "../../redux/actions";
 const Register =()=>{
-
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [formData, setFormData] = useState({
         email:'',
         phone:'',
@@ -18,7 +19,6 @@ const Register =()=>{
     const [emailError, setEmailError]=useState(false)
     const [submits, setSubmits]=useState(true)
 
-
     const stateForm = useEffect(()=>{
         if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 11){
             setSubmits(false)
@@ -27,10 +27,11 @@ const Register =()=>{
         }
     },[formData])
 
-    const dispatch = useDispatch()
+    
     const hadleSubmit=(e)=>{
         e.preventDefault()
         dispatch(FormSet(formData))
+        history.push('/password')
     }
 
     const hadleChange=(val)=>{
@@ -47,6 +48,7 @@ const Register =()=>{
         }else if(val.target.name ==='fullName'){
             setFormData({...formData, fullName: val.target.value})
         }
+
     }
 
     const handleMask=(val)=>{
@@ -54,10 +56,6 @@ const Register =()=>{
         setSubmits(false)
         setFormData({...formData, phone: val})
     }
-
-    let status = useEffect(()=>{
-        console.log(formData)
-    },[formData])
 
     return(
         <div className={style.register}>
@@ -114,12 +112,10 @@ const Register =()=>{
                         </Form.Group>
                         <Form.Group className='mt-3'>
                             <div className={style.btnGroup}>
-                                {/* <Link to={!submits ? '/password' : '/register'}> */}
                                 <Button type='submit' disabled={submits}  className={style.btn}>
                                         Подтвердить
                                         </Button>
-                                {/* </Link> */}
-                                <Link to='/password'>
+                                <Link to='/'>
                                     <Button className={style.btn}>Отмена</Button>
                                 </Link>
                             </div>

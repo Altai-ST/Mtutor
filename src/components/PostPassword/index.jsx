@@ -3,7 +3,7 @@ import { Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from './_putPassword.module.scss'
 import { useDispatch } from 'react-redux';
-import { FormSet, SetPassword } from '../../redux/actions';
+import { SetPassword } from '../../redux/actions';
 import { sendData } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
 
@@ -28,6 +28,7 @@ const PutPassword =()=>{
 
     const dispatch=useDispatch()
     const states = useSelector(state=>state.formEmail)
+
     const handleSubmit=(e)=>{
         e.preventDefault()
         dispatch(SetPassword(formDataPassword))
