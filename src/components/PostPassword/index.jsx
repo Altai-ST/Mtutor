@@ -31,17 +31,15 @@ const PutPassword =()=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        dispatch(SetPassword(formDataPassword))
+        // dispatch(SetPassword(formDataPassword))
+
+        const registerData = {
+            ...states,
+            password: formDataPassword,
+        }
+        sendData(registerData)
         console.log(states)
     }
-
-
-    const use=useEffect(()=>{
-        console.log(states.password)
-        if(states.password !==''){
-            sendData(states)
-        }
-    },[states])
 
     const handleChange=(val)=>{
         if(val.target.name === 'password'){

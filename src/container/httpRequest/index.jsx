@@ -1,10 +1,14 @@
 
 const sendHttpRequest=(method, url, data)=>{
-    return fetch(url,{
+    console.log(method)
+    const params = {
         method: method,
         body: JSON.stringify(data),
         headers: data ? {'Content-Type':'application/json'}:{}
-    }).then(response=>{
+    }
+
+    console.log(params)
+    return fetch(url, params).then(response=>{
         if(response.status >= 400){
             return response.json().then(errResData=>{
                 const error = new Error('Something went wrong!');
