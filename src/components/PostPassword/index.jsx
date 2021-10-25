@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import style from './_putPassword.module.scss'
-import { useDispatch } from 'react-redux';
-import { SetPassword } from '../../redux/actions';
-import { sendData } from '../../container/httpRequest';
+import { signup } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
 
 const PutPassword =()=>{
+    const history = useHistory()
+    
+
     const [formDataPassword, setFormDataPassword]=useState('')
     const [passwords, setPasswords]=useState('')
     const [stateBtn, setStateBtn]=useState(true)
@@ -16,8 +17,6 @@ const PutPassword =()=>{
         checkPassword:false,
     })
 
-
-
     const [checkPasswordError,setCheckPasswordError]=useState(false)
     const [checkPasswordNull, setCheckPasswordNull]=useState('Пароль не совпадает')
 
@@ -25,10 +24,18 @@ const PutPassword =()=>{
         password: 'Пароль не должен быть пустым',
         checkPassword: 'Пароль не совпадает',
     })
-
-    const dispatch=useDispatch()
     const states = useSelector(state=>state.formEmail)
-
+    
+    if (window.performance) {
+        console.log("Perfomance not supported");
+    }
+    if (performance.navigation.type == 1) {
+        if (states.role !== ''){
+            history.push('/password')
+        }else{
+            history.push('/chooseRole')
+        }
+    }
     const handleSubmit=(e)=>{
         e.preventDefault()
         // dispatch(SetPassword(formDataPassword))
@@ -37,8 +44,7 @@ const PutPassword =()=>{
             ...states,
             password: formDataPassword,
         }
-        sendData(registerData)
-        console.log(states)
+        signup(registerData)
     }
 
     const handleChange=(val)=>{

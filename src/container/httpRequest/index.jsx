@@ -20,17 +20,15 @@ const sendHttpRequest=(method, url, data)=>{
     })
 }
 
-
-
 const getData =()=>{
     sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/role/list')
         .then(resData=>{
             console.log(resData)
         })
 }
-export const sendData=(data)=>{
+export const signup=(data)=>{
     console.log(data)
-    sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/signup', data)
+    sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/signup',data)
     .then(responData=>{
         console.log(responData)
     })

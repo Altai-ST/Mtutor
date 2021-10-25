@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import {IMaskInput} from 'react-imask'
 import { useDispatch } from "react-redux";
 import { FormSet } from "../../redux/actions";
+import { useSelector } from "react-redux";
 const Register =()=>{
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,6 +19,19 @@ const Register =()=>{
 
     const [emailError, setEmailError]=useState(false)
     const [submits, setSubmits]=useState(true)
+
+    const historys = useHistory()
+    const states = useSelector(state => state.formEmail)
+    if (window.performance) {
+        console.log("Perfomance not supported");
+    }
+    if (performance.navigation.type == 1) {
+        if (states.role !== ''){
+            historys.push('/register')
+        }else{
+            historys.push('/chooseRole')
+        }
+    }
 
     const stateForm = useEffect(()=>{
         if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 11){
@@ -115,7 +129,7 @@ const Register =()=>{
                                 <Button type='submit' disabled={submits}  className={style.btn}>
                                         Подтвердить
                                         </Button>
-                                <Link to='/'>
+                                <Link to='/chooseRole'>
                                     <Button className={style.btn}>Отмена</Button>
                                 </Link>
                             </div>

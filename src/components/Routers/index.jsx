@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { LoginContent } from '../LoginContent';
 
 export function Routers() {
   return (
@@ -20,6 +21,9 @@ export function Routers() {
           </Route>
           <Route path='/password'>
             <PutPassword/>
+          </Route>
+          <Route path='/Login'>
+            <LoginContent/>
           </Route>
         </Switch>
       </Router>
