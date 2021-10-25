@@ -10,7 +10,7 @@ const Courses = () => {
 		<div>
 			<div class='courses-container'>
 				<div class='courses-btn'>
-					<Button variant='success'>Вставить</Button>
+					<Button variant='success' href='/add'>Добавить</Button>
 				</div>
 				<Table striped bordered hover size='sm'>
 					<thead>

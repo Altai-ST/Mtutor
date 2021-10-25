@@ -1,12 +1,18 @@
 import React from "react"
 import Courses from "./Coureses"
- const admin = () => {
+import { Add } from "./Coureses/Add"
+import { BrowserRouter, Route } from 'react-router-dom'
+
+ const Admin = () => {
 
     return(
+        <BrowserRouter>
           <div>
-       <Courses/>
-    </div> 
+        <Courses/>
+        <Route path='/add' component={Add}/>
+     </div>
+        </BrowserRouter> 
     )
  
 }
-export default admin
+export default Admin
