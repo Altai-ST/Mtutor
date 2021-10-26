@@ -5,10 +5,11 @@
 .logo {
     font-weight: bold;
     margin-left: 20px;
+    color: #fff;
 }
 
 .logo Link {
-    color: #fff;
+    text-decoration: none;
 }
 
 .logo Link:hover {
@@ -21,12 +22,14 @@
     margin-right: 15px;
 }
 
-.drop {
-    margin-left: 860px;
+.nav_items {
+    color: white;
+    text-decoration: none;
+    margin-right: 145px;
 }
 
 .dropdown {
-    margin-left: 980px;
+    margin-left: 860px;
 }
 
 .userAvatar {
