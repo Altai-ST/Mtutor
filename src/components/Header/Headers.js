@@ -14,7 +14,7 @@ function Head() {
                 <div className={style.dropdown}> 
                         <div>
                         <Button variant="success">Войти</Button>{' '}
-                        <Link href="#" className={style.sign_up} >Регистрация</Link>
+                        <Link to='/chooseRole' className={style.sign_up} >Регистрация</Link>
                         </div>
                     </div>
             </Navbar>

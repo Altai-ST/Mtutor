@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Navbar, Nav, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import UserAvatar from '../../assets/image/user-avatar.png'
-import style from '../../assets/styles/header.module.scss'
+import UserAvatar from '../../assects/image/user-avatar.png'
+import style from '../../assects/styles/header.module.scss'
 import UserDropdownMenu from '../UserDropdownMenu/UserDropdownMenu';
 
 function BaseHeader({ children }) {

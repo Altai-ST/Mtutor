@@ -1,5 +1,6 @@
-import './assets/styles/App.scss';
 import { Routers } from './components/Routers';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './assects/styles/_App.scss';
 
 function App() {
   return (

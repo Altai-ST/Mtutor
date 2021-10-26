@@ -1,9 +1,9 @@
 import React from 'react'
 import style from './main.module.scss'
 import Carousel from 'react-bootstrap/Carousel'
-import findTutorPhoto from '../../assets/image/find_tutors.jpg';
-import CommunityPhoto from '../../assets/image/community.jpg'
-import MeetPhoto from '../../assets/image/meet.jpg'
+import findTutorPhoto from '../../assects/image/find_tutors.jpg';
+import CommunityPhoto from '../../assects/image/community.jpg'
+import MeetPhoto from '../../assects/image/meet.jpg'
 
 function Main() {
     return (

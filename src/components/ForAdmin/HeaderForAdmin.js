@@ -1,6 +1,6 @@
 import React from 'react'
 import BaseHeader from '../BaseHeader/BaseHeader';
-import style from '../../assets/styles/header.module.scss'
+import style from '../../assects/styles/header.module.scss'
 import { Link } from 'react-router-dom';
 
 function HeaderForAdmin() {
