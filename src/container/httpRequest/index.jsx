@@ -31,9 +31,6 @@ export const signup=(data)=>{
     .then(responData=>{
         console.log(responData)
     })
-    // .then(responseLogin=>{
-    //     localStorage.setItem('users',responseLogin)
-    // })
     .catch(err=>{
         console.log(err)
     })
