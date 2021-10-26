@@ -6,7 +6,6 @@ const sendHttpRequest=(method, url, data)=>{
         body: JSON.stringify(data),
         headers: data ? {'Content-Type':'application/json'}:{}
     }
-
     console.log(params)
     return fetch(url, params).then(response=>{
         if(response.status >= 400){
@@ -32,9 +31,11 @@ export const signup=(data)=>{
     .then(responData=>{
         console.log(responData)
     })
+    // .then(responseLogin=>{
+    //     localStorage.setItem('users',responseLogin)
+    // })
     .catch(err=>{
         console.log(err)
     })
 }
-
 
