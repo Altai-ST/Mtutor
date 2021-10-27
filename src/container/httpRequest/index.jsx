@@ -1,4 +1,3 @@
-
 const sendHttpRequest=(method, url, data)=>{
     console.log(method)
     const params = {
@@ -25,14 +24,14 @@ const getData =()=>{
             console.log(resData)
         })
 }
+
 export const signup=(data)=>{
-    console.log(data)
-    sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/signup',data)
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/signup',data)
     .then(responData=>{
-        console.log(responData)
+        return responData
     })
     .catch(err=>{
         console.log(err)
+        return null
     })
 }
-

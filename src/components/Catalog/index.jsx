@@ -4,9 +4,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
 import { Redirect, useHistory, useRouteMatch} from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetRole } from "../../redux/actions";
-
+import { saveToken } from "../../redux/actions";
 
 const Catalog =()=>{
     const dispatch = useDispatch()
@@ -16,6 +16,10 @@ const Catalog =()=>{
         if (val === 10 || val === 5){
             history.push('/register')
         }
+    }
+    const states = useSelector(state=>state.userRedusers.token)
+    if (states === null){
+        dispatch(saveToken(JSON.parse(localStorage.getItem('tokens'))))
     }
     // let { path, url } = useRouteMatch();
     return(

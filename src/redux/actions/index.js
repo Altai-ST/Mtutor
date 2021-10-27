@@ -1,4 +1,4 @@
-import { SETFORM, SETPASSWORD, SETROLES } from "../actionType";
+import { SAVETOKENS, SETFORM, SETPASSWORD, SETROLES } from "../actionType";
 
 export const FormSet = (val)=>({
     type: SETFORM,
@@ -13,4 +13,9 @@ export const SetPassword = (val)=>({
 export const SetRole = (val)=>({
     type: SETROLES,
     payload:val
+})
+
+export const saveToken = (val) =>({
+    type: SAVETOKENS,
+    payload: val,
 })
