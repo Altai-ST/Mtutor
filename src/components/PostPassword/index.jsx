@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Form, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import style from './_putPassword.module.scss'
 import { signup } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,6 @@ import { saveToken } from '../../redux/actions';
 
 const PutPassword =()=>{
     const history = useHistory()
-    
 
     const [formDataPassword, setFormDataPassword]=useState('')
     const [passwords, setPasswords]=useState('')
@@ -87,6 +86,12 @@ const PutPassword =()=>{
         }
     }
 
+    if (states.role === ''){
+        return <Redirect to='/chooseRole'/>
+    }
+    if (states.email === ''){
+        return <Redirect to='/chooseRole'/>
+    }
 
     return(
         <div className={style.register}>

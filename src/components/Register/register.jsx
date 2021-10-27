@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import style from './_register.module.scss'
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import {IMaskInput} from 'react-imask'
 import { useDispatch } from "react-redux";
 import { FormSet } from "../../redux/actions";
@@ -22,16 +22,7 @@ const Register =()=>{
 
     const historys = useHistory()
     const states = useSelector(state => state.Autorization.formEmail)
-    if (window.performance) {
-        console.log("Perfomance not supported");
-    }
-    if (performance.navigation.type == 1) {
-        if (states.role !== ''){
-            historys.push('/register')
-        }else{
-            historys.push('/chooseRole')
-        }
-    }
+    
 
     const stateForm = useEffect(()=>{
         if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 11){
@@ -65,10 +56,21 @@ const Register =()=>{
 
     }
 
+
     const handleMask=(val)=>{
         setSubmits(false)
         setFormData({...formData, phone: val})
     }
+
+
+    if (states.role === ''){
+        return <Redirect to='/chooseRole'/>
+    }
+    
+    if(states.email !== ''){
+        return <Redirect to='/password'/>
+    }
+    
 
     return(
         <div className={style.register}>

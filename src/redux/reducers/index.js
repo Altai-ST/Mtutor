@@ -9,9 +9,6 @@ const initialState={
         phone:'',
         fullName:'',
     },
-    tokens:{
-
-    }
 }
 
 
