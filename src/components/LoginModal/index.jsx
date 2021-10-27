@@ -1,40 +1,29 @@
-import React,{useState} from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import React from "react";
+import { Button, Modal } from "react-bootstrap";
 
 
-const LoginModal=()=>{
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+const LoginModal=({show, handleClose, children, onClose, title})=>{
     return(
         <div>
-            <Button onClick={handleShow}>Войти</Button>
-            <Modal show={show} onHide={handleClose} className='mt-5'>
-                <Modal.Header className='p-0'>
-                    <Modal.Title>
-                        <h5 style={{color:'black'}} className={'mt-3'+' '+'mx-3'}>Введите Ваш логин и пароль</h5>
-                    </Modal.Title>
-                    <button onClick={handleClose} type="button" style={{margin:0}} class="btn-close" aria-label="Close"></button>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group>
-                            <span></span>
-                            <Form.Control type='email' placeholder='Email'></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <span></span>
-                            <Form.Control type='password' placeholder='Password'></Form.Control>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={handleClose}>Вход</Button>
-                    <a href="#" onClick={handleClose}>Забыли пароль?</a>
-                </Modal.Footer>
+            <Modal
+            show={show}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
+                    <Modal.Header>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            {onClose ? <h5>{title}</h5> : ''}
+                        </Modal.Title>
+                        {onClose ? <button onClick={handleClose} className='btn-close' aria-label='Close'></button> : ''}
+                    </Modal.Header>
+                    <Modal.Body>
+                        {children}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={handleClose}>Войти</Button>
+                        <Button onClick={handleClose}>Отмена</Button>
+                    </Modal.Footer>
             </Modal>
         </div>
     )

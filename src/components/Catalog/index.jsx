@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
-import { Redirect, useHistory} from "react-router-dom";
+import { Redirect, useHistory, useRouteMatch} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SetRole } from "../../redux/actions";
 
@@ -17,9 +17,9 @@ const Catalog =()=>{
             history.push('/register')
         }
     }
-
+    // let { path, url } = useRouteMatch();
     return(
-        <div>
+        <div className={styles.catalog}>
             <Container className='mt-5'>
                 <Col className={styles.mainColumn}>
                     <Col className={styles.firstRow}>

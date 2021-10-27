@@ -1,0 +1,36 @@
+.navbar {
+    box-shadow: 10px 5px 5px rgb(223, 221, 221);
+}
+
+.Mtutor {
+    font-weight: bold;
+    margin-left: 25px;
+    color: #138a62; 
+}
+
+a {
+    text-decoration: none;
+}
+
+.dropdown {
+    display: flex;
+    margin: 3px 0 3px 1050px ;
+    box-sizing: border-box;
+}
+
+.sign_up {
+    font-weight: 400;
+    color: #138a62;
+    margin-left: 20px;
+}
+
+.dropdown a:hover {
+    text-decoration: underline;
+    color: #138a62;
+}
+
+
+.btnGroub{
+    display: flex;
+    align-items: center;
+}
