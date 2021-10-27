@@ -1,4 +1,11 @@
 import { createStore } from "redux";
 import { Autorization } from "./reducers";
+import { userRedusers } from "./reduserUser";
+import { combineReducers } from "redux";
 
-export const store = createStore(Autorization)
+const createRootReducer = combineReducers({
+    Autorization,
+    userRedusers,
+})
+
+export const store = createStore(createRootReducer)

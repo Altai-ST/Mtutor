@@ -1,5 +1,5 @@
 
-import { SETFORM, SETPASSWORD, SETROLES } from "../actionType";
+import { SAVETOKENS, SETFORM, SETPASSWORD, SETROLES } from "../actionType";
 
 const initialState={
     formEmail:{
@@ -8,6 +8,9 @@ const initialState={
         role:'',
         phone:'',
         fullName:'',
+    },
+    tokens:{
+
     }
 }
 
@@ -40,6 +43,8 @@ export const Autorization =(state = initialState, action)=>{
                     role:action.payload,
                 }
             }
+        
+        
         default: return state
     }
 }

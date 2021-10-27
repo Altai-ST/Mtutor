@@ -1,8 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Form } from "react-bootstrap";
 import LoginModal from "../LoginModal";
 import { FaUserAlt, FaLock } from "react-icons/fa"
 import style from './loginContent.module.scss'
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { saveToken } from "../../redux/actions";
 
 export const LoginContent = ()=>{
     const [show, setShow] = useState(false);
@@ -11,6 +14,10 @@ export const LoginContent = ()=>{
         setShow(true)
     };
     const title='Введите Ваш логин и пароль'
+
+
+    
+
     return(
         <div>
             <Button onClick={handleShow}>Войти</Button>

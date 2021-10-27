@@ -21,7 +21,7 @@ const Register =()=>{
     const [submits, setSubmits]=useState(true)
 
     const historys = useHistory()
-    const states = useSelector(state => state.formEmail)
+    const states = useSelector(state => state.Autorization.formEmail)
     if (window.performance) {
         console.log("Perfomance not supported");
     }
@@ -66,7 +66,6 @@ const Register =()=>{
     }
 
     const handleMask=(val)=>{
-        console.log(val.length)
         setSubmits(false)
         setFormData({...formData, phone: val})
     }

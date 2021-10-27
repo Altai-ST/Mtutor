@@ -4,6 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import style from './_putPassword.module.scss'
 import { signup } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { saveToken } from '../../redux/actions';
 
 const PutPassword =()=>{
     const history = useHistory()
@@ -24,11 +26,10 @@ const PutPassword =()=>{
         password: 'Пароль не должен быть пустым',
         checkPassword: 'Пароль не совпадает',
     })
-    const states = useSelector(state=>state.formEmail)
+    const states = useSelector(state=>state.Autorization.formEmail)
     
-    if (window.performance) {
-        console.log("Perfomance not supported");
-    }
+    const dispatch = useDispatch()
+
     if (performance.navigation.type == 1) {
         if (states.role !== ''){
             history.push('/password')
@@ -36,15 +37,15 @@ const PutPassword =()=>{
             history.push('/chooseRole')
         }
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
-        // dispatch(SetPassword(formDataPassword))
-
         const registerData = {
             ...states,
             password: formDataPassword,
         }
-        signup(registerData)
+        const res = await signup(registerData)
+        dispatch(saveToken(res))
+        localStorage.setItem('tokens', JSON.stringify(res))
     }
 
     const handleChange=(val)=>{
