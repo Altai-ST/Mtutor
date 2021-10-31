@@ -5,7 +5,6 @@ import PutPassword from "../PostPassword";
 import Footer from "../Footer/Footer";
 import FindTutor from "../ForStudent/FindTutor/FindTutor";
 import Home from "../ForStudent/Home";
-import Head from '../Header/Headers'
 import HeaderForTutor from '../../components/ForTutor/HeaderForTutor'
 import HeaderForAdmin from "../ForAdmin/HeaderForAdmin";
 import HeaderForStudent from "../ForStudent/HeaderStudent";
@@ -16,11 +15,12 @@ import {
   Route,
 } from "react-router-dom";
 import { LoginContent } from '../LoginContent';
+import StateHeader from '../Header/StateHeader';
 
 export function Routers() {
   return (
       <Router>
-        <Head />
+        <StateHeader/>
         <Switch>
         <Route exact path='/' >
           <Main/>
