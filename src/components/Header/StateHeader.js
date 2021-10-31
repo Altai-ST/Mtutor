@@ -8,8 +8,6 @@ import Header from '../Header/Headers'
 const StateHeader = () => {
     const state = useSelector((state) => state.userRedusers.user)
     console.log(state === null)
-    const switchHeader = () => {
-        // console.log(state === null)
         if (state === 1) {
             return <HeaderForAdmin/>    
         }else if(state === 5) {
@@ -19,12 +17,10 @@ const StateHeader = () => {
         } else if (state === null){
             return <Header/>
         }
-    }
 
     return (
-        <div>
-            {switchHeader}
-        </div>
+        <>
+        </>
     )
 }
 
