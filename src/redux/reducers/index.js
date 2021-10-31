@@ -1,5 +1,5 @@
 
-import { SAVETOKENS, SETFORM, SETPASSWORD, SETROLES } from "../actionType";
+import { SAVETOKENS, SETFORM, SETPASSWORD, SETROLES, SETSINGIN } from "../actionType";
 
 const initialState={
     formEmail:{
@@ -9,6 +9,10 @@ const initialState={
         phone:'',
         fullName:'',
     },
+    singInForm:{
+        email:'',
+        password:''
+    }
 }
 
 
@@ -25,12 +29,6 @@ export const Autorization =(state = initialState, action)=>{
                     fullName:action.payload.fullName,
                 }
             }
-    
-        case SETPASSWORD:
-                return{
-                    ...state,
-                    formEmail:{...state.formEmail, password: action.payload }
-                }
         case SETROLES:
             console.log(action.payload)
             return{
@@ -40,7 +38,15 @@ export const Autorization =(state = initialState, action)=>{
                     role:action.payload,
                 }
             }
-        
+        case SETSINGIN:
+            return{
+                ...state,
+                singInForm:{
+                    ...state.singInForm,
+                    email: action.payload.email,
+                    password: action.payload.password
+                }
+            }
         
         default: return state
     }

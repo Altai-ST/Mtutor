@@ -1,9 +1,8 @@
 const sendHttpRequest=(method, url, data)=>{
-    console.log(method)
     const params = {
         method: method,
         body: JSON.stringify(data),
-        headers: data ? {'Content-Type':'application/json'}:{}
+        headers: data ? {'Content-Type':'application/json'}: {},
     }
     console.log(params)
     return fetch(url, params).then(response=>{
@@ -34,4 +33,23 @@ export const signup=(data)=>{
         console.log(err)
         return null
     })
+}
+export const signin=(data)=>{
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/login',data)
+    .then(responData=>{
+        return responData
+    })
+    .catch(err=>{
+        console.log(err)
+        return null
+    })
+}
+
+export const getProfileRequest=(token)=>{
+    const tokens = JSON.parse(token).token
+    console.log(tokens)
+    sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/profile/me')
+        .then(resData=>{
+            console.log(resData)
+        })
 }

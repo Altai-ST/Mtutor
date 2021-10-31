@@ -89,7 +89,7 @@ const Register =()=>{
                                     value={formData.fullName} 
                                     onChange={e=>hadleChange(e)}
                                     name='fullName'
-                                     type="fullName" placeholder="Фамилия Имя Отчество"></Form.Control>
+                                    type="fullName" placeholder="Фамилия Имя Отчество"></Form.Control>
                                 </div>
                             </div>
                         </Form.Group>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Form, Button } from "react-bootstrap";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import style from './_putPassword.module.scss'
 import { signup } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { saveToken } from '../../redux/actions';
 
 const PutPassword =()=>{
+
     const history = useHistory()
 
     const [formDataPassword, setFormDataPassword]=useState('')
@@ -26,16 +27,8 @@ const PutPassword =()=>{
         checkPassword: 'Пароль не совпадает',
     })
     const states = useSelector(state=>state.Autorization.formEmail)
-    
+    const statesRes = useSelector(state=>state.userRedusers.user)
     const dispatch = useDispatch()
-
-    if (performance.navigation.type == 1) {
-        if (states.role !== ''){
-            history.push('/password')
-        }else{
-            history.push('/chooseRole')
-        }
-    }
     const handleSubmit = async (e)=>{
         e.preventDefault()
         const registerData = {
@@ -63,7 +56,7 @@ const PutPassword =()=>{
                 setPasswordError({...passwordError, password: false})
             }else{
                 setPasswordError({...passwordError, password: true})
-                setPasswordNull({...passwordNull,password:'Пароль не должен быть со специальным символом и с цифрой'})
+                setPasswordNull({...passwordNull,password:'Пароль должен быть со специальным символом и цифрой'})
             }
             if(val.target.value === '' || formDataPassword.password === '' 
             || val.target.value !== formDataPassword.password){
@@ -91,6 +84,15 @@ const PutPassword =()=>{
     }
     if (states.email === ''){
         return <Redirect to='/chooseRole'/>
+    }
+
+    if (statesRes !== ''){
+        if(statesRes.role.role === 10){
+            return <Redirect to='/student'/>
+        }
+        if(statesRes.role.role === 5){
+            return <Redirect to='/tutor'/>
+        }
     }
 
     return(

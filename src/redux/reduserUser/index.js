@@ -2,8 +2,8 @@
 import { SAVETOKENS } from "../actionType";
 
 const initialState={
-    token:null,
-    user:{}
+    token:'',
+    user:''
 }
 
 export const userRedusers =(state=initialState, action)=>{

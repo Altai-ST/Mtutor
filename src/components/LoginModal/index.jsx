@@ -21,7 +21,7 @@ const LoginModal=({show, handleClose, children, onClose, title})=>{
                         {children}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={handleClose}>Войти</Button>
+                        <Button type='submit' onClick={handleClose}>Войти</Button>
                         <Button onClick={handleClose}>Отмена</Button>
                     </Modal.Footer>
             </Modal>
