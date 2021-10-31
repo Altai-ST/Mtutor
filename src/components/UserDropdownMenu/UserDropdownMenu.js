@@ -6,7 +6,7 @@ import style from './dropMenu.module.scss'
 
 function UserDropdownMenu() {
     return (
-        <>
+        <div className={style.container}>
             <div className={style.dropdown_menu}>
                     <div className={style.dropdown_header}>
                         <strong>
@@ -27,7 +27,7 @@ function UserDropdownMenu() {
                         Выйти
                     </button>
                 </div>
-        </>
+        </div>
     )
 }
 
