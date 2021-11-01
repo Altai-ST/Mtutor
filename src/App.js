@@ -8,19 +8,19 @@ import {saveToken} from './redux/actions/index'
 function App() {
   const [isLoading, setIsLoading]=useState(true)
   const dispatch = useDispatch()
-  const getProfile=async(val)=>{
-      const data = await getProfileRequest(val)
-      console.log(data)
-      // dispatch(saveToken(data))
-      setIsLoading(false)
-    }
+  // const getProfile=async(val)=>{
+  //     const data = await getProfileRequest(val)
+  //     console.log(data)
+  //     // dispatch(saveToken(data))
+  //     setIsLoading(false)
+  //   }
 
   useEffect(()=>{
-    if (localStorage.getItem('tokens')){
-      getProfile(localStorage.getItem('tokens'))
-    }else {
+  //   if (localStorage.getItem('tokens')){
+  //     getProfile(localStorage.getItem('tokens'))
+  //   }else {
       setIsLoading(false)
-    }
+    // }
   },[])
   return (
     <div className="App">

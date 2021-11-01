@@ -4,7 +4,6 @@ import Catalog from "../Catalog/index";
 import PutPassword from "../PostPassword";
 import Footer from "../Footer/Footer";
 import Home from "../ForStudent/Home";
-import Head from '../Header/Headers'
 import HeaderForTutor from '../../components/ForTutor/HeaderForTutor'
 import HeaderForStudent from "../ForStudent/HeaderStudent";
 import Main from '../Main/Main';
@@ -15,6 +14,8 @@ import {
 } from "react-router-dom";
 import { ProtectedRoute } from '../ProtectedRoute';
 import { useSelector } from 'react-redux';
+import { LoginContent } from '../LoginContent';
+import StateHeader from '../Header/StateHeader';
 
 export function Routers(){
   const user = useSelector(state => state.userRedusers.user)
@@ -27,7 +28,7 @@ export function Routers(){
   let auth = isAuthorized()
   return (
       <Router>
-        <Head />
+       {user === '' && <StateHeader/>}
         <Switch>
         <Route exact path='/' >
           <Main/>
