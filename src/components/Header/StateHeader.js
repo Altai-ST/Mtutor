@@ -7,14 +7,14 @@ import Header from '../Header/Headers'
 
 const StateHeader = () => {
     const state = useSelector((state) => state.userRedusers.user)
-    console.log(state === null)
+    console.log(state === '')
         if (state === 1) {
             return <HeaderForAdmin/>    
         }else if(state === 5) {
             return <HeaderForTutor/>
         } else if (state === 10) {
             return <HeaderForStudent/>
-        } else if (state === null){
+        } else if (state === ''){
             return <Header/>
         }
 

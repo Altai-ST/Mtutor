@@ -3,10 +3,8 @@ import Register from "../Register/register";
 import Catalog from "../Catalog/index";
 import PutPassword from "../PostPassword";
 import Footer from "../Footer/Footer";
-import FindTutor from "../ForStudent/FindTutor/FindTutor";
 import Home from "../ForStudent/Home";
 import HeaderForTutor from '../../components/ForTutor/HeaderForTutor'
-import HeaderForAdmin from "../ForAdmin/HeaderForAdmin";
 import HeaderForStudent from "../ForStudent/HeaderStudent";
 import Main from '../Main/Main';
 import {
@@ -14,42 +12,33 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { LoginContent } from '../LoginContent';
+import { ProtectedRoute } from '../ProtectedRoute';
+import { useSelector } from 'react-redux';
 import StateHeader from '../Header/StateHeader';
 
-export function Routers() {
+export function Routers(){
+  const user = useSelector(state => state.userRedusers.user)
+
+  console.log(user)
+  function isAuthorized() {
+    return user
+  }
+  console.log(isAuthorized())
+  let auth = isAuthorized()
   return (
       <Router>
-        <StateHeader/>
+       {user === '' && <StateHeader/>}
         <Switch>
         <Route exact path='/' >
           <Main/>
         </Route>
-        <Route path='/tutor'>
-          <HeaderForTutor />
-        </Route>
-        <Route path='/admin'>
-          <HeaderForAdmin />
-        </Route>
-        <Route path='/student'>
-          <HeaderForStudent />
-        </Route>
-        <Route path='/home' component={Home}>
-        </Route>
-        <Route path='/findTutor' component={FindTutor}>
-        </Route>
-          <Route path='/chooseRole'>
-            <Catalog/>
-          </Route>
-          <Route path='/register'>
-            <Register/>
-          </Route>
-          <Route path='/password'>
-            <PutPassword/>
-          </Route>
-          <Route path='/Login'>
-            <LoginContent/>
-          </Route>
+          <ProtectedRoute path='/tutor' component={HeaderForTutor} isAuthorized={auth} allowedRole={5} currentRole={user !=='' && user.role.role}/>
+          <ProtectedRoute path='/admin' component={HeaderForTutor} isAuthorized={auth} allowedRole={5} currentRole={user !=='' && user.role.role}/>
+          <ProtectedRoute path='/student' component={HeaderForStudent} isAuthorized={auth} allowedRole={10} currentRole={user !=='' && user.role.role}/>
+          <ProtectedRoute path='/home' component={Home} isAllowed/>
+          <ProtectedRoute path='/chooseRole' component={Catalog} isAllowed={!isAuthorized()}/>
+          <ProtectedRoute path='/register' component={Register} isAllowed={!isAuthorized()}/>
+          <ProtectedRoute path='/password' component={PutPassword} isAllowed={!isAuthorized()}/>
         </Switch>
         <Footer/>
       </Router>

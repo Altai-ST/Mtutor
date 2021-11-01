@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -11,17 +11,20 @@ import { saveToken } from "../../redux/actions";
 const Catalog =()=>{
     const dispatch = useDispatch()
     const history = useHistory()
+    const stats = useSelector(state=>state.Autorization.formEmail)
+
     const setRole=(val)=>{
         dispatch(SetRole(val))
-        if (val === 10 || val === 5){
-            history.push('/register')
-        }
     }
     const states = useSelector(state=>state.userRedusers.token)
     if (states === null){
         dispatch(saveToken(JSON.parse(localStorage.getItem('tokens'))))
     }
     // let { path, url } = useRouteMatch();
+    if (stats.role === 10 || stats.role === 5){
+        return <Redirect to='/register'/>
+    }
+    
     return(
         <div className={styles.catalog}>
             <Container className='mt-5'>
