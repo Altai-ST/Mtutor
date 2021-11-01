@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { saveToken } from '../../redux/actions';
 
 const PutPassword =()=>{
-
     const history = useHistory()
 
     const [formDataPassword, setFormDataPassword]=useState('')

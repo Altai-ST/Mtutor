@@ -3,7 +3,6 @@ import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { LoginContent } from '../LoginContent'
 import style from './header.module.scss'
-
 function Header() {
     return (
         <div>

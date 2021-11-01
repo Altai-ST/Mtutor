@@ -39,6 +39,7 @@ export const Autorization =(state = initialState, action)=>{
                 }
             }
         case SETSINGIN:
+            console.log(action.payload)
             return{
                 ...state,
                 singInForm:{

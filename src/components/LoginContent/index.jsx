@@ -4,8 +4,9 @@ import LoginModal from "../LoginModal";
 import { FaUserAlt, FaLock } from "react-icons/fa"
 import style from './loginContent.module.scss'
 import { useDispatch } from "react-redux";
-import { signInForm } from "../../redux/actions";
+import { saveToken } from "../../redux/actions";
 import { signin } from "../../container/httpRequest";
+
 
 export const LoginContent = ()=>{
     const [show, setShow] = useState(false);
@@ -14,17 +15,20 @@ export const LoginContent = ()=>{
         password:''
     })
 
-    const [emailError, setEmailError]=useState(false)
+    const [emailError, setEmailError]=useState(true)
+    const [stateBtn, setStateBtn]=useState(true)
 
     const [passwordNull, setPasswordNull]=useState({
         password: 'Пароль не должен быть пустым',
     })
     const [passwordError, setPasswordError]=useState({
-        password:false,
+        password:true,
     })
 
     const handleClose = () => setShow(false);
     const dispatch = useDispatch()
+
+    
 
     const handleShow = () => {
         setShow(true)
@@ -41,10 +45,9 @@ export const LoginContent = ()=>{
                 setEmailError(true)
                 console.log(val.target.value)
                 setLogin({...login, email: val.target.value})
+                setStateBtn(true)
             }
         }
-
-
         if(val.target.name === 'password'){
             if(val.target.value === ''){
                 console.log(passwordError.password)
@@ -58,6 +61,7 @@ export const LoginContent = ()=>{
                 setPasswordNull({...passwordNull,password:'Пароль не должен быть небольше 15'})
             }else if(val.target.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)){
                 setPasswordError({...passwordError, password: false})
+                setStateBtn(false)
             }else{
                 setPasswordError({...passwordError, password: true})
                 setPasswordNull({...passwordNull,password:'Пароль должен быть со специальным символом и цифрой'})
@@ -72,7 +76,7 @@ export const LoginContent = ()=>{
         e.preventDefault()
         console.log(login.email)
         const res = await signin(login)
-        dispatch(signInForm(res))
+        dispatch(saveToken(res))
         localStorage.setItem('tokens', JSON.stringify(res))
     }
 
@@ -113,7 +117,8 @@ export const LoginContent = ()=>{
                                     {passwordNull.password}
                                     </div>}
                     </Form.Group>
-                    <Button type='submit' onClick={handleClose}>Войти</Button>
+                    <Button disabled={stateBtn} className='mt-5' type='submit' onClick={handleClose}>Войти</Button>
+                    <Button className='mt-5 mx-2' onClick={handleClose}>Отмена</Button>
                 </Form>
             </LoginModal>
         </div>

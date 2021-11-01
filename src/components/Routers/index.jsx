@@ -19,7 +19,8 @@ import StateHeader from '../Header/StateHeader';
 export function Routers(){
   const user = useSelector(state => state.userRedusers.user)
 
-  console.log(user)
+
+
   function isAuthorized() {
     return user
   }
@@ -27,7 +28,7 @@ export function Routers(){
   let auth = isAuthorized()
   return (
       <Router>
-       {user === '' && <StateHeader/>}
+        {user === '' && <StateHeader/>}
         <Switch>
         <Route exact path='/' >
           <Main/>
