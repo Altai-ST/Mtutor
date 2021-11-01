@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Mtutor/static/css/main.aedb28f7.chunk.css",
+    "main.js": "/Mtutor/static/js/main.996ff64a.chunk.js",
+    "main.js.map": "/Mtutor/static/js/main.996ff64a.chunk.js.map",
+    "runtime-main.js": "/Mtutor/static/js/runtime-main.e446f21e.js",
+    "runtime-main.js.map": "/Mtutor/static/js/runtime-main.e446f21e.js.map",
+    "static/css/2.0a9ec390.chunk.css": "/Mtutor/static/css/2.0a9ec390.chunk.css",
+    "static/js/2.cf30c5d1.chunk.js": "/Mtutor/static/js/2.cf30c5d1.chunk.js",
+    "static/js/2.cf30c5d1.chunk.js.map": "/Mtutor/static/js/2.cf30c5d1.chunk.js.map",
+    "index.html": "/Mtutor/index.html",
+    "static/css/2.0a9ec390.chunk.css.map": "/Mtutor/static/css/2.0a9ec390.chunk.css.map",
+    "static/css/main.aedb28f7.chunk.css.map": "/Mtutor/static/css/main.aedb28f7.chunk.css.map",
+    "static/js/2.cf30c5d1.chunk.js.LICENSE.txt": "/Mtutor/static/js/2.cf30c5d1.chunk.js.LICENSE.txt",
+    "static/media/community.aa5899fc.jpg": "/Mtutor/static/media/community.aa5899fc.jpg",
+    "static/media/find_tutors.d6a449b8.jpg": "/Mtutor/static/media/find_tutors.d6a449b8.jpg",
+    "static/media/meet.0e355773.jpg": "/Mtutor/static/media/meet.0e355773.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e446f21e.js",
+    "static/css/2.0a9ec390.chunk.css",
+    "static/js/2.cf30c5d1.chunk.js",
+    "static/css/main.aedb28f7.chunk.css",
+    "static/js/main.996ff64a.chunk.js"
+  ]
+}
