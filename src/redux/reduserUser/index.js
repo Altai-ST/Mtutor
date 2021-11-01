@@ -3,7 +3,7 @@ import { SAVETOKENS } from "../actionType";
 
 const initialState={
     token:null,
-    user:{}
+    user:null
 }
 
 export const userRedusers =(state=initialState, action)=>{

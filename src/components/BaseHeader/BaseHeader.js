@@ -7,18 +7,18 @@ import UserDropdownMenu from '../UserDropdownMenu/UserDropdownMenu';
 
 function BaseHeader({ children }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const ref = useRef()
-    useEffect(() => {
-        const checkIfClickedOutside = (e) => {
-            if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
-                setIsMenuOpen(false)
-            }
-        };
-        document.addEventListener("click", checkIfClickedOutside);
-        return () => {
-            document.addEventListener("click", checkIfClickedOutside);
-        };
-    }, [isMenuOpen])
+    // const ref = useRef()
+    // useEffect(() => {
+    //     const checkIfClickedOutside = (e) => {
+    //         if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+    //             setIsMenuOpen(false)
+    //         }
+    //     };
+    //     document.addEventListener("click", checkIfClickedOutside);
+    //     return () => {
+    //         document.addEventListener("click", checkIfClickedOutside);
+    //     };
+    // }, [isMenuOpen])
 
 
     return (
