@@ -4,13 +4,30 @@ import '../Coureses/Courses.scss'
 import Pagination from 'react-bootstrap/Pagination'
 import { FaEdit } from 'react-icons/fa'
 import { FaTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import DeleteModal from './DeleteModal'
+import { useState } from 'react'
+import { deleteUser, getData, postUser, putUser } from '../../../container/httpRequest'
 
 const Courses = () => {
+	
+	const [show, setshow] = useState(false)
+
+	const handleDelete=()=>{
+		deleteUser()
+	}
+	const handlePut=()=>{
+		putUser()
+	}
+
 	return (
 		<div>
 			<div class='courses-container'>
 				<div class='courses-btn'>
-					<Button variant='success' href='/add'>Добавить</Button>
+					<Link to={'/add'}>
+						{' '}
+						<Button variant='success'>Добавить</Button>{' '}
+					</Link>
 				</div>
 				<Table striped bordered hover size='sm'>
 					<thead>
@@ -32,183 +49,266 @@ const Courses = () => {
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit onClick={handlePut} />
+								</Link>
+
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt onClick={() => setshow(true)} />
+								<DeleteModal
+									show={show}
+									onClose={() => setshow(false)}
+									onClick={handleDelete}
+								/>
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+							<FaTrashAlt onClick={() => setshow(true)} />
+								<DeleteModal
+									show={show}
+									onClose={() => setshow(false)}
+								/>
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<FaEdit />
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
 							</td>
 							<td>
-								<FaTrashAlt />{' '}
+								<FaTrashAlt />
 							</td>
 						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<Link to={'/edit'}>
+									{' '}
+									<FaEdit />
+								</Link>
+							</td>
+							<td>
+								<FaTrashAlt />
+							</td>
+						</tr>
+
 					</tbody>
 				</Table>
 				<div class='courses-pagination'>
