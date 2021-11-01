@@ -10,7 +10,7 @@ function Home() {
                 <h1>
                     Приветствуем вас на странице
                     <br />
-                    <Link to="#" className={style.Mtutor}>Mtutor</Link>
+                    <Link to="/home" className={style.Mtutor}>Mtutor</Link>
 
                 </h1>
             </div>
