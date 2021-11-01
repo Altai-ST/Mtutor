@@ -9,7 +9,6 @@ const initialState={
 export const userRedusers =(state=initialState, action)=>{
     switch (action.type) {
         case SAVETOKENS:
-            console.log(action.payload)
             return{
                 ...state,
                 token: action.payload.token,

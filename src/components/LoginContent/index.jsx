@@ -35,9 +35,11 @@ export const LoginContent = ()=>{
         if(val.target.name === 'email'){
             if(val.target.value.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/)){
                 setEmailError(false)
+                console.log(val.target.value)
                 setLogin({...login, email: val.target.value})
             }else{
                 setEmailError(true)
+                console.log(val.target.value)
                 setLogin({...login, email: val.target.value})
             }
         }
@@ -60,7 +62,7 @@ export const LoginContent = ()=>{
                 setPasswordError({...passwordError, password: true})
                 setPasswordNull({...passwordNull,password:'Пароль должен быть со специальным символом и цифрой'})
             }
-            setLogin(val.target.value)
+            setLogin({...login, password: val.target.value})
         }
     }   
 
@@ -68,6 +70,7 @@ export const LoginContent = ()=>{
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
+        console.log(login.email)
         const res = await signin(login)
         dispatch(signInForm(res))
         localStorage.setItem('tokens', JSON.stringify(res))
@@ -110,6 +113,7 @@ export const LoginContent = ()=>{
                                     {passwordNull.password}
                                     </div>}
                     </Form.Group>
+                    <Button type='submit' onClick={handleClose}>Войти</Button>
                 </Form>
             </LoginModal>
         </div>
