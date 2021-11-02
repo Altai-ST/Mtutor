@@ -14,8 +14,10 @@ a {
 
 .dropdown {
     display: flex;
-    margin: 3px 0 3px 1050px ;
+    width: 100%;
     box-sizing: border-box;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .sign_up {
@@ -26,11 +28,13 @@ a {
 
 .dropdown a:hover {
     text-decoration: underline;
-    color: #138a62;
+    color: #138a62;  
 }
 
 
 .btnGroub{
+    
     display: flex;
     align-items: center;
+
 }

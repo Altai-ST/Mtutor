@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Form, Button } from "react-bootstrap";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import style from './_putPassword.module.scss'
 import { signup } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { saveToken } from '../../redux/actions';
+import { saveToken, saveUser } from '../../store/actions';
+import {  USERSTORE } from '../../util/constants';
 
 const PutPassword =()=>{
-    const history = useHistory()
-
+    const regexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")
     const [formDataPassword, setFormDataPassword]=useState('')
     const [passwords, setPasswords]=useState('')
     const [stateBtn, setStateBtn]=useState(true)
@@ -18,13 +18,14 @@ const PutPassword =()=>{
         checkPassword:false,
     })
 
-    const [checkPasswordError,setCheckPasswordError]=useState(false)
+    const [checkPasswordError, setCheckPasswordError]=useState(false)
     const [checkPasswordNull, setCheckPasswordNull]=useState('Пароль не совпадает')
 
     const [passwordNull, setPasswordNull]=useState({
         password: 'Пароль не должен быть пустым',
         checkPassword: 'Пароль не совпадает',
     })
+
     const states = useSelector(state=>state.Autorization.formEmail)
     const statesRes = useSelector(state=>state.userRedusers.user)
     const dispatch = useDispatch()
@@ -35,14 +36,14 @@ const PutPassword =()=>{
             password: formDataPassword,
         }
         const res = await signup(registerData)
-        dispatch(saveToken(res))
-        localStorage.setItem('tokens', JSON.stringify(res))
+        dispatch(saveToken(res.token))
+        dispatch(saveUser(res.user))
+        localStorage.setItem(USERSTORE, JSON.stringify(res))
     }
 
     const handleChange=(val)=>{
         if(val.target.name === 'password'){
             if(val.target.value === ''){
-                console.log(passwordError.password)
                 setPasswordNull({...passwordNull,password:'Пароль не должен быть пустым'})
                 setPasswordError({...passwordError, password: true})
             }else if(val.target.value.length < 8){
@@ -51,11 +52,11 @@ const PutPassword =()=>{
             }else if(val.target.value > 15){
                 setPasswordError({...passwordError, password: true})
                 setPasswordNull({...passwordNull,password:'Пароль не должен быть небольше 15'})
-            }else if(val.target.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)){
+            }else if(regexPassword.test(val.target.value)){
                 setPasswordError({...passwordError, password: false})
             }else{
                 setPasswordError({...passwordError, password: true})
-                setPasswordNull({...passwordNull,password:'Пароль должен быть со специальным символом и цифрой'})
+                setPasswordNull({...passwordNull,password:'Пароль должен быть с цифрой'})
             }
             if(val.target.value === '' || formDataPassword.password === '' 
             || val.target.value !== formDataPassword.password){
@@ -66,6 +67,7 @@ const PutPassword =()=>{
             }
             setPasswords(val.target.value)
         }
+
         if(val.target.name ==='checkPassword'){
             if(val.target.value === '' || passwords === '' || val.target.value !== passwords){
                 setCheckPasswordError(true)
@@ -81,17 +83,9 @@ const PutPassword =()=>{
     if (states.role === ''){
         return <Redirect to='/chooseRole'/>
     }
+    
     if (states.email === ''){
         return <Redirect to='/chooseRole'/>
-    }
-
-    if (statesRes !== ''){
-        if(statesRes.role.role === 10){
-            return <Redirect to='/student'/>
-        }
-        if(statesRes.role.role === 5){
-            return <Redirect to='/tutor'/>
-        }
     }
 
     return(
@@ -112,9 +106,9 @@ const PutPassword =()=>{
                                 <div className={style.control}>
                                     <Form.Control 
                                     name='password'
-                                    onChange={e => handleChange(e)}
+                                    onChange={handleChange}
                                     value={passwords} 
-                                    type="password"></Form.Control>
+                                    type="password"/>
                                 </div>
                                 {(passwordError.password) && <div style={{color:'red'}}>
                                     {passwordNull.password}
@@ -129,8 +123,8 @@ const PutPassword =()=>{
                                     <Form.Control
                                     name='checkPassword'
                                     value={formDataPassword.password}
-                                    onChange={e=>handleChange(e)} 
-                                    type="password"></Form.Control>
+                                    onChange={handleChange} 
+                                    type="password"/>
                                 </div>
                                 {(checkPasswordError) && <div style={{color:'red'}}>
                                     {checkPasswordNull}
@@ -141,7 +135,7 @@ const PutPassword =()=>{
                 <Card.Footer className='mt-3'>
                     <div className={style.btnGroup}>
                         <Link></Link>
-                        <Button type='submit' disabled={stateBtn} className={style.btn}>   Зарегистрировать</Button>
+                        <Button type='submit' disabled={stateBtn} className={style.btn}>Зарегистрировать</Button>
                     </div>
                 </Card.Footer>
                 </Form>
