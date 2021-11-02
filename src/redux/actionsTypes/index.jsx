@@ -1,0 +1,5 @@
+export const SETCOURSES = 'SETCOURSES'
+export const SET_ALL_COURSES = 'SET_ALL_COURSES'
+export const CHANGE_COURSE = 'CHANGE_COURSE'
+export const SET_EDIT = 'SET_EDIT'
+export const DELETE_COURSE = 'DELETE_COURSE'

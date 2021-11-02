@@ -1,4 +1,4 @@
-
+import {setCourses,setAllCourses, changeCourse, deleteCourse} from '../../redux/actions'
 const sendHttpRequest=(method, url, data)=>{
     console.log(method)
     const params = {
@@ -19,42 +19,43 @@ const sendHttpRequest=(method, url, data)=>{
     })
 }
 
-export const getData =()=>{
+export const getData = () => (dispatch) => {
     sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/list')
         .then(resData=>{
-            console.log(resData)
+            dispatch(setAllCourses(resData))
         })
+        .catch(err => alert(err)) 
 }
 
-export const postUser=()=>{
+export const postUser = (name) => (dispatch) => {
     sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/add',
     {
-        name: 'Nurperi'
+        name
     })
-    .then(responData=>{
-        console.log(responData)
+    .then(responseData=>{
+        dispatch(setCourses(responseData))
     })
     .catch(err=>{
         console.log(err)
     })
 }
-export const deleteUser=()=>{
-    sendHttpRequest('DELETE','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/delete/2')
+export const deleteUser=(id)=> (dispatch) => {
+    sendHttpRequest('DELETE',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/delete/${Number(id)}`)
     .then(responData=>{
-        console.log(responData)
+        dispatch(deleteCourse(id))
     })
     .catch(err=>{
         console.log(err)
     })
 }
 
-export const putUser=()=>{
-    sendHttpRequest('PUT','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/update/3',
+export const putUser = (data) => (dispatch) =>{
+    sendHttpRequest('PUT',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/update/${data.doc.id}`,
     {
-        name: 'Nurperi200'
+        name: data.newName
     })
     .then(responData=>{
-        console.log(responData)
+        dispatch(changeCourse(data))
     })
     .catch(err=>{
         console.log(err)
