@@ -3,7 +3,8 @@ import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { LoginContent } from '../LoginContent'
 import style from './header.module.scss'
-function Header() {
+
+function PublicHeader() {
     return (
         <div>
             <Navbar bg="light" variant="light" className={style.navbar}>
@@ -21,4 +22,4 @@ function Header() {
     )
 }
 
-export default Header
+export default PublicHeader

@@ -1,27 +1,23 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import HeaderForAdmin from '../ForAdmin/HeaderForAdmin'
-import HeaderForStudent from '../ForStudent/HeaderStudent'
-import HeaderForTutor from '../ForTutor/HeaderForTutor'
-import Header from '../Header/Headers'
+import PrivateHeader from './PrivateHeader'
+import PublicHeader from './PublicHeader'
+
+
+const roles = {
+    1: "admin",
+    5: "tutor",
+    10: "student"
+}
 
 const StateHeader = () => {
-    const state = useSelector((state) => state.userRedusers.user)
-    console.log(state === '')
-        if (state === 1) {
-            return <HeaderForAdmin/>    
-        }else if(state === 5) {
-            return <HeaderForTutor/>
-        } else if (state === 10) {
-            return <HeaderForStudent/>
-        } else if (state === ''){
-            return <Header/>
-        }
+    const {role} = useSelector((state) => state.userRedusers.user)
 
-    return (
-        <>
-        </>
-    )
+    const currentRole = role ? role.role : null
+        if (currentRole === null) {
+            return <PublicHeader/>    
+        }
+        return <PrivateHeader role={roles[currentRole]}/>
 }
 
 export default StateHeader
