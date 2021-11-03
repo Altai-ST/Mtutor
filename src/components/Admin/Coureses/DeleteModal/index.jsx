@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap'
 import {BiErrorCircle} from "react-icons/bi";
 
 const DeleteModal = (props) => {
-
 	return (
 		<Modal
 			{...props}
@@ -21,7 +20,7 @@ const DeleteModal = (props) => {
 				<p>Вы действительно хотите удалить?</p>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="success" onClick={() => props.deleteFunction(props.id)}>Да</Button>
+				<Button variant="success" onClick={props.onClick}>Да</Button>
                 <Button variant="secondary" onClick={props.onClose}>Отмена</Button>
 			</Modal.Footer>
 		</Modal>

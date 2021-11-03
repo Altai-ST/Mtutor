@@ -20,9 +20,9 @@ const sendHttpRequest=(method, url, data)=>{
 }
 
 export const getData = () => (dispatch) => {
-    sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/list')
+    return sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/list')
         .then(resData=>{
-            dispatch(setAllCourses(resData))
+            return dispatch(setAllCourses(resData))
         })
         .catch(err => alert(err)) 
 }

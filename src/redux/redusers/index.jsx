@@ -16,7 +16,7 @@ export const rootReducer = (state = initialState, action) => {
             case SET_ALL_COURSES:
                 return {
                     ...state,
-                    courses: action.payload
+                    courses: action.payload.docs
                 }
                 break;
                 case SET_EDIT:
