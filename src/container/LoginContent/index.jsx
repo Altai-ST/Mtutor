@@ -6,7 +6,10 @@ import style from './loginContent.module.scss'
 import { useDispatch } from "react-redux";
 import { saveToken, saveUser } from "../../store/actions";
 import { signin } from "../../container/httpRequest";
-import { USERSTORE } from "../../util/constants";
+import { USER_STORE } from "../../util/constants/keys";
+import { setLocalStorage } from "../../util/constants/localStorage";
+import { notify } from "../Toastify";
+import { SuccessLogin } from "../authToastify";
 
 export const LoginContent = ()=>{
     const [show, setShow] = useState(false);
@@ -47,11 +50,11 @@ export const LoginContent = ()=>{
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
-        console.log(login.email)
         const res = await signin(login)
         dispatch(saveToken(res.token))
         dispatch(saveUser(res.user))
-        localStorage.setItem(USERSTORE, JSON.stringify(res.token))
+        setLocalStorage(USER_STORE, JSON.stringify(res.token))
+        notify(false, <SuccessLogin/>)
     }
 
     return(
@@ -89,7 +92,8 @@ export const LoginContent = ()=>{
                         </div>
                     </Form.Group>
                     <Form.Group className={style.btnGroup}>
-                        <Button disabled={stateBtn} className={style.btnSignIn} type='submit' onClick={handleClose}>Войти</Button>
+                        <Button disabled={stateBtn} className={style.btnSignIn} type='submit' 
+                            onClick={handleClose}>Войти</Button>
                         <Button className={'mx-2 '+style.btnSignIn} onClick={handleClose}>Отмена</Button>
                     </Form.Group>
                 </Form>

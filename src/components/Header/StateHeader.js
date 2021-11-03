@@ -4,7 +4,7 @@ import Header from '../Header/Headers'
 const StateHeader = () => {
     return (
         <>
-        <Header/>
+            <Header/>
         </>
     )
 }

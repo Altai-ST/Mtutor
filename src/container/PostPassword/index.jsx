@@ -6,7 +6,8 @@ import { signup } from '../../container/httpRequest';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { saveToken, saveUser } from '../../store/actions';
-import {  USERSTORE } from '../../util/constants';
+import {  USER_STORE } from '../../util/constants/keys';
+import { setLocalStorage } from '../../util/constants/localStorage';
 
 const PutPassword =()=>{
     const regexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")
@@ -38,7 +39,7 @@ const PutPassword =()=>{
         const res = await signup(registerData)
         dispatch(saveToken(res.token))
         dispatch(saveUser(res.user))
-        localStorage.setItem(USERSTORE, JSON.stringify(res))
+        setLocalStorage(USER_STORE, JSON.stringify(res))
     }
 
     const handleChange=(val)=>{
