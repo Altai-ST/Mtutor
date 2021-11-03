@@ -28,7 +28,7 @@ export function Routers(){
       <Router>
         <StateHeader/>
         <Switch>
-        <Route exact path='/' >
+        <Route exact path='/Mtutor' >
           <Main/>
         </Route>
           <ProtectedRoute path='/home' component={Home} isAllowed/>

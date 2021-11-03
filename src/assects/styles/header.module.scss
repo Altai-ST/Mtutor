@@ -1,5 +1,15 @@
- .myColor {
+//  .con {
+//     display: flex;
+//     // width: 100%;
+//     flex-direction: row;
+//     justify-content: flex-end;
+//  }
+ .nav {
     background-color: #16a374;
+    // display: flex;
+    // width: 100%;
+    // flex-direction: row;
+    // justify-content: flex-end;
 }
 
 .logo {
@@ -25,12 +35,14 @@
 .nav_items {
     color: white;
     text-decoration: none;
-    margin-right: 145px;
 }
 
-.dropdown {
-    margin-left: 860px;
-}
+// .dropdown {
+//     display: flex;
+//     width: 100%;
+//     flex-direction: row;
+//     justify-content: flex-end;
+// }
 
 .userAvatar {
     width: 35px;
@@ -38,4 +50,8 @@
     margin-bottom: 0;
     background-color: #fff;
     border-radius: 50%;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
 }
