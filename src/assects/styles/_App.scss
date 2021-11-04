@@ -1,6 +1,11 @@
 $primary: #16A374;
 .App{
     color: #fff;
+    min-height: 100vh; 
+    margin: 0; 
+    
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 };
 
 @import "~bootstrap/scss/bootstrap";

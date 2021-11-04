@@ -15,24 +15,24 @@ function Home() {
                 </h1>
             </div>
             <div className={style.cards}>
-                <Card border="light" style={{ width: '27rem' }}>
-                    <Card.Header className={style.cards_header}>Ищете частного репетитора?</Card.Header>
+                <Card border="light" className={style.card}>
+                    <Card.Header style={{background: '#16a374', color: 'white'}} className={style.cards_Header}>Ищете частного репетитора?</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             Наш сервис соединяет студентов с квалифицированными частными репетиторами.
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card border="light" style={{ width: '27rem' }}>
-                    <Card.Header className={style.cards_header}>Новости</Card.Header>
+                <Card border="light" className={style.card}>
+                    <Card.Header style={{background: '#16a374', color: 'white'}} className={style.cards_Header}>Новости</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             Наш сервис соединяет студентов с квалифицированными частными репетиторами.
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card border="light" style={{ width: '27rem' }}>
-                    <Card.Header className={style.cards_header}>Новости</Card.Header>
+                <Card border="light" className={style.card} >
+                    <Card.Header style={{background: '#16a374', color: 'white'}} className={style.cardsHeader}>Новости</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             Наш сервис соединяет студентов с квалифицированными частными репетиторами.

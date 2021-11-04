@@ -1,15 +1,6 @@
-//  .con {
-//     display: flex;
-//     // width: 100%;
-//     flex-direction: row;
-//     justify-content: flex-end;
-//  }
  .nav {
     background-color: #16a374;
-    // display: flex;
-    // width: 100%;
-    // flex-direction: row;
-    // justify-content: flex-end;
+    min-height: 50px;
 }
 
 .logo {
@@ -31,18 +22,6 @@
     text-decoration: none;
     margin-right: 15px;
 }
-
-.nav_items {
-    color: white;
-    text-decoration: none;
-}
-
-// .dropdown {
-//     display: flex;
-//     width: 100%;
-//     flex-direction: row;
-//     justify-content: flex-end;
-// }
 
 .userAvatar {
     width: 35px;

@@ -6,11 +6,12 @@
     font-weight: bold;
     margin-left: 25px;
     color: #138a62; 
-}
-
-a {
     text-decoration: none;
 }
+
+// Link {
+//     text-decoration: none;
+// }
 
 .dropdown {
     display: flex;
@@ -25,13 +26,8 @@ a {
     font-weight: 400;
     color: #138a62;
     margin-left: 20px;
+    text-decoration: 0;
 }
-
-.dropdown link:hover {
-    text-decoration: underline;
-    color: #138a62;
-}
-
 
 .btnGroub{
     display: flex;
