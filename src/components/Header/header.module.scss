@@ -6,31 +6,28 @@
     font-weight: bold;
     margin-left: 25px;
     color: #138a62; 
-}
-
-a {
     text-decoration: none;
 }
+
+// Link {
+//     text-decoration: none;
+// }
 
 .dropdown {
     display: flex;
     width: 100%;
-    box-sizing: border-box;
     flex-direction: row;
     justify-content: flex-end;
+    box-sizing: border-box;
+    padding-right: 15px;
 }
 
 .sign_up {
     font-weight: 400;
     color: #138a62;
     margin-left: 20px;
+    text-decoration: 0;
 }
-
-.dropdown a:hover {
-    text-decoration: underline;
-    color: #138a62;  
-}
-
 
 .btnGroub{
     

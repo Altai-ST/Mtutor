@@ -14,13 +14,9 @@ function App() {
   const dispatch = useDispatch()
   const stateUser = useSelector(state=>state.userRedusers.user)
   const getProfile=async()=>{
-    try{
       const data = await getProfileRequest()
       dispatch(saveUser(data.user))
       setIsLoading(false)
-    }catch(err){
-      console.log(err)
-    }
     }
   useEffect(()=>{
     const data = JSON.parse(getLocalStorage(USER_STORE))
@@ -33,9 +29,9 @@ function App() {
   },[])
 
   return (
-    <div className="App">
-      {isLoading ? <p>Loading</p> : <Routers/> }
-      <ToastContainer/>
+  <div className="App">
+          {isLoading ? <p>Loading</p> : <Routers/> }
+          <ToastContainer/>
     </div>
   );
 }

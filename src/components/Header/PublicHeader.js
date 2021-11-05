@@ -3,12 +3,13 @@ import { Navbar } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import { LoginContent } from '../../container/LoginContent'
 import style from './header.module.scss'
-function Header() {
+
+function PublicHeader() {
     return (
         <div>
             <Navbar bg="light" variant="light" className={style.navbar}>
                 <Navbar.Brand href="#home">
-                    <Link className={style.Mtutor} to='/'>Mtutor</Link>
+                    <Link className={style.Mtutor} to='/Mtutor'>Mtutor</Link>
                 </Navbar.Brand>
                 <div className={style.dropdown}>
                     <div className={style.btnGroub}>
@@ -21,4 +22,4 @@ function Header() {
     )
 }
 
-export default Header
+export default PublicHeader

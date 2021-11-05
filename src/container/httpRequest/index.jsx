@@ -1,9 +1,9 @@
 import {store} from '../../store/index'
+import { notify } from '../SuccessToastify'
 
 
 const sendHttpRequest=(method, url, data=null)=>{
     const token = store.getState().userRedusers.token
-    console.log(token)
     const params = {
         method: method,
         body:null,
@@ -12,7 +12,6 @@ const sendHttpRequest=(method, url, data=null)=>{
     if (method === 'POST' || method === 'PUT'){
         params.body = JSON.stringify(data)
     }
-
     return fetch(url, params).then(response=>{
         if(response.status >= 400){
             return response.json().then(errResData=>{
@@ -42,6 +41,7 @@ export const signup=(data)=>{
         return null
     })
 }
+
 export const signin=(data)=>{
     return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/login',data)
     .then(responData=>{

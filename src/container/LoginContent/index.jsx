@@ -8,8 +8,9 @@ import { saveToken, saveUser } from "../../store/actions";
 import { signin } from "../../container/httpRequest";
 import { USER_STORE } from "../../util/constants/keys";
 import { setLocalStorage } from "../../util/constants/localStorage";
-import { notify } from "../Toastify";
-import { SuccessLogin } from "../authToastify";
+import {Redirect} from 'react-router'
+import { successToastifys } from "../SuccessToastify";
+import load from '../../assects/image/loading.gif'
 
 export const LoginContent = ()=>{
     const [show, setShow] = useState(false);
@@ -18,16 +19,18 @@ export const LoginContent = ()=>{
         password:''
     })
 
-    const [emailError, setEmailError]=useState(false)
-    const [stateBtn, setStateBtn]=useState(true)
+    const [emailError, setEmailError] = useState(false)
+    const [stateBtn, setStateBtn] = useState(true)
+    const [loading, setLoading] = useState(false)
 
-    const handleClose = () => setShow(false);
+    const handleClose = () =>{
+        setShow(false)
+    };
     const dispatch = useDispatch()
 
     const handleShow = () => {
         setShow(true)
     };
-
 
     const handleChange=(val)=>{
         if(val.target.name === 'email'){
@@ -50,11 +53,16 @@ export const LoginContent = ()=>{
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
+        setLoading(true)
         const res = await signin(login)
+        setShow(false)
         dispatch(saveToken(res.token))
         dispatch(saveUser(res.user))
         setLocalStorage(USER_STORE, JSON.stringify(res.token))
-        notify(false, <SuccessLogin/>)
+        successToastifys('Success login!!!')
+        if(res){
+            return <Redirect to='/home'/>
+        }
     }
 
     return(
@@ -91,9 +99,16 @@ export const LoginContent = ()=>{
                             </div>
                         </div>
                     </Form.Group>
-                    <Form.Group className={style.btnGroup}>
-                        <Button disabled={stateBtn} className={style.btnSignIn} type='submit' 
-                            onClick={handleClose}>Войти</Button>
+                    <Form.Group className={style.btnGroup}>{loading ?
+                    <img className={style.btnLoad} src={load} alt="" />
+                    :   <Button 
+                            disabled={stateBtn} 
+                            className={style.btnSignIn} type='submit' >
+                                Войти
+                                
+                        </Button>   
+                        }
+                        
                         <Button className={'mx-2 '+style.btnSignIn} onClick={handleClose}>Отмена</Button>
                     </Form.Group>
                 </Form>

@@ -1,5 +1,6 @@
- .myColor {
+ .nav {
     background-color: #16a374;
+    min-height: 50px;
 }
 
 .logo {
@@ -22,20 +23,19 @@
     margin-right: 15px;
 }
 
-.nav_items {
-    color: white;
-    text-decoration: none;
-    margin-right: 145px;
-}
-
-.dropdown {
-    margin-left: 860px;
-}
-
 .userAvatar {
     width: 35px;
     height: 35px;
     margin-bottom: 0;
     background-color: #fff;
     border-radius: 50%;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.con{
+    margin-left: auto;
+    padding-right: 15px;
 }

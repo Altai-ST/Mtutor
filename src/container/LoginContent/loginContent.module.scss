@@ -10,7 +10,6 @@
         width: 428px;
     }
 }
-
 .lock{
     display: flex;
     align-items: center;
@@ -27,6 +26,7 @@
 
 .btnSignIn{
     margin-top: 20px;
+
 }
 
 .btnGroup{
@@ -34,4 +34,10 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+}
+
+.btnLoad{
+    width: 5%;
+    height: 5%;
+    margin-top: 30px;
 }
