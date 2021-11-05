@@ -11,7 +11,7 @@ const Edit = () => {
 	const dispatch = useDispatch()
 	const editedData = useSelector(state => state.editedData)
 
-	const [name, setName] = useState(editedData.doc.name)
+	const [name, setName] = useState(editedData)
 
     const handleSubmit=()=>{
         history.push('/admin')

@@ -9,36 +9,36 @@ import DeleteModal from './DeleteModal'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser, getData } from '../../../container/httpRequest'
-import {setEditId } from '../../../redux/actions'
+import { setEditId } from '../../../redux/actions'
 
 const Courses = () => {
 	const [show, setShow] = useState(false)
 	const [currentId, setCurrentId] = useState(0)
-	const courses = useSelector(state => state.courses)
+	const courses = useSelector((state) => state.courses)
 	const dispatch = useDispatch()
-	
+
 	useEffect(() => {
-		dispatch(getData())	
-	},[])
-	
-	const handleDelete=(val)=>{
-		console.log(val)
-		dispatch(deleteUser(val))
+		dispatch(getData())
+	}, [])
+
+	const handleDelete = () => {
+		dispatch(deleteUser(currentId))
 		setShow(false)
 	}
-	const handlePut=(data)=>{
-		dispatch(setEditId(data))
-	}
 
-	const handleDel =(val, id)=>{
-		console.log(id)
+	const handleDel = (id) => {
 		setCurrentId(id)
-		if (setCurrentId !== 0){
-			setShow(val)
-		}
+		setShow(true)
 	}
 	return (
 		<div>
+			<DeleteModal
+				show={show}
+				onClose={() => setShow(false)}
+				onSuccess={() => handleDelete(currentId)}
+				id={currentId}
+			/>
+
 			<div className='courses-container'>
 				<div className='courses-btn'>
 					<Link to={'/add'}>
@@ -64,27 +64,23 @@ const Courses = () => {
 					</thead>
 					<tbody>
 						{courses !== [] &&
-							courses.map(function(el){
-								return <tr id={el.id}>
-											<td>{el.name}</td>
-											<td>
-												<Link to={'/edit'}>
-													{' '}
-													<FaEdit onClick={() => handlePut(el)} />
-												</Link>
-											</td>
-											<td>
-												<FaTrashAlt
-												onClick={()=>handleDel(true, el.id)}
-												/>
-												<DeleteModal
-													show={show}
-													onClose={() => setShow(false)}
-													onClick={() => handleDelete(currentId)}
-													id={currentId}
-												/>
-											</td>
-										</tr>
+							courses.map(function (el) {
+								return (
+									<tr id={el.id}>
+										<td>{el.name}</td>
+										<td>
+											<Link to={'/edit/' + el.id}>
+												{' '}
+												<FaEdit />
+											</Link>
+										</td>
+										<td>
+											<FaTrashAlt
+												onClick={() => handleDel(el.id)}
+											/>
+										</td>
+									</tr>
+								)
 							})}
 					</tbody>
 				</Table>

@@ -42,7 +42,7 @@ export const postUser = (name) => (dispatch) => {
 export const deleteUser=(id)=> (dispatch) => {
     sendHttpRequest('DELETE',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/delete/${Number(id)}`)
     .then(responData=>{
-        dispatch(deleteCourse(id))
+        dispatch(getData())
     })
     .catch(err=>{
         console.log(err)

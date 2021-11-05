@@ -20,7 +20,7 @@ const DeleteModal = (props) => {
 				<p>Вы действительно хотите удалить?</p>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="success" onClick={props.onClick}>Да</Button>
+				<Button variant="success" onClick={props.onSuccess}>Да</Button>
                 <Button variant="secondary" onClick={props.onClose}>Отмена</Button>
 			</Modal.Footer>
 		</Modal>
