@@ -1,4 +1,4 @@
-import {setCourses,setAllCourses, changeCourse, deleteCourse} from '../../redux/actions'
+import {setCourses,setAllCourses, deleteCourse} from '../../redux/actions'
 const sendHttpRequest=(method, url, data)=>{
     console.log(method)
     const params = {
@@ -33,7 +33,7 @@ export const postUser = (name) => (dispatch) => {
         name
     })
     .then(responseData=>{
-        dispatch(setCourses(responseData))
+        dispatch(getData())
     })
     .catch(err=>{
         console.log(err)
@@ -50,12 +50,13 @@ export const deleteUser=(id)=> (dispatch) => {
 }
 
 export const putUser = (data) => (dispatch) =>{
-    sendHttpRequest('PUT',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/update/${data.doc.id}`,
+    console.log('data',data)
+    sendHttpRequest('PUT',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/update/${data.id}`,
     {
         name: data.newName
     })
     .then(responData=>{
-        dispatch(changeCourse(data))
+        dispatch(getData())
     })
     .catch(err=>{
         console.log(err)

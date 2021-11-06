@@ -30,6 +30,9 @@ const Courses = () => {
 		setCurrentId(id)
 		setShow(true)
 	}
+	const setEditElem = (item) => {
+		dispatch(setEditId(item))
+	}
 	return (
 		<div>
 			<DeleteModal
@@ -63,15 +66,14 @@ const Courses = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{courses !== [] &&
-							courses.map(function (el) {
-								return (
+						{courses.length &&
+							courses?.map((el) =>  (
 									<tr id={el.id}>
 										<td>{el.name}</td>
 										<td>
 											<Link to={'/edit/' + el.id}>
 												{' '}
-												<FaEdit />
+												<FaEdit onClick={() => setEditElem(el)}/>
 											</Link>
 										</td>
 										<td>
@@ -81,7 +83,7 @@ const Courses = () => {
 										</td>
 									</tr>
 								)
-							})}
+							)}
 					</tbody>
 				</Table>
 				<div class='courses-pagination'>
