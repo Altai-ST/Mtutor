@@ -1,4 +1,5 @@
 import {store} from '../../store/index'
+import { errorToast } from '../ErrorToastify'
 import { notify } from '../SuccessToastify'
 
 
@@ -13,8 +14,15 @@ const sendHttpRequest=(method, url, data=null)=>{
         params.body = JSON.stringify(data)
     }
     return fetch(url, params).then(response=>{
-        if(response.status >= 400){
+        if(response.status === 400){
             return response.json().then(errResData=>{
+                const error = new Error('Something went wrong!');
+                error.data = errResData;
+                throw error
+            })
+        }else if(response.status === 401){
+            return response.json().then(errResData=>{
+                errorToast('Not Authorized!!!')
                 const error = new Error('Something went wrong!');
                 error.data = errResData;
                 throw error
@@ -48,7 +56,6 @@ export const signin=(data)=>{
         return responData
     })
     .catch(err=>{
-        console.log(err)
         return null
     })
 }

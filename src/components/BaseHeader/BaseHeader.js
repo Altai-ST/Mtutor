@@ -8,6 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 
 function BaseHeader({ children, handleDelete }) {
+    
     return (
         <div>
             <Navbar className={style.nav} variant="dark">

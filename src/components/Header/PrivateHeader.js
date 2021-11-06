@@ -3,8 +3,8 @@ import BaseHeader from '../BaseHeader/BaseHeader';
 import style from '../../assects/styles/header.module.scss'
 import { Link } from 'react-router-dom';
 import { USER_STORE } from '../../util/constants/keys';
-import {deleteLocalStorage, getLocalStorage} from '../../util/constants/localStorage'
-import { Redirect, useHistory } from 'react-router';
+import {deleteLocalStorage} from '../../util/constants/localStorage'
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveUser } from '../../store/actions';
 

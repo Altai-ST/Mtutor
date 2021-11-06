@@ -10,7 +10,7 @@ import { USER_STORE } from "../../util/constants/keys";
 import { setLocalStorage } from "../../util/constants/localStorage";
 import {Redirect} from 'react-router'
 import { successToastifys } from "../SuccessToastify";
-import load from '../../assects/image/loading.gif'
+import load from '../../assects/image/loading-btn.gif'
 
 export const LoginContent = ()=>{
     const [show, setShow] = useState(false);
@@ -50,16 +50,18 @@ export const LoginContent = ()=>{
     }   
 
     const title='Введите Ваш логин и пароль'
-
     const handleSubmit=async(e)=>{
         e.preventDefault()
         setLoading(true)
         const res = await signin(login)
         setShow(false)
-        dispatch(saveToken(res.token))
-        dispatch(saveUser(res.user))
-        setLocalStorage(USER_STORE, JSON.stringify(res.token))
-        successToastifys('Success login!!!')
+        if (res !== null){
+             dispatch(saveToken(res.token))
+            dispatch(saveUser(res.user))
+            setLocalStorage(USER_STORE, JSON.stringify(res.token))
+            successToastifys('Success login!!!')
+        }
+        setLoading(false)
         if(res){
             return <Redirect to='/home'/>
         }
