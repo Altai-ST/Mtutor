@@ -1,34 +1,78 @@
-import React, { useState } from 'react';
-import { FaUser } from "react-icons/fa";
-import { FaWrench } from "react-icons/fa"
-import { FaLock } from "react-icons/fa"
-import style from './dropMenu.module.scss'
+import React, { useState } from "react";
+import { Dropdown} from "react-bootstrap";
+import UserAvatar from "../../assects/image/user-avatar.png";
+import style from "./dropMenu.module.scss";
+import { FaUser, FaWrench, FaLock } from "react-icons/fa";
 
-function UserDropdownMenu() {
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  <a
+    href=""
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >
+    {children}
+  </a>
+));
+
+const CustomMenu = React.forwardRef(
+  ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
+    const [value, setValue] = useState("");
+
     return (
-        <div className={style.container}>
-            <div className={style.dropdown_menu}>
-                    <div className={style.dropdown_header}>
-                        <strong>
-                            example@gmail.com
-                        </strong>
-                        <br />
-                        example@gmail.com
-                    </div>
-                    <a href="#" className={style.dropdown_item}>
-                        <FaUser />
-                        Мой аккаунт</a>
-                    <button className={style.dropdown_item}>
-                        <FaWrench />
-                        Настройка
-                    </button>
-                    <button className={style.dropdown_item}>
-                        <FaLock />
-                        Выйти
-                    </button>
-                </div>
-        </div>
-    )
-}
+      <div
+        ref={ref}
+        style={style}
+        style={{paddingRight: '0px', paddingTop: '0px'}}
+        className={className}
+        aria-labelledby={labeledBy}
+      >
+        <ul className="list-unstyled"
+         style={{marginBottom: '0'}}>
+          {React.Children.toArray(children).filter(
+            (child) =>
+              !value || child.props.children.toLowerCase().startsWith(value)
+          )}
+        </ul>
+      </div>
+    );
+  }
+);
 
-export default UserDropdownMenu
+export const Menu = () => {
+  return (
+      <Dropdown className={style.dropdowns}>
+        <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components" className={style.dropdown}>
+          {<img src={UserAvatar} className={style.userAvatar} />}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu
+          as={CustomMenu}
+          className={style.dropMenu}
+          style={{ paddingRight: "10px" }}
+        >
+          <div className={style.dropdown_header}>
+            <strong>example@gmail.com</strong>
+            <br />
+            example@gmail.com
+          </div>
+          <Dropdown.Item eventKey="1" className={style.dropdown_item}>
+            <FaUser className={style.menuIcon}/>
+            Мой аккаунт
+          </Dropdown.Item>
+          <Dropdown.Item eventKey="2" className={style.dropdown_item}>
+            <FaWrench className={style.menuIcon}/>
+            Настройка
+          </Dropdown.Item>
+          <Dropdown.Item eventKey="3" className={style.dropdown_item}>
+            <FaLock className={style.menuIcon}/>
+            Выйти
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+  );
+};
+
+// export default Menu

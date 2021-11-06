@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import UserAvatar from '../../assects/image/user-avatar.png'
+import {Menu} from '../UserDropdownMenu/UserDropdownMenu'
 import style from '../../assects/styles/header.module.scss'
 
 function BaseHeader({ children }) {
@@ -14,10 +14,8 @@ function BaseHeader({ children }) {
                 <Nav className="mr-auto">
                     {children}
                 </Nav>
-                <div className={style.con}>
-                    <Link className={style.dropdown} to={'/account'}>
-                        <img className={style.userAvatar} src={UserAvatar} />
-                    </Link> 
+                <div className={style.dropdown}>
+                    <Menu/> 
                 </div>  
             </Navbar>
         </div>
