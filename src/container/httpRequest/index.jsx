@@ -65,4 +65,7 @@ export const getProfileRequest=()=>{
         .then(resData=>{
             return resData
         })
+        .catch(err=>{
+            return null
+        })
 }

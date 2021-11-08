@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getProfileRequest} from './container/httpRequest/index'
 import {saveToken, saveUser} from './store/actions/index'
 import { USER_STORE } from './util/constants/keys';
-import {getLocalStorage} from './util/constants/localStorage'
+import {deleteLocalStorage, getLocalStorage} from './util/constants/localStorage'
 import { ToastContainer } from 'react-toastify';
 
 function App() {
@@ -15,7 +15,12 @@ function App() {
   const stateUser = useSelector(state=>state.userRedusers.user)
   const getProfile=async()=>{
       const data = await getProfileRequest()
-      dispatch(saveUser(data.user))
+      if( data !== null){
+        dispatch(saveUser(data.user)) 
+      }else if (data === null){
+        deleteLocalStorage(USER_STORE)
+        dispatch(saveToken(''))
+      }
       setIsLoading(false)
     }
   useEffect(()=>{
