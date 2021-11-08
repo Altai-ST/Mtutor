@@ -20,9 +20,6 @@ const LoginModal=({show, handleClose, children, onClose, title})=>{
                     <Modal.Body>
                         {children}
                     </Modal.Body>
-                    {/* <Modal.Footer>
-                        <Button onClick={handleClose}>Отмена</Button>
-                    </Modal.Footer> */}
             </Modal>
         </div>
     )

@@ -12,7 +12,6 @@ const roles = {
 
 const StateHeader = () => {
     const {role} = useSelector((state) => state.userRedusers.user)
-
     const currentRole = role ? role.role : null
         if (currentRole === null) {
             return <PublicHeader/>    

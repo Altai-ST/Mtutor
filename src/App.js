@@ -2,29 +2,36 @@ import { Routers } from './components/Routers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assects/styles/_App.scss'
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {getProfileRequest} from './container/httpRequest/index'
-import {saveToken} from './redux/actions/index'
+import {saveToken, saveUser} from './store/actions/index'
+import { USER_STORE } from './util/constants/keys';
+import {getLocalStorage} from './util/constants/localStorage'
+import { ToastContainer } from 'react-toastify';
+
 function App() {
   const [isLoading, setIsLoading]=useState(true)
   const dispatch = useDispatch()
-  // const getProfile=async(val)=>{
-  //     const data = await getProfileRequest(val)
-  //     console.log(data)
-  //     // dispatch(saveToken(data))
-  //     setIsLoading(false)
-  //   }
-
-  useEffect(()=>{
-  //   if (localStorage.getItem('tokens')){
-  //     getProfile(localStorage.getItem('tokens'))
-  //   }else {
+  const stateUser = useSelector(state=>state.userRedusers.user)
+  const getProfile=async()=>{
+      const data = await getProfileRequest()
+      dispatch(saveUser(data.user))
       setIsLoading(false)
-    // }
+    }
+  useEffect(()=>{
+    const data = JSON.parse(getLocalStorage(USER_STORE))
+    if (data){
+      dispatch(saveToken(data))
+      getProfile()
+    }else {
+      setIsLoading(false)
+    }
   },[])
+
   return (
-    <div className="App">
-      {isLoading ? <p>Loading</p> : <Routers/> }
+  <div className="App">
+          {isLoading ? <p>Loading</p> : <Routers/> }
+          <ToastContainer/>
     </div>
   );
 }

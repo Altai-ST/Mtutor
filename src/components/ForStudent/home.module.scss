@@ -5,6 +5,7 @@
 }
 
 .cards {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -33,5 +34,5 @@ h1 {
 }
 
 .card {
-    width: 27rem;
+    width: 33%;
 }

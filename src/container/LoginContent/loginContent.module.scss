@@ -23,3 +23,21 @@
         width: 428px;
     }
 }
+
+.btnSignIn{
+    margin-top: 20px;
+
+}
+
+.btnGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.btnLoad{
+    width: 5%;
+    height: 5%;
+    margin-top: 30px;
+}

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import style from './_register.module.scss'
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {IMaskInput} from 'react-imask'
 import { useDispatch } from "react-redux";
-import { FormSet } from "../../redux/actions";
+import { FormSet } from "../../store/actions";
 import { useSelector } from "react-redux";
 const Register =()=>{
     const dispatch = useDispatch()
-    const history = useHistory()
     const [formData, setFormData] = useState({
         email:'',
         phone:'',
@@ -20,11 +19,10 @@ const Register =()=>{
     const [emailError, setEmailError]=useState(false)
     const [submits, setSubmits]=useState(true)
 
-    const historys = useHistory()
     const states = useSelector(state => state.Autorization.formEmail)
     
 
-    const stateForm = useEffect(()=>{
+    useEffect(()=>{
         if(!emailError && formData.phone !== '' && formData.fullName !== '' && formData.phone.length > 11){
             setSubmits(false)
         }else{
@@ -36,7 +34,6 @@ const Register =()=>{
     const hadleSubmit=(e)=>{
         e.preventDefault()
         dispatch(FormSet(formData))
-        history.push('/password')
     }
 
     const hadleChange=(val)=>{
@@ -55,13 +52,11 @@ const Register =()=>{
         }
 
     }
-
-
+    
     const handleMask=(val)=>{
         setSubmits(false)
         setFormData({...formData, phone: val})
     }
-
 
     if (states.role === ''){
         return <Redirect to='/chooseRole'/>
@@ -87,9 +82,9 @@ const Register =()=>{
                                 <div className={style.control}>
                                     <Form.Control 
                                     value={formData.fullName} 
-                                    onChange={e=>hadleChange(e)}
+                                    onChange={hadleChange}
                                     name='fullName'
-                                    type="fullName" placeholder="Фамилия Имя Отчество"></Form.Control>
+                                    type="fullName" placeholder="Фамилия Имя Отчество"/>
                                 </div>
                             </div>
                         </Form.Group>
@@ -97,10 +92,10 @@ const Register =()=>{
                             <div className={style.formGroup}>
                                 <Form.Label className={style.formLabel}>Email</Form.Label>
                                 <div className={style.control}>
-                                    <Form.Control onChange={e=>hadleChange(e)} value={formData.email} 
+                                    <Form.Control onChange={hadleChange} value={formData.email} 
                                     type="email"
                                     name='email'
-                                    placeholder="example@gmail.com"></Form.Control>
+                                    placeholder="example@gmail.com"/>
                                     {(emailError) && <div style={{color:'red'}}>
                                     Не правильно веден логин
                                     </div>}
@@ -118,10 +113,9 @@ const Register =()=>{
                                     radix='.'
                                     value={formData.phone}
                                     name='phone'
-                                    onAccept={(value,mask)=>handleMask(value)}
-                                    unmask={true}
-                                >
-                                </IMaskInput>
+                                    onAccept={(value)=>handleMask(value)}
+                                    unmask={false}
+                                />
                                 </div>
                             </div>
                         </Form.Group>

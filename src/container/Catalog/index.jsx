@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row'
 import styles from './style.module.css'
 import { Redirect, useHistory, useRouteMatch} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SetRole } from "../../redux/actions";
-import { saveToken } from "../../redux/actions";
+import { SetRole } from "../../store/actions";
+import { saveToken } from "../../store/actions";
 
 const Catalog =()=>{
     const dispatch = useDispatch()
