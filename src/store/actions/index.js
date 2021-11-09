@@ -1,4 +1,4 @@
-import { SAVE_TOKENS, SET_FORM, SET_ROLES, SAVE_USER } from "../actionType";
+import { SAVE_TOKENS, SET_FORM, SET_ROLES, SAVE_USER, SET_QUALIFICATION } from "../actionType";
 
 export const FormSet = (val)=>({
     type: SET_FORM,
@@ -18,5 +18,10 @@ export const saveToken = (val) =>({
 export const saveUser =(user)=>({
     type:SAVE_USER,
     payload:user
+})
+
+export const setQual = (data)=>({
+    type: SET_QUALIFICATION,
+    payload: data
 })
 

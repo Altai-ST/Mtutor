@@ -1,6 +1,5 @@
 import {store} from '../../store/index'
 import { errorToast } from '../ErrorToastify'
-import { notify } from '../SuccessToastify'
 
 
 const sendHttpRequest=(method, url, data=null)=>{
@@ -68,4 +67,14 @@ export const getProfileRequest=()=>{
         .catch(err=>{
             return null
         })
+}
+
+export const qualification = (data) =>{
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/profile/save',data)
+    .then(responData => {
+        return responData
+    })
+    .catch(err=>{
+        return null
+    })
 }

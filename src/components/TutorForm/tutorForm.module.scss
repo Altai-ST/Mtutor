@@ -19,7 +19,6 @@
         span{
             color: red;
         }
-        
         .firstBlock{
             width: 50%;
             .formGroup{
@@ -27,6 +26,12 @@
                 .control{
                     width: 337px;
                     margin-top: 15px;
+                    color: black;
+                    .date{
+                        border: 1px solid #ced4da;
+                        border-radius: 3px;
+                        padding: 5px;
+                    }
                 }
                 .formLabel{
                     color: black;

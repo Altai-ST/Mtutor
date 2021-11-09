@@ -1,12 +1,18 @@
 import React,{useState} from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
-// import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import style from './tutorForm.module.scss'
+import Select from 'react-select'
+import DatePicker from 'react-datepicker'
+import { useSelector, useDispatch } from 'react-redux'
+import "react-datepicker/dist/react-datepicker.css";
+import { qualification } from '../../container/httpRequest'
+import { setQual } from '../../store/actions'
 
 export const TutorForm =()=> {
+    const state = useSelector(state=>state.userRedusers.user)
 
     const [formData, setFormData] = useState({
-        fullName:'',
+        fullName: state.fullName,
         date:'',
         about:'',
         eduPlace:'',
@@ -15,12 +21,21 @@ export const TutorForm =()=> {
         cost:''
     })
 
+    const [selectedDate, setSelectedDate] = useState(new Date())
+    const [btnActive, setBtnActive] = useState(true)
+
+    const option = [
+        {value:'Среднее общее', label:'Среднее общее'},
+        {value:'Бакалавриат', label:'Бакалавриат'},
+        {value:'Специалитет', label:'Специалитет'},
+        {value:'Магистратура', label:'Магистратура'},
+        {value:'Аспирантура', label:'Аспирантура'},
+    ]
+
     const handleChange=(val)=>{
         const value = val.target.value
+        console.log(formData.date)
         switch(val.target.name){
-            case 'fullName':
-                setFormData({...formData, fullName: value})
-                break
             case 'date':
                 setFormData({...formData, date: value})
                 break
@@ -40,6 +55,18 @@ export const TutorForm =()=> {
                 setFormData({...formData, cost: value})
                 break
         }
+        if(formData.about !== '' && formData.eduPlace !== '' && formData.special !== '' &&
+        formData.course !=='' && formData.cost !== ''){
+            setBtnActive(false)
+        }
+    }
+    const dispatch = useDispatch()
+
+    const handleSubmit = async(e)=>{
+        e.preventDefault()
+        const res = await qualification(formData)
+        console.log(res)
+        dispatch(setQual(formData))
     }
 
     return (
@@ -47,7 +74,7 @@ export const TutorForm =()=> {
             <Card>
                 <Card.Body>
                     <div>
-                        <Form>
+                        <Form onSubmit={handleSubmit}>
                             <div className={style.mainForm}>
                                 <div className={style.firstBlock}>
                                     <h5>
@@ -61,7 +88,9 @@ export const TutorForm =()=> {
                                                 value={formData.fullName} 
                                                 onChange={handleChange}
                                                 name='fullName'
-                                                type="fullName" placeholder="ФИО"/>
+                                                type="fullName" placeholder="ФИО"
+                                                disabled
+                                                />
                                             </div>
                                         </div>
                                     </Form.Group>
@@ -69,11 +98,11 @@ export const TutorForm =()=> {
                                         <div className={style.formGroup}>
                                             <Form.Label className={style.formLabel}>Дата рождения<span>*</span></Form.Label>
                                             <div className={style.control}>
-                                                <Form.Control 
-                                                value={formData.date} 
-                                                onChange={handleChange}
-                                                name='date'
-                                                type="input" placeholder=""/>
+                                                <DatePicker className={style.date}
+                                                    selected={selectedDate} 
+                                                    onChange={date => setSelectedDate(date)}
+                                                    dateFormat='dd.MM.yyyy'
+                                                />
                                             </div>
                                         </div>
                                     </Form.Group>
@@ -117,6 +146,16 @@ export const TutorForm =()=> {
                                             </div>
                                         </div>
                                     </Form.Group>
+                                    <Form.Group>
+                                        <div className={style.formGroup}>
+                                            <Form.Label className={style.formLabel}>
+                                                Степень образования<span>*</span>
+                                            </Form.Label>
+                                            <div className={style.control}>
+                                                <Select options={option}/>
+                                            </div>
+                                        </div>
+                                    </Form.Group>
                                     <div className={style.formGroup}>
                                         <Form.Group controlId="formFile" className="mb-3">
                                                 <Form.Label className={style.formLabel}>Резюме<span>*</span></Form.Label>
@@ -148,20 +187,19 @@ export const TutorForm =()=> {
                                                 value={formData.cost} 
                                                 onChange={handleChange}
                                                 name='cost'
-                                                type="input" placeholder="Введите специальность"/>
+                                                type="input"/>
                                             </div>
                                         </div>
                                     </Form.Group>
                                 </div>
                             </div>
                             <Button variant='danger' className='mx-2'>Отмена</Button>
-                            <Button variant='primary' type='submit'>Сохранить</Button>
+                            <Button variant='primary' disabled={btnActive} type='submit'>Сохранить</Button>
                         </Form>
                     </div>
                 </Card.Body>
             </Card>
             <div>
-
             </div>
         </div>
     )

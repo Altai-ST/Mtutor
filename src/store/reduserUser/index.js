@@ -1,8 +1,9 @@
-import { SAVE_TOKENS, SAVE_USER } from "../actionType";
+import { SAVE_TOKENS, SAVE_USER, SET_QUALIFICATION } from "../actionType";
 
 const initialState={
     token:'',
-    user:''
+    user:'',
+    qualification:''
 }
 
 export const userRedusers =(state=initialState, action)=>{
@@ -16,6 +17,11 @@ export const userRedusers =(state=initialState, action)=>{
             return{
                 ...state,
                 user: action.payload,
+            }
+        case SET_QUALIFICATION:
+            return{
+                ...state,
+                qualification: action.payload
             }
         default: return state
     }
