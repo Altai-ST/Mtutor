@@ -11,7 +11,7 @@ const Add = () => {
 	const [inputValue, setInputValue] = useState('')
 
     const handleSubmit=()=>{
-        history.push('/admin')
+        history.push('/admin/courses')
 		dispatch(postUser(inputValue))
     }
     const changeHandler = (e) => setInputValue(e.target.value)

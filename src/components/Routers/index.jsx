@@ -7,6 +7,7 @@ import {
 import Admin from '../Admin';
 import Add from '../Admin/Coureses/Add/index'
 import Edit from '../Admin/Coureses/Edit';
+import Courses from '../Admin/Coureses';
 
 
 export function Routers() {
@@ -25,9 +26,10 @@ export function Routers() {
           <Route path='/Login'>
             
           </Route>
-          <Route path='/add' component={Add}/>
-          <Route path='/edit' component={Edit}/>
-          <Route path='/admin' component={Admin}/>
+          <Route path='/admin/courses/add' component={Add}/>
+          <Route path='/admin/courses/edit' component={Edit}/>
+          <Route path='/admin/courses' component={Courses}/>
+          {/* <Route path='/admin/courses' component={Admin}/> */}
         </Switch>
       </Router>
   );

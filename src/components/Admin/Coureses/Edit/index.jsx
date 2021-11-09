@@ -15,7 +15,7 @@ const Edit = () => {
 	const [name, setName] = useState(editedData.name)
 
     const handleSubmit=()=>{
-        history.push('/admin')
+        history.push('/admin/courses')
 		dispatch(putUser({...editedData, newName: name}))
     }
 	const changeHandler = (e) => setName(e.target.value)

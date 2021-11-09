@@ -44,7 +44,7 @@ const Courses = () => {
 
 			<div className='courses-container'>
 				<div className='courses-btn'>
-					<Link to={'/add'}>
+					<Link to={'/admin/courses/add'}>
 						{' '}
 						<Button variant='success'>Добавить</Button>{' '}
 					</Link>
@@ -71,7 +71,7 @@ const Courses = () => {
 									<tr id={el.id}>
 										<td>{el.name}</td>
 										<td>
-											<Link to={'/edit/' + el.id}>
+											<Link to={'/admin/courses/edit/' + el.id}>
 												{' '}
 												<FaEdit onClick={() => setEditElem(el)}/>
 											</Link>
@@ -86,7 +86,7 @@ const Courses = () => {
 							)}
 					</tbody>
 				</Table>
-				<div class='courses-pagination'>
+				{/* <div class='courses-pagination'>
 					<Pagination>
 						<Pagination.First />
 						<Pagination.Prev />
@@ -96,7 +96,7 @@ const Courses = () => {
 						<Pagination.Next />
 						<Pagination.Last />
 					</Pagination>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)

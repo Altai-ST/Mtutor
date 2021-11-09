@@ -4,7 +4,7 @@ import Courses from './Coureses'
 const Admin = () => {
 	return (
 		<div>
-			<Courses />
+		<Courses/>
 		</div>
 	)
 }
