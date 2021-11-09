@@ -1,0 +1,28 @@
+.content {
+    color: black;
+    background-color: rgb(223, 221, 221);
+    width: 100%;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    // width: 70%;
+}
+
+.inputSearch {
+    width: 60%;
+    color: rgb(170, 170, 170);
+    border: none;
+    // border-color: rgb(223, 221, 221);
+}
+
+.btnSearch {
+    width: 10%;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
