@@ -1,6 +1,5 @@
 {
   "name": "mtutor-app",
-  "homepage": "http://Altai-ST.github.io/Mtutor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
