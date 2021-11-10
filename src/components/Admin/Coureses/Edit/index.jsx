@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { putUser } from "../../../../container/httpRequest"
-import '../Add/Add.scss'
+import style from '../Add/Add.module.scss'
 
 const Edit = () => {
 
@@ -21,15 +21,15 @@ const Edit = () => {
 	const changeHandler = (e) => setName(e.target.value)
 
 	return (
-        <div className='container'>
-			<div className='card'>
-				<div className='card-header'>Редактирование существующего курса</div>
-				<div className='card-body'>
-					<div className='row1'>
-						<label className='add-label'>Наименование курса</label>
-						<input className='add-input' type='text' value={name} onChange={changeHandler}/>
+        <div className={style.container}>
+			<div className={style.card}>
+				<div className={style.card_header}>Редактирование существующего курса</div>
+				<div className={style.card_body}>
+					<div className={style.row1}>
+						<label className={style.add_label}>Наименование курса</label>
+						<input className={style.add_input} type='text' value={name} onChange={changeHandler}/>
 					</div>
-					<div className='row2'>
+					<div className={style.row2}>
                     <Button variant="success" onClick={handleSubmit}>Сохранить</Button>
                     </div>
 				</div>

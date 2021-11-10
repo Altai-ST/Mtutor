@@ -1,7 +1,6 @@
 import Table from 'react-bootstrap/Table'
 import { Button } from 'react-bootstrap'
-import '../Coureses/Courses.scss'
-import Pagination from 'react-bootstrap/Pagination'
+import style from './Courses.module.scss'
 import { FaEdit } from 'react-icons/fa'
 import { FaTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -42,8 +41,8 @@ const Courses = () => {
 				id={currentId}
 			/>
 
-			<div className='courses-container'>
-				<div className='courses-btn'>
+			<div className={style.courses_container}>
+				<div className={style.courses_btn}>
 					<Link to={'/admin/courses/add'}>
 						{' '}
 						<Button variant='success'>Добавить</Button>{' '}
@@ -86,17 +85,6 @@ const Courses = () => {
 							)}
 					</tbody>
 				</Table>
-				{/* <div class='courses-pagination'>
-					<Pagination>
-						<Pagination.First />
-						<Pagination.Prev />
-						<Pagination.Item>{1} </Pagination.Item>
-						<Pagination.Ellipsis />
-						<Pagination.Item>{25} </Pagination.Item>
-						<Pagination.Next />
-						<Pagination.Last />
-					</Pagination>
-				</div> */}
 			</div>
 		</div>
 	)

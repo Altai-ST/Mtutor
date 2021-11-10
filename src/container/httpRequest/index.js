@@ -1,4 +1,4 @@
-import {setCourses,setAllCourses, deleteCourse} from '../../redux/actions'
+import {setAllCourses} from '../../redux/actions'
 const sendHttpRequest=(method, url, data)=>{
     console.log(method)
     const params = {

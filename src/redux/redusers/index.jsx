@@ -1,4 +1,4 @@
-import { CHANGE_COURSE, SETCOURSE, SET_ALL_COURSES, SET_EDIT,DELETE_COURSE } from '../actionsTypes'
+import { SETCOURSE, SET_ALL_COURSES, SET_EDIT,DELETE_COURSE } from '../actionsTypes'
 
 const initialState = {
 	courses: [],
@@ -12,19 +12,17 @@ export const rootReducer = (state = initialState, action) => {
 				...state,
 				courses: [...state.courses, action.payload],
 			}
-            break;
             case SET_ALL_COURSES:
                 return {
                     ...state,
                     courses: action.payload.docs
                 }
-                break;
                 case SET_EDIT:
                     return {
                         ...state,
                         editedData: action.payload
                     }
-                    break;
+               
                 case DELETE_COURSE:
                     return {
                         ...state,
@@ -33,7 +31,7 @@ export const rootReducer = (state = initialState, action) => {
                             return el.doc.id !== action.payload
                         })
                     }
-                    break;
+                  
 		default:
 			return state
             
