@@ -16,6 +16,9 @@ import StateHeader from '../Header/StateHeader';
 import { TutorForm } from '../TutorForm';
 import TutorQualification from '../TutorMenu';
 import TutorAddCourse from '../TutorAddCourse';
+import Add from '../Admin/Coureses/Add/index'
+import Edit from '../Admin/Coureses/Edit';
+import Courses from '../Admin/Coureses';
 
 export function Routers(){
   const user = useSelector(state => state.userRedusers.user)
@@ -34,8 +37,13 @@ export function Routers(){
           <ProtectedRoute path='/chooseRole' component={Catalog} isAuthorized={!isAuthorized()}/>
           <ProtectedRoute path='/register' component={Register} isAuthorized={!isAuthorized()}/>
           <ProtectedRoute path='/password' component={PutPassword} isAuthorized={!isAuthorized()}/>
+          <ProtectedRoute path='/admin/courses' component={Courses} isAuthorized={isAuthorized()}/>
+          <ProtectedRoute path='/admin/courses/add' component={Add} isAuthorized={isAuthorized()}/>
+          <ProtectedRoute path='/admin/courses/edit' component={Edit} isAuthorized={isAuthorized()}/>
         </Switch>
         <Footer/>
       </Router>
       )
 }
+
+

@@ -11,7 +11,7 @@ import { saveUser } from '../../store/actions';
  const MenuList = {
     admin: [
         {
-            path: '/admin',
+            path: '/admin/courses',
             title: 'Курсы'
         },
         {

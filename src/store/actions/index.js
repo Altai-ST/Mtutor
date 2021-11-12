@@ -1,4 +1,4 @@
-import { SAVE_TOKENS, SET_FORM, SET_ROLES, SAVE_USER, SET_QUALIFICATION } from "../actionType";
+import { SAVE_TOKENS, SET_FORM, SET_ROLES, SAVE_USER, SET_QUALIFICATION, SETCOURSE,SET_ALL_COURSES ,SET_EDIT, DELETE_COURSE } from "../actionType";
 
 export const FormSet = (val)=>({
     type: SET_FORM,
@@ -25,3 +25,20 @@ export const setQual = (data)=>({
     payload: data
 })
 
+export const setCourses = (data)=> ({
+    type: SETCOURSE,
+    payload: data
+})
+
+export const setAllCourses = (data)=> ({
+    type: SET_ALL_COURSES,
+    payload: data
+})
+export const setEditId = (data)=> ({
+    type: SET_EDIT,
+    payload: data
+})
+export const deleteCourse = (id)=> ({
+    type: DELETE_COURSE,
+    payload: id
+})

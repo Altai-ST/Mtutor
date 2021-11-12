@@ -1,4 +1,3 @@
-
 import { SET_FORM, SET_ROLES } from "../actionType";
 
 const initialState={
@@ -14,7 +13,6 @@ const initialState={
         password:''
     }
 }
-
 
 export const Autorization =(state = initialState, action)=>{
     switch (action.type) {
@@ -38,7 +36,6 @@ export const Autorization =(state = initialState, action)=>{
                     role:action.payload,
                 }
             }
-        
         default: return state
     }
 }
