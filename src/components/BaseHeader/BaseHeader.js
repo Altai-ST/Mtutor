@@ -5,9 +5,12 @@ import {Menu} from '../UserDropdownMenu/UserDropdownMenu'
 import style from '../../assects/styles/header.module.scss'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useSelector } from 'react-redux';
+import TutorQualification from '../TutorMenu';
 
 
-function BaseHeader({ children, handleDelete }) {
+function BaseHeader({ children, handleDelete }){
+    const state = useSelector(state=>state.userRedusers.qual)
     return (
         <div>
             <Navbar className={style.nav} variant="dark">
@@ -18,7 +21,7 @@ function BaseHeader({ children, handleDelete }) {
                     {children}
                 </Nav>
                 <div className={style.dropdown}>
-                    <Menu handleDelete={handleDelete}/> 
+                    <Menu handleDelete={handleDelete}/>
                 </div>  
             </Navbar>
         </div>

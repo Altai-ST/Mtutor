@@ -1,0 +1,37 @@
+%form-lab{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.addCourse{
+    width: 100%;
+    margin-bottom: 146px;
+    .cards{
+        width: 90%;
+        margin: 50px auto ;
+        .formLabel{
+            color: #000;
+        }
+        .headCard{
+            background-color: #16A374;
+        }
+        .btnGroup{
+            margin-left: 100px;
+            .btn{
+                width: 174px;
+                margin-right: 25px;
+            }
+        }
+    }
+}
+
+.formGroup{
+    display: flex;
+    .control{
+        width: 337px;
+    }
+    .formLabel{
+        @extend %form-lab;
+        width: 264px;
+    }
+}

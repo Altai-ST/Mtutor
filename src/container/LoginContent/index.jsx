@@ -62,8 +62,9 @@ export const LoginContent = ()=>{
             successToastifys('Success login!!!')
         }
         setLoading(false)
+        
         if(res){
-            return <Redirect to='/home'/>
+            return <Redirect to='/tutorQual'/>
         }
     }
 

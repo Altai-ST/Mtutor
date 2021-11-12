@@ -5,7 +5,7 @@ import Select from 'react-select'
 import DatePicker from 'react-datepicker'
 import { useSelector, useDispatch } from 'react-redux'
 import "react-datepicker/dist/react-datepicker.css";
-import { qualification } from '../../container/httpRequest'
+import { qualification, setAvatar } from '../../container/httpRequest'
 import { setQual } from '../../store/actions'
 
 export const TutorForm =()=> {
@@ -17,13 +17,16 @@ export const TutorForm =()=> {
         birthDate: selectedDate,
         shortDescription:'',
         educationName:'',
-        special:'',
-        course:'',
-        cost:''
+        educationFaculty:'',
+        educationDegree:'',
+        resume:'',
+        avatar:''
     })
+
     useEffect(() => {
         setFormData({...formData, birthDate: selectedDate.getDate()+'.'+(selectedDate.getMonth()+1)+'.'+selectedDate.getFullYear()})
     }, [selectedDate])
+
     const [btnActive, setBtnActive] = useState(true)
 
     const option = [
@@ -43,25 +46,20 @@ export const TutorForm =()=> {
             case 'eduPlace':
                 setFormData({...formData, educationName: value})
                 break
-            case 'avatar':
-                if(value.split(".").splice(-1,1) === 'jpg' || value.split(".").splice(-1,1) === 'png'){
-                    setFormData({...formData, })
-                }
             case 'special':
-                setFormData({...formData, special: value})
-                break
-            case 'course':
-                setFormData({...formData, course: value})
-                break
-            case 'cost':
-                setFormData({...formData, cost: value})
+                setFormData({...formData, educationFaculty: value})
                 break
         }
-        if(formData.shortDescription !== '' && formData.eduPlace !== '' && formData.special !== '' &&
-        formData.course !=='' && formData.cost !== ''){
+        if(formData.shortDescription !== '' && formData.educationName !== '' && formData.educationDegree !== '' &&
+        formData.resume !=='' && formData.avatar !== '' && formData.birthDate !== ''){
             setBtnActive(false)
         }
     }
+
+    const handleSelect =(val)=>{
+        setFormData({...formData, educationDegree: val.value})
+    }
+
     const dispatch = useDispatch()
 
     const handleSubmit = async(e)=>{
@@ -70,7 +68,18 @@ export const TutorForm =()=> {
         console.log(res)
         dispatch(setQual(formData))
     }
+    
 
+    const handleImg = async (val) =>{
+        const formData = new FormData()
+        const value = val.target.value.split(".").splice(-1,1)[0]
+        console.log(val.target.value)
+        if(value === 'jpg' || value === 'png'){
+            formData.append('avatar', val.target.value)
+            const res = await setAvatar(formData)
+            console.log(res)
+        }
+    }
 
     return (
         <div className={style.forms}>
@@ -126,7 +135,7 @@ export const TutorForm =()=> {
                                     <Form.Group controlId="formFile" className="mb-3 mt-4">
                                         <div className={style.formGroup}>
                                             <Form.Label className={style.formLabel}>Аватар<span>*</span></Form.Label>
-                                            <input onChange={handleChange} name='avatar' type="file" id="formFile" className={"form-control" + ' ' + style.files}/>
+                                            <input onChange={handleImg} name='avatar' type="file" id="formFile" className={"form-control" + ' ' + style.files}/>
                                         </div> 
                                     </Form.Group>
                                 </div>
@@ -148,10 +157,10 @@ export const TutorForm =()=> {
                                     </Form.Group>
                                     <Form.Group className='mt-3'>
                                         <div className={style.formGroup}>
-                                            <Form.Label className={style.formLabel}>Факультет(Специальность)<span>*</span></Form.Label>
+                                            <Form.Label className={style.formLabel}>Факультет(Специальность)</Form.Label>
                                             <div className={style.control}>
                                                 <Form.Control 
-                                                value={formData.special} 
+                                                value={formData.educationFaculty} 
                                                 onChange={handleChange}
                                                 name='special'
                                                 type="input" placeholder="Введите специальность"/>
@@ -163,8 +172,8 @@ export const TutorForm =()=> {
                                             <Form.Label className={style.formLabel}>
                                                 Степень образования<span>*</span>
                                             </Form.Label>
-                                            <div className={style.control}>
-                                                <Select options={option}/>
+                                            <div className={style.control} >
+                                                <Select onChange={handleSelect} options={option}/>
                                             </div>
                                         </div>
                                     </Form.Group>

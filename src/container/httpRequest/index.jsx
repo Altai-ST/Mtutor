@@ -7,11 +7,12 @@ const sendHttpRequest=(method, url, data=null)=>{
     const params = {
         method: method,
         body:null,
-        headers:{'Content-Type':'application/json', Authorization: 'Bearer '+token},
+        headers:{'Content-Type':'application/json', Authorization: 'Bearer '+ token},
     }
     if (method === 'POST' || method === 'PUT'){
         params.body = JSON.stringify(data)
     }
+   
     return fetch(url, params).then(response=>{
         if(response.status === 400){
             return response.json().then(errResData=>{
@@ -71,6 +72,17 @@ export const getProfileRequest=()=>{
 
 export const qualification = (data) =>{
     return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/profile/save',data)
+    .then(responData => {
+        return responData
+    })
+    .catch(err=>{
+        return null
+    })
+}
+
+export const setAvatar = (FormData) =>{
+    console.log(FormData)
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/upload/avatar',FormData)
     .then(responData => {
         return responData
     })

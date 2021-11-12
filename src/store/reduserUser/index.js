@@ -3,7 +3,8 @@ import { SAVE_TOKENS, SAVE_USER, SET_QUALIFICATION } from "../actionType";
 const initialState={
     token:'',
     user:'',
-    qualification:''
+    qualification:'',
+    qual:false,
 }
 
 export const userRedusers =(state=initialState, action)=>{
