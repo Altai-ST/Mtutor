@@ -5,21 +5,27 @@
 }
 
 .search {
+    width: 100%;
     display: flex;
     justify-content: center;
     padding: 30px;
-    // width: 70%;
+}
+
+.select {
+    width: 40%;
 }
 
 .inputSearch {
-    width: 60%;
-    color: rgb(170, 170, 170);
-    border: none;
-    // border-color: rgb(223, 221, 221);
+    width: 40%;
 }
 
 .btnSearch {
-    width: 10%;
+    width: 13%;
+    height: 38px;
+}
+
+.list_group {
+    width: 40%;
 }
 
 h2 {

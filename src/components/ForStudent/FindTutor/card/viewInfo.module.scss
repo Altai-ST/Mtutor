@@ -1,0 +1,39 @@
+.container {
+    background: #f0f3f5;
+    width: 100%;
+}
+
+.container_fuild {
+    background: #fff;
+    color: black;
+    display: flex;
+    justify-content: start;
+    margin: 15px;
+    border: solid 1px rgb(107, 106, 106);
+}
+
+.profile {
+    width: 30%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img {
+    border-radius: 50%;
+    border: solid 1px #16ae74;
+    width: 68%;
+    margin-bottom: 10px;
+}
+
+.education {
+    padding: 10px;
+    width: 50%;
+    border-left: solid 1px black ;
+}
+
+.infoTutor {
+    display: flex;
+    justify-content: center;
+}
