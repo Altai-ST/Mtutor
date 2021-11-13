@@ -13,7 +13,7 @@ import { setEditId } from '../../../redux/actions'
 const Courses = () => {
 	const [show, setShow] = useState(false)
 	const [currentId, setCurrentId] = useState(0)
-	const courses = useSelector((state) => state.courses)
+	const courses = useSelector((state) => state.rootReducer.courses)
 	const dispatch = useDispatch()
 
 	useEffect(() => {

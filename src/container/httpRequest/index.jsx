@@ -1,6 +1,7 @@
 import {store} from '../../store/index'
 import { errorToast } from '../ErrorToastify'
 import {setAllCourses} from '../../redux/actions'
+import { saveTutorCourses } from '../../store/actions'
 
 const sendHttpRequest=(method, url, data=null)=>{
     const token = store.getState().userRedusers.token
@@ -12,7 +13,7 @@ const sendHttpRequest=(method, url, data=null)=>{
     if (method === 'POST' || method === 'PUT'){
         params.body = JSON.stringify(data)
     }
-   
+   console.log(params)
     return fetch(url, params).then(response=>{
         if(response.status === 400){
             return response.json().then(errResData=>{
@@ -123,6 +124,16 @@ export const setAvatar = (FormData) =>{
     return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/upload/avatar',FormData)
     .then(responData => {
         return responData
+    })
+    .catch(err=>{
+        return null
+    })
+}
+
+export const saveTutorCourse = (value)=> (dispatch) =>{
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/course/save', value)
+    .then(responData => {
+        return dispatch(saveTutorCourses(true))
     })
     .catch(err=>{
         return null

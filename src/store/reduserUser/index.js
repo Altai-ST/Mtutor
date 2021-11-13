@@ -1,10 +1,12 @@
-import { SAVE_TOKENS, SAVE_USER, SET_QUALIFICATION } from "../actionType";
+import { LOCAL_SAVE_TUTOR_COURSES, SAVE_TOKENS, SAVE_TUTOR_COURSES, SAVE_USER, SET_QUALIFICATION } from "../actionType";
 
 const initialState={
     token:'',
     user:'',
     qualification:'',
     qual:false,
+    saveCourse:false,
+    localSaveCorse:{}
 }
 
 export const userRedusers =(state=initialState, action)=>{
@@ -23,6 +25,17 @@ export const userRedusers =(state=initialState, action)=>{
             return{
                 ...state,
                 qualification: action.payload
+            }
+        case SAVE_TUTOR_COURSES:
+            console.log(action.payload)
+            return{
+                ...state,
+                saveCourse: action.payload
+            }
+        case LOCAL_SAVE_TUTOR_COURSES:
+            return{
+                ...state,
+                localSaveCorse: action.payload
             }
         default: return state
     }

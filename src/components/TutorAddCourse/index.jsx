@@ -1,23 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Form, Button } from "react-bootstrap";
+import { useDispatch } from 'react-redux';
 import Select from 'react-select'
 import style from './tutorAddCouse.module.scss'
+import { getData, saveTutorCourse } from '../../container/httpRequest';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 export default function TutorAddCourse() {
-
     const [coursSelect, setCoursSelect] = useState({
-        cours:'',
-        cost:'',
+        subjectId:'',
+        price:'',
     })
+    const [btnActive, setBtnActive] = useState(true)
+    const dispatch = useDispatch()
+    const courses = useSelector(state => state.rootReducer.courses)
+    const history = useHistory()
 
-    const option=[{
-        
-    }]
+    useEffect(() => {
+		dispatch(getData())
+	}, [])
+
+    const option= courses.length && courses.map((el)=>({
+        value: el.id, label:el.name
+    }))
+
+    const check = ()=>{
+        if(coursSelect.subjectId !== '' && coursSelect.price !== ''){
+            setBtnActive(false)
+        }else{
+            setBtnActive(true)
+        }
+    }
 
     const handleSelect =(val)=>{
-        setCoursSelect({...coursSelect, cours: val.value})
+        setCoursSelect({...coursSelect, subjectId: Number(val.value)})
+        check()
     }
-    const handleSubmit =()=>{
+    
+    const handleChange = (val)=>{
+        setCoursSelect({...coursSelect, price: Number(val.target.value)})
+        check()
+    }
 
+    const handleSubmit =(e)=>{
+        e.preventDefault()
+        dispatch(saveTutorCourse(coursSelect))
+        history.push('/tutorQual')
     }
     return (
         <div className={style.addCourse}>
@@ -39,10 +68,12 @@ export default function TutorAddCourse() {
                             <div className={style.formGroup}>
                                 <Form.Label className={style.formLabel}>Цена за час(60мин) занятия в Сомах</Form.Label>
                                 <div className={style.control}>
-                                    <Form.Control/>
+                                    <Form.Control onChange={handleChange}/>
                                 </div>
                             </div>
                         </Form.Group>
+                        <Button variant='danger' className='mx-2'><Link to='/tutorQual'>Отмена</Link></Button>
+                        <Button variant='primary' disabled={btnActive} type='submit'>Сохранить</Button>
                     </Form>
                 </Card.Body>
             </Card>

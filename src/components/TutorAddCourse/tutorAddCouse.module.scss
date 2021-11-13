@@ -29,6 +29,7 @@
     display: flex;
     .control{
         width: 337px;
+        color: black
     }
     .formLabel{
         @extend %form-lab;
