@@ -3,17 +3,24 @@ import { errorToast } from '../ErrorToastify'
 import {setAllCourses} from '../../redux/actions'
 import { saveTutorCourses } from '../../store/actions'
 
-const sendHttpRequest=(method, url, data=null)=>{
+const sendHttpRequest=(method, url, data=null, avatar=null)=>{
     const token = store.getState().userRedusers.token
     const params = {
         method: method,
         body:null,
         headers:{'Content-Type':'application/json', Authorization: 'Bearer '+ token},
     }
-    if (method === 'POST' || method === 'PUT'){
+    if (method === 'POST' && avatar === null || method === 'PUT'){
         params.body = JSON.stringify(data)
     }
-   console.log(params)
+    if(avatar === 'avatar' && method === 'POST'){
+        console.log(data)
+        const formData = new FormData()
+        formData.append('file', data)
+        params.body = formData
+        params.headers = {Authorization: 'Bearer '+ token}
+    }   
+    console.log(params)
     return fetch(url, params).then(response=>{
         if(response.status === 400){
             return response.json().then(errResData=>{
@@ -92,6 +99,7 @@ export const signup=(data)=>{
 export const signin=(data)=>{
     return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/auth/login',data)
     .then(responData=>{
+        console.log(responData)
         return responData
     })
     .catch(err=>{
@@ -120,8 +128,7 @@ export const qualification = (data) =>{
 }
 
 export const setAvatar = (FormData) =>{
-    console.log(FormData)
-    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/upload/avatar',FormData)
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/upload/avatar',FormData, 'avatar')
     .then(responData => {
         return responData
     })

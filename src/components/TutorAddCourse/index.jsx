@@ -7,6 +7,8 @@ import { getData, saveTutorCourse } from '../../container/httpRequest';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { localSaveTutorCourse } from '../../store/actions';
+import {getLocalStorage, setLocalStorage} from '../../util/constants/localStorage'
 export default function TutorAddCourse() {
     const [coursSelect, setCoursSelect] = useState({
         subjectId:'',
@@ -15,11 +17,21 @@ export default function TutorAddCourse() {
     const [btnActive, setBtnActive] = useState(true)
     const dispatch = useDispatch()
     const courses = useSelector(state => state.rootReducer.courses)
+    const tutorCourse = useSelector(state => state.userRedusers.localSaveCorse)
     const history = useHistory()
-
+    const saveTutorCourseLocal = JSON.parse(getLocalStorage('saveTutorCourse'))
     useEffect(() => {
 		dispatch(getData())
 	}, [])
+    console.log(saveTutorCourseLocal)
+    if(saveTutorCourseLocal === null && tutorCourse !== ''){
+            console.log(tutorCourse)
+            setLocalStorage('saveTutorCourse', JSON.stringify(tutorCourse))
+        }
+    if(saveTutorCourseLocal !== null && tutorCourse === ''){
+        console.log(tutorCourse)
+        dispatch(localSaveTutorCourse(saveTutorCourseLocal))
+    }
 
     const option= courses.length && courses.map((el)=>({
         value: el.id, label:el.name
@@ -46,6 +58,8 @@ export default function TutorAddCourse() {
     const handleSubmit =(e)=>{
         e.preventDefault()
         dispatch(saveTutorCourse(coursSelect))
+        dispatch(localSaveTutorCourse(coursSelect))
+        
         history.push('/tutorQual')
     }
     return (

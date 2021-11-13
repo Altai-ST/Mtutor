@@ -6,7 +6,7 @@ const initialState={
     qualification:'',
     qual:false,
     saveCourse:false,
-    localSaveCorse:{}
+    localSaveCorse:''
 }
 
 export const userRedusers =(state=initialState, action)=>{

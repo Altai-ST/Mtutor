@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import "react-datepicker/dist/react-datepicker.css";
 import { qualification, setAvatar } from '../../container/httpRequest'
 import { setQual } from '../../store/actions'
-
+import { Link } from 'react-router-dom'
 export const TutorForm =()=> {
     const state = useSelector(state=>state.userRedusers.user)
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -65,18 +65,15 @@ export const TutorForm =()=> {
     const handleSubmit = async(e)=>{
         e.preventDefault()
         const res = await qualification(formData)
-        console.log(res)
         dispatch(setQual(formData))
     }
-    
 
     const handleImg = async (val) =>{
-        const formData = new FormData()
         const value = val.target.value.split(".").splice(-1,1)[0]
-        console.log(val.target.value)
+        console.log(value)
+        console.log(val.target.files)
         if(value === 'jpg' || value === 'png'){
-            formData.append('avatar', val.target.value)
-            const res = await setAvatar(formData)
+            const res = await setAvatar(val.target.files[0])
             console.log(res)
         }
     }
@@ -136,6 +133,7 @@ export const TutorForm =()=> {
                                         <div className={style.formGroup}>
                                             <Form.Label className={style.formLabel}>Аватар<span>*</span></Form.Label>
                                             <input onChange={handleImg} name='avatar' type="file" id="formFile" className={"form-control" + ' ' + style.files}/>
+                                            
                                         </div> 
                                     </Form.Group>
                                 </div>
@@ -185,7 +183,7 @@ export const TutorForm =()=> {
                                     </Form.Group>
                                 </div>
                             </div>
-                            <Button variant='danger' className='mx-2'>Отмена</Button>
+                            <Button variant='danger' className='mx-2'><Link to='/tutorQual'>Отмена</Link></Button>
                             <Button variant='primary' disabled={btnActive} type='submit'>Сохранить</Button>
                         </Form>
                     </div>
@@ -196,5 +194,3 @@ export const TutorForm =()=> {
         </div>
     )
 }
-
-

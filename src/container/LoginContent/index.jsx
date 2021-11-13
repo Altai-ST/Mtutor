@@ -56,7 +56,8 @@ export const LoginContent = ()=>{
         const res = await signin(login)
         setShow(false)
         if (res !== null){
-             dispatch(saveToken(res.token))
+            console.log(res)
+            dispatch(saveToken(res.token))
             dispatch(saveUser(res.user))
             setLocalStorage(USER_STORE, JSON.stringify(res.token))
             successToastifys('Success login!!!')

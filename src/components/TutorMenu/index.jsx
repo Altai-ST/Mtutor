@@ -1,9 +1,20 @@
 import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import style from "./tutorMenu.module.scss";
-import { FaUser, FaBook, FaCalendar, FaTimes } from "react-icons/fa";
+import { FaUser, FaBook, FaCalendar, FaTimes, FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getLocalStorage, setLocalStorage } from "../../util/constants/localStorage";
+import { useDispatch } from "react-redux";
+import { saveTutorCourses } from "../../store/actions";
 const TutorQualification = () => {
+  const saveCourse = useSelector(state => state.userRedusers.saveCourse)
+  const dispatch = useDispatch()
+  if(saveCourse && !getLocalStorage('saveCorses')){
+    setLocalStorage('saveCourses', JSON.stringify(saveCourse))
+  }else if(getLocalStorage('saveCourses') && !saveCourse){
+    dispatch(saveTutorCourses(JSON.parse(getLocalStorage('saveCourses'))))
+  }
   return (
     <div className={style.tutorMenu}>
       <h1>Здравсвтуйте tutor,</h1>
@@ -28,7 +39,10 @@ const TutorQualification = () => {
             <Link to='/tutorAddCourse'>Add your course</Link>
             <div>
               <FaBook className={style.icons} />
-              <FaTimes className={style.cancelIcon} />
+              
+              {saveCourse ? <FaCheck className={style.icons}/> :
+                <FaTimes className={style.cancelIcon} />
+              }
             </div>
           </ListGroup.Item>
         </ListGroup>
