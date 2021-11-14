@@ -82,12 +82,22 @@ export const getSearchingSubjectRequest=(inputValue)=>{
         })
 }
 
-// export const getTutorsBySubjectRequest=(subjectId)=>{
-//     return sendHttpRequest('GET', 'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/tutors/'+{subjectId})
-//         .then(responData=>{
-//             return responData
-//         })
-//         .catch(err=>{
-//             return null
-//         })
-// }
+export const getTutorsBySubjectRequest=(subjectId)=>{
+    return sendHttpRequest('GET', 'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/tutors/'+{subjectId})
+        .then(responData=>{
+            return responData
+        })
+        .catch(err=>{
+            return null
+        })
+}
+
+export const getTutorDetailInfoRequest = (id) => {
+    return sendHttpRequest('GET', 'http://ec2-18-1842-51-15.eu-central-1.compute.amazonaws.com:8000/user'+{id})
+        .then(resData=>{
+            return resData
+        })
+        .catch(err=> {
+            return null
+        })
+}

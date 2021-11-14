@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import style from "./card.module.scss";
 import { Link } from "react-router-dom";
+import { getTutorDetailInfoRequest } from "../../../../container/httpRequest";
 
 const CardData = [
   {
@@ -38,6 +39,13 @@ const CardData = [
 ];
 
 const Cards = () => {
+  const [id, setId] = useState(null)
+  
+  const getTutorDetailInfo = async() => {
+    const TutorDeatailInfo = await getTutorDetailInfoRequest(id)
+    console.log(TutorDeatailInfo)
+  }
+
   return (
     <div className={style.tutor_card}>
       {CardData.map((cardItem) => {
@@ -52,6 +60,7 @@ const Cards = () => {
                 <Button
                   variant="outline-success"
                   className={style.view_info_btn}
+                  onclick={getTutorDetailInfo}
                 >
                   View information
                 </Button>{" "}

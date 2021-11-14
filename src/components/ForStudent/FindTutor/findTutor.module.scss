@@ -13,6 +13,11 @@
 
 .select {
     width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 0;
 }
 
 .inputSearch {
