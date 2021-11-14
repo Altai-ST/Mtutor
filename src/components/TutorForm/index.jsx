@@ -6,8 +6,9 @@ import DatePicker from 'react-datepicker'
 import { useSelector, useDispatch } from 'react-redux'
 import "react-datepicker/dist/react-datepicker.css";
 import { qualification, setAvatar, setResume } from '../../container/httpRequest'
-import { setQual } from '../../store/actions'
+import { saveFormTutor, setQual } from '../../store/actions'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
 export const TutorForm =()=> {
     const state = useSelector(state=>state.userRedusers.user)
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -38,7 +39,7 @@ export const TutorForm =()=> {
         {value:'Магистратура', label:'Магистратура'},
         {value:'Аспирантура', label:'Аспирантура'},
     ]
-
+    const history = useHistory()
     const handleChange=(val)=>{
         const value = val.target.value
         switch(val.target.name){
@@ -52,23 +53,34 @@ export const TutorForm =()=> {
                 setFormData({...formData, educationFaculty: value})
                 break
         }
+        console.log(formData)
         if(formData.shortDescription !== '' && formData.educationName !== '' && formData.educationDegree !== '' &&
-        formData.resume !=='' && formData.avatar !== '' && formData.birthDate !== ''){
+        formData.resume !=='' && formData.avatar !== ''){
             setBtnActive(false)
         }
     }
-
     const handleSelect =(val)=>{
         setFormData({...formData, educationDegree: val.value})
+        if(formData.shortDescription !== '' && formData.educationName !== '' && formData.educationDegree !== '' &&
+        formData.resume !=='' && formData.avatar !== ''){
+            setBtnActive(false)
+            
+        }
     }
 
     const dispatch = useDispatch()
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
-        const res = await qualification(formData)
+        let formDataRequest = formData
+        delete formDataRequest.educationFaculty
+        const res = await qualification(formDataRequest)
         console.log(res)
-        // dispatch(setQual(formData))
+        dispatch(setQual(formData))
+        dispatch(saveFormTutor(true))
+        if(res){
+            history.push('/tutorQual')
+        }
     }
     const handleImg = async (val) =>{
         const value = val.target.value.split(".").splice(-1,1)[0]

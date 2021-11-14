@@ -10,15 +10,25 @@ import TutorQualification from '../TutorMenu';
 
 
 function BaseHeader({ children, handleDelete }){
-    const state = useSelector(state=>state.userRedusers.qual)
+    const user = useSelector(state=>state.userRedusers.user)
+    const [userStatus, setUserStatus] = useState(false)
+    useEffect(()=>{
+        if((user.status === 'waiting' || user.status === 'pending') && user.role.role === 5){
+            setUserStatus(true)
+        }else{
+            setUserStatus(false)
+        } 
+    },[user])
     return (
         <div>
             <Navbar className={style.nav} variant="dark">
-                <Navbar.Brand href="#home">
-                    <Link to={'/home'} className={style.logo}>Mtutor</Link>
+                <Navbar.Brand>
+                    {userStatus ? <Link to='/tutorQual' className={style.logo}>Mtutor</Link> : 
+                        <Link to='/home' className={style.logo}>Mtutor</Link>
+                    }
                 </Navbar.Brand>
                 <Nav className="mr-auto">
-                    {children}
+                    {!userStatus && children}
                 </Nav>
                 <div className={style.dropdown}>
                     <Menu handleDelete={handleDelete}/>

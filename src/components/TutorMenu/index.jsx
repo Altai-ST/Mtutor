@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import style from "./tutorMenu.module.scss";
 import { FaUser, FaBook, FaCalendar, FaTimes, FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getLocalStorage, setLocalStorage } from "../../util/constants/localStorage";
 import { useDispatch } from "react-redux";
 import { saveTutorCourses } from "../../store/actions";
+import { Button } from "react-bootstrap";
+import { setStatus } from "../../container/httpRequest";
 const TutorQualification = () => {
   const saveCourse = useSelector(state => state.userRedusers.saveCourse)
+  const user = useSelector(state => state.userRedusers.user)
+  const [btnActive, setBtnActive] = useState(true)
   const dispatch = useDispatch()
-  if(saveCourse && !getLocalStorage('saveCorses')){
-    setLocalStorage('saveCourses', JSON.stringify(saveCourse))
-  }else if(getLocalStorage('saveCourses') && !saveCourse){
-    dispatch(saveTutorCourses(JSON.parse(getLocalStorage('saveCourses'))))
+  if(user.isCourseOfferCompleted){
+    dispatch(saveTutorCourses(true))
+  }else{
+    dispatch(saveTutorCourses(false))
+  }
+  if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted){
+    setBtnActive(false)
+  }
+  const handleSubmit =()=>{
+    setStatus({status:'pending'})
   }
   return (
     <div className={style.tutorMenu}>
@@ -25,21 +34,21 @@ const TutorQualification = () => {
             <Link to='/tutorForm'>Заполните ваш профиль</Link>
             <div>
               <FaUser className={style.icons} />
-              <FaTimes className={style.cancelIcon} />
+              {user.isProfileCompleted ? <FaCheck className={style.icons}/> : <FaTimes className={style.cancelIcon} />}
             </div>
           </ListGroup.Item>
           <ListGroup.Item style={{backgroundColor: '#b0d3c6', display: 'flex', justifyContent: 'space-between'}}>
-            Add your availibility
+            <Link to='/tutorSchedule'>Add your availibility</Link>
             <div>
               <FaCalendar className={style.icons} />
-              <FaTimes className={style.cancelIcon} />
+              {user.isScheduleCompleted ? <FaCheck className={style.icons}/> 
+              : <FaTimes className={style.cancelIcon} />}
             </div>
           </ListGroup.Item>
           <ListGroup.Item style={{backgroundColor: '#b0d3c6', display: 'flex', justifyContent: 'space-between'}}>
             <Link to='/tutorAddCourse'>Add your course</Link>
             <div>
               <FaBook className={style.icons} />
-              
               {saveCourse ? <FaCheck className={style.icons}/> :
                 <FaTimes className={style.cancelIcon} />
               }
@@ -47,6 +56,7 @@ const TutorQualification = () => {
           </ListGroup.Item>
         </ListGroup>
       </Card>
+      <Button disabled={btnActive} onClick={handleSubmit}>Отправить</Button>
     </div>
   );
 };

@@ -156,3 +156,23 @@ export const setResume = (FormData) =>{
         return null
     })
 }
+export const setSchedule =(data)=>{
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/schedule/save',data)
+    .then(responData => {
+        return responData
+    })
+    .catch(err=>{
+        return null
+    })
+}
+
+export const setStatus =(data)=>{
+    const user = store.getState().userRedusers.user
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/'+user.id+'/update',data)
+    .then(responData => {
+        return responData
+    })
+    .catch(err=>{
+        return null
+    })
+}
