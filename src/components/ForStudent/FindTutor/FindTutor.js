@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import style from "./findTutor.module.scss";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import Cards from "./card/Card";
 import {
   getSearchingSubjectRequest,
   getTutorsBySubjectRequest,
+  getTutorDetailInfoRequest
 } from "../../../container/httpRequest";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
 const FindTutor = () => {
   const [inputValue, setInputValue] = useState("");
   const [subjectId, setSubjectId] = useState(null);
   const [courses, setCourses] = useState([]);
+  const [id, setId] = useState(null)
 
   const handleInpuChange = async (value) => {
     setInputValue(value);
@@ -23,6 +26,12 @@ const FindTutor = () => {
     const subject = await getTutorsBySubjectRequest(subjectId);
     console.log(subjectId)
   };
+  
+  const getTutorDetailInfo = async() => {
+    const TutorDeatailInfo = await getTutorDetailInfoRequest(id)
+    console.log(id)
+    // console.log(TutorDeatailInfo)
+  }
 
   const handleSelectChange = (e) => {
     setSubjectId(e.value);
