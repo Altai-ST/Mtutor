@@ -168,7 +168,7 @@ export const setSchedule =(data)=>{
 
 export const setStatus =(data)=>{
     const user = store.getState().userRedusers.user
-    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/'+user.id+'/update',data)
+    return sendHttpRequest('PUT','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/'+user.id+'/status',data)
     .then(responData => {
         return responData
     })

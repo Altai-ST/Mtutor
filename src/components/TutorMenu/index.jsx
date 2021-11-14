@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import style from "./tutorMenu.module.scss";
 import { FaUser, FaBook, FaCalendar, FaTimes, FaCheck } from "react-icons/fa";
@@ -18,9 +18,11 @@ const TutorQualification = () => {
   }else{
     dispatch(saveTutorCourses(false))
   }
-  if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted){
-    setBtnActive(false)
-  }
+  useEffect(() => {
+    if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted){
+      setBtnActive(false)
+    }
+  }, [])
   const handleSubmit =()=>{
     setStatus({status:'pending'})
   }
