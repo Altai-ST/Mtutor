@@ -43,7 +43,8 @@ const Cards = () => {
   
   const getTutorDetailInfo = async() => {
     const TutorDeatailInfo = await getTutorDetailInfoRequest(id)
-    console.log(TutorDeatailInfo)
+    console.log(id)
+    // console.log(TutorDeatailInfo)
   }
 
   return (

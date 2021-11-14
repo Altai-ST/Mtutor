@@ -72,18 +72,18 @@ export const getProfileRequest=()=>{
 }
 
 export const getSearchingSubjectRequest=(inputValue)=>{
-    return sendHttpRequest('GET','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/list?name='+{inputValue})
+    return sendHttpRequest('GET',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/list?name=${inputValue}`)
         .then(responseData=>{
             return responseData
         })
-        .catch(err=>{
+        .catch(err=>{ 
             console.log(err)
             return null
         })
 }
 
 export const getTutorsBySubjectRequest=(subjectId)=>{
-    return sendHttpRequest('GET', 'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/tutors/'+{subjectId})
+    return sendHttpRequest('GET', `http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/tutors/${subjectId}`)
         .then(responData=>{
             return responData
         })
@@ -93,7 +93,7 @@ export const getTutorsBySubjectRequest=(subjectId)=>{
 }
 
 export const getTutorDetailInfoRequest = (id) => {
-    return sendHttpRequest('GET', 'http://ec2-18-1842-51-15.eu-central-1.compute.amazonaws.com:8000/user'+{id})
+    return sendHttpRequest('GET', `http://ec2-18-1842-51-15.eu-central-1.compute.amazonaws.com:8000/user/${id}`)
         .then(resData=>{
             return resData
         })

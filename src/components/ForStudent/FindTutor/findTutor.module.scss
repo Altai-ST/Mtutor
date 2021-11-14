@@ -13,11 +13,6 @@
 
 .select {
     width: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: auto;
-    padding-top: 0;
 }
 
 .inputSearch {
@@ -36,4 +31,17 @@
 h2 {
     display: flex;
     justify-content: center;
+}
+
+.tutor_card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.card {
+    width: 16rem;
+    margin-bottom: 15px;
+    height: auto;
 }

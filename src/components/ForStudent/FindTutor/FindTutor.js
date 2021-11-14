@@ -1,57 +1,49 @@
 import React, { useState } from "react";
 import style from "./findTutor.module.scss";
-import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Cards from "./card/Card";
 import {
   getSearchingSubjectRequest,
   getTutorsBySubjectRequest,
 } from "../../../container/httpRequest";
-import select from "react-select";
-import CustomSelect from "./CustomSelect";
 import Select from "react-select";
-import useSelector from 'react-redux'
 
 const FindTutor = () => {
   const [inputValue, setInputValue] = useState("");
-  const [subjectId, setSubjectId] = useState(0);
-  // const [courses, setCourses] = useState([]);
+  const [subjectId, setSubjectId] = useState(null);
+  const [courses, setCourses] = useState([]);
 
-  const courses = useSelector(state => state.rootReducer.courses)
-
-  const getSearchingSubject = async () => {
-    const data = await getSearchingSubjectRequest(inputValue);
-    setCourses(data);
-    console.log(inputValue);
-    console.log(data);
+  const handleInpuChange = async (value) => {
+    setInputValue(value);
+    const data = await getSearchingSubjectRequest(value);
+    setCourses(data.docs);
   };
 
   const getTutorsBySubject = async () => {
     const subject = await getTutorsBySubjectRequest(subjectId);
-    console.log(subject);
-    // console.log(JSON.stringify(subject))
+    console.log(subjectId)
   };
 
-  const handleChangeInput = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
+  const handleSelectChange = (e) => {
+    setSubjectId(e.value);
   };
+
+  const option = courses.map((el) => ({
+    value: el.id,
+    label: el.name,
+  }));
 
   return (
     <div className={style.content}>
       <div className={style.search}>
-        {/* <InputGroup className="mb-3" style={{ width: "40%" }}>
-          <FormControl
-            type="serch"
-            placeholder="Поиск"
-            aria-describedby="basic-addon1"
-            onChange={getSearchingSubject}
-          />
-        </InputGroup> */}
-       <Select
-       placeholder='Поиск'
-       onChange={handleChangeInput}
-       options={option}
-       />
+        <Select
+          placeholder="Поиск"
+          onChange={handleSelectChange}
+          onInputChange={handleInpuChange}
+          options={option}
+          className={style.select}
+          inputValue={inputValue}
+        />
         <Button
           variant="success"
           className={style.btnSearch}
@@ -60,22 +52,32 @@ const FindTutor = () => {
           Найти
         </Button>{" "}
       </div>
-      {/* // <select>
-      //   {courses
-      //     ? courses.map((elem) => {
-      //         return <option>{elem.name}</option>;
-      //       })
-      //     : null}
-      // </select> */}
-      {/* <div className={style.select}> */}
-        {courses.length === 0 ? (
-          <h2>Пожалуйста выберите нужный вам курс или предмет</h2>
-        ):(
-          <Cards />
-        ) }
-      {/* </div> */}
-      {/* <h2>Пожалуйста выберите нужный вам курс или предмет</h2> */}
-      {/* <Cards /> */}
+      {/* {courses === 0 ? (
+        <h2>Пожалуйста выберите нужный вам курс или предмет</h2>
+      ) : (
+        <Cards />
+      )} */}
+      {courses.map((cardItem) => {
+        return (
+          <Card className={style.card}>
+            <Card.Img variant="top" src={cardItem.avatar} />
+            <Card.Body>
+              <Card.Title>{cardItem.name}</Card.Title>
+              <Card.Text>{cardItem.title}</Card.Text>
+              <div>цена:{cardItem.price}</div>
+              <Link to="/student/findTutor/id">
+                <Button
+                  variant="outline-success"
+                  className={style.view_info_btn}
+                  onclick={getTutorDetailInfo}
+                >
+                  View information
+                </Button>{" "}
+              </Link>
+            </Card.Body>
+          </Card>
+        );
+      })}
     </div>
   );
 };
