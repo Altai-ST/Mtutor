@@ -8,23 +8,32 @@ import {
 } from "../../../container/httpRequest";
 import select from "react-select";
 import CustomSelect from "./CustomSelect";
+import Select from "react-select";
+import useSelector from 'react-redux'
 
 const FindTutor = () => {
   const [inputValue, setInputValue] = useState("");
   const [subjectId, setSubjectId] = useState(0);
-  const [courses, setCourses] = useState([]);
+  // const [courses, setCourses] = useState([]);
 
-  // const getSearchingSubject = async () => {
-  //   const data = await getSearchingSubjectRequest(inputValue);
-  //   setCourses(data);
-  //   console.log(inputValue);
-  //   console.log(data);
-  // };
+  const courses = useSelector(state => state.rootReducer.courses)
+
+  const getSearchingSubject = async () => {
+    const data = await getSearchingSubjectRequest(inputValue);
+    setCourses(data);
+    console.log(inputValue);
+    console.log(data);
+  };
 
   const getTutorsBySubject = async () => {
     const subject = await getTutorsBySubjectRequest(subjectId);
     console.log(subject);
     // console.log(JSON.stringify(subject))
+  };
+
+  const handleChangeInput = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
   };
 
   return (
@@ -38,7 +47,11 @@ const FindTutor = () => {
             onChange={getSearchingSubject}
           />
         </InputGroup> */}
-        <CustomSelect/>
+       <Select
+       placeholder='Поиск'
+       onChange={handleChangeInput}
+       options={option}
+       />
         <Button
           variant="success"
           className={style.btnSearch}
@@ -54,15 +67,13 @@ const FindTutor = () => {
       //       })
       //     : null}
       // </select> */}
-      {/* <div className={style.select}>
+      {/* <div className={style.select}> */}
         {courses.length === 0 ? (
-          null
+          <h2>Пожалуйста выберите нужный вам курс или предмет</h2>
         ):(
-          <div className={style.select}>
-           Sorry, we couldn't find what you're looking for.
-          </div>
+          <Cards />
         ) }
-      </div> */}
+      {/* </div> */}
       {/* <h2>Пожалуйста выберите нужный вам курс или предмет</h2> */}
       {/* <Cards /> */}
     </div>
