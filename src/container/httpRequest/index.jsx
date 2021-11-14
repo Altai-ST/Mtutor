@@ -146,3 +146,13 @@ export const saveTutorCourse = (value)=> (dispatch) =>{
         return null
     })
 }
+
+export const setResume = (FormData) =>{
+    return sendHttpRequest('POST','http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/prequalification/upload/resume',FormData, 'avatar')
+    .then(responData => {
+        return responData
+    })
+    .catch(err=>{
+        return null
+    })
+}

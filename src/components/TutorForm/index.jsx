@@ -5,7 +5,7 @@ import Select from 'react-select'
 import DatePicker from 'react-datepicker'
 import { useSelector, useDispatch } from 'react-redux'
 import "react-datepicker/dist/react-datepicker.css";
-import { qualification, setAvatar } from '../../container/httpRequest'
+import { qualification, setAvatar, setResume } from '../../container/httpRequest'
 import { setQual } from '../../store/actions'
 import { Link } from 'react-router-dom'
 export const TutorForm =()=> {
@@ -22,6 +22,8 @@ export const TutorForm =()=> {
         resume:'',
         avatar:''
     })
+
+    const [showAvatar, setShowAvatar] = useState(false)
 
     useEffect(() => {
         setFormData({...formData, birthDate: selectedDate.getDate()+'.'+(selectedDate.getMonth()+1)+'.'+selectedDate.getFullYear()})
@@ -65,16 +67,23 @@ export const TutorForm =()=> {
     const handleSubmit = async(e)=>{
         e.preventDefault()
         const res = await qualification(formData)
-        dispatch(setQual(formData))
+        console.log(res)
+        // dispatch(setQual(formData))
     }
-
     const handleImg = async (val) =>{
         const value = val.target.value.split(".").splice(-1,1)[0]
-        console.log(value)
-        console.log(val.target.files)
         if(value === 'jpg' || value === 'png'){
             const res = await setAvatar(val.target.files[0])
-            console.log(res)
+            if(res){
+                setFormData({...formData, avatar: res.fileUrl})
+                setShowAvatar(true)
+            }
+        }
+        if(value === 'pdf'){
+            const res = await setResume(val.target.files[0])
+            if(res){
+                setFormData({...formData, resume: res.fileUrl})
+            }
         }
     }
 
@@ -133,9 +142,9 @@ export const TutorForm =()=> {
                                         <div className={style.formGroup}>
                                             <Form.Label className={style.formLabel}>Аватар<span>*</span></Form.Label>
                                             <input onChange={handleImg} name='avatar' type="file" id="formFile" className={"form-control" + ' ' + style.files}/>
-                                            
                                         </div> 
                                     </Form.Group>
+                                    {showAvatar && <img src={'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/'+formData.avatar}/>}
                                 </div>
                                 <div className={style.secondBlock}>
                                     <h5>
@@ -178,7 +187,7 @@ export const TutorForm =()=> {
                                     <Form.Group controlId="formFile" className="mb-3 mt-4">
                                         <div className={style.formGroup}>
                                             <Form.Label className={style.formLabel}>Резюме<span>*</span></Form.Label>
-                                            <input type="file" id="formFile" className={"form-control" + ' ' + style.files}/>
+                                            <input onChange={handleImg} type="file" id="formFile" className={"form-control" + ' ' + style.files}/>
                                         </div> 
                                     </Form.Group>
                                 </div>
