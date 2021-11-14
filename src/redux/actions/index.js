@@ -1,4 +1,4 @@
-import { SAVETOKENS, SETFORM, SETSINGIN, SETROLES } from "../actionType";
+import { SAVETOKENS, SETFORM, SETSINGIN, SETROLES, SET_APPLICATION } from "../actionType";
 
 export const FormSet = (val)=>({
     type: SETFORM,
@@ -19,5 +19,10 @@ export const saveToken = (val) =>({
 export const signInForm=(val)=>({
     type:SETSINGIN,
     payload: val
+})
+
+export const setApplication = (data)=> ({
+    type: SET_APPLICATION,
+    payload: data
 })
 

@@ -1,5 +1,5 @@
 
-import { SAVETOKENS, SETFORM, SETPASSWORD, SETROLES, SETSINGIN } from "../actionType";
+import { SAVETOKENS, SETFORM, SETPASSWORD, SETROLES, SETSINGIN, SET_APPLICATION } from "../actionType";
 
 const initialState={
     formEmail:{
@@ -12,8 +12,11 @@ const initialState={
     singInForm:{
         email:'',
         password:''
-    }
+    },
+    
+    applications:[]
 }
+
 
 
 export const Autorization =(state = initialState, action)=>{
@@ -51,4 +54,18 @@ export const Autorization =(state = initialState, action)=>{
         
         default: return state
     }
+}
+
+export const applicationReducers = (state = initialState, action) => {
+	switch (action.type) {
+		case SET_APPLICATION:
+			return {
+				...state,
+				applications: [...state.applications, action.payload],
+			}
+           
+		default:
+			return state
+            
+	}
 }

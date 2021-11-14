@@ -1,0 +1,138 @@
+// .app_body {
+// 	margin-top: 5 px;
+// 	display: flex;
+// 	flex-direction: row;
+// 	flex-grow: 1;
+// 	overflow-x: hidden;
+// }
+
+// *::before,
+// *::after {
+// 	box-sizing: border-box;
+// }
+
+// .container {
+// 	padding: 15px;
+// 	color: #23282c;
+// 	background-color: #e4e5e6;
+// 	width: 100%;
+// }
+
+// .card {
+// 	margin-bottom: 1.5 rem;
+// 	position: relative;
+// 	display: flex;
+// 	flex-direction: column;
+// 	min-width: 0;
+// 	word-wrap: break-word;
+// 	background-color: #fff;
+// 	background-clip: border-box;
+// 	border: 1 px solid #c8ced3;
+// 	border-radius: 0.25 rem;
+// }
+
+// .card_body {
+// 	padding: 8 px;
+// 	flex: 1 1 auto;
+// 	flex-grow: 1;
+// 	flex-shrink: 1;
+// 	flex-basis: auto;
+// }
+// .row {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	margin-right: -15 px;
+// 	margin-left: -15 px;
+// }
+
+// .style.col_12 {
+// 	flex: 0 0 100%;
+// 	flex-grow: 0;
+// 	flex-shrink: 0;
+// 	flex-basis: 100%;
+// 	max-width: 100%;
+// 	position: relative;
+// 	width: 100%;
+// 	padding-right: 15 px;
+// 	padding-left: 15 px;
+// }
+// .style.col_2 {
+// 	margin-bottom: 0.5 rem !important;
+//     flex: 0 0 100%;
+// 	flex-grow: 0;
+// 	flex-shrink: 0;
+// 	flex-basis: 100%;
+// 	max-width: 100%;
+// }
+
+
+/////////////
+%form-lab{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.forms{
+    width: 100%;
+    padding: 20px;
+    .Card{
+        width: 100%;
+        margin: 0px auto 0px;
+    }
+    h5{
+        color: black;
+    }
+    .mainForm{
+        display: flex;
+        flex-direction: row;
+        span{
+            color: red;
+        }
+        .firstBlock{
+            width: 50%;
+            .formGroup{
+                display: flex;
+                .files{
+                    width: 337px;
+                }
+                .control{
+                    width: 337px;
+                    margin-top: 15px;
+                    color: black;
+                
+                }
+                .formLabel{
+                    color: black;
+                    @extend %form-lab;
+                    width: 120px;
+                }
+            }
+        }
+
+        .secondBlock{
+            width: 50%;
+            .formGroup{
+                display: flex;
+                .files{
+                    width: 337px;
+                }
+                .control{
+                    color: black;
+                    width: 337px;
+                    margin-top: 15px;
+                }
+                .formLabel{
+                    color: black;
+                    @extend %form-lab;
+                    width: 180px;
+                }
+            }
+            
+        }
+    }
+}
+.redBtn{
+    background-color: red;
+    color: red;
+}
+
