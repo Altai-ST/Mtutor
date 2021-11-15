@@ -93,7 +93,8 @@ export const getTutorsBySubjectRequest=(subjectId)=>{
 }
 
 export const getTutorDetailInfoRequest = (id) => {
-    return sendHttpRequest('GET', `http://ec2-18-1842-51-15.eu-central-1.compute.amazonaws.com:8000/user/${id}`)
+    console.log()
+    return sendHttpRequest('GET', `http://ec2-18-1842-51-15.eu-central-1.compute.amazonaws.com:8000/user/get/${id}`)
         .then(resData=>{
             return resData
         })

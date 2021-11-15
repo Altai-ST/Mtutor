@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { getTutorDetailInfoRequest } from "../../../../container/httpRequest";
 import style from "./viewInfo.module.scss";
 
-const ViewInfo = () => {
+const ViewInfo = (props) => {
+  const params = useParams()
+
+  const [id, setId] = useState(null)
+
+  // params.userId
+
+  // console.log(params.userId)
+  useEffect(()=> {
+    getTutorDetailInfoRequest(params.userId)
+    console.log(params)
+  })
+
   return (
       <div className={style.container}>
-    <div className={style.container_fuild}>
+        Hello
+    {/* <div className={style.container_fuild}>
       <div className={style.profile}>
         <img className={style.img} src='https://www.yoyocustomize.com/img/product/1631000194_profile3.png'/>
         <div>
@@ -24,7 +39,7 @@ const ViewInfo = () => {
               </div>
           </div>
       </div>
-    </div>
+    </div> */}
     </div>
   );
 };

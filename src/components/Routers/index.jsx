@@ -16,7 +16,7 @@ import StateHeader from '../Header/StateHeader';
 // import FindTutor from '../ForStudent/FindTutor';
 // import { FindTutor } from '../ForStudent/FindTutor';
 import FindTutor from '../ForStudent/FindTutor/FindTutor';
-import ViewInfo from '../ForStudent/FindTutor/card/ViewInfo';
+import ViewInfo from '../ForStudent/FindTutor/viewInfo/ViewInfo';
 
 export function Routers(){
   const user = useSelector(state => state.userRedusers.user)
@@ -29,7 +29,7 @@ export function Routers(){
         <StateHeader/>
         <Switch>
           <ProtectedRoute exact path='/Mtutor' isAuthorized={!isAuthorized()} component={Main}/>
-          <ProtectedRoute path='/student/findTutor/id' component={ViewInfo} isAuthorized={isAuthorized()}/>
+          <ProtectedRoute exact path='/student/findTutor/:userId' component={ViewInfo} isAuthorized={isAuthorized()}/>
           <ProtectedRoute path='/student/findTutor' component={FindTutor} isAuthorized={isAuthorized()}/>
           <ProtectedRoute path='/home' component={Home} isAuthorized={isAuthorized()}/>
           <ProtectedRoute path='/chooseRole' component={Catalog} isAuthorized={!isAuthorized()}/>
