@@ -1,33 +1,48 @@
 import style from './TutorApplication.module.scss'
-import { Tab } from 'react-bootstrap'
+import { Nav, Tab } from 'react-bootstrap'
 import Tabs from 'react-bootstrap/Tabs'
 import NavItem1 from '../TutorApplication/NavItem1/index'
-import { useEffect } from 'react'
-import { getapplication } from '../../../container/httpRequest'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import {
+	getapplication,
+	putUpdateUser,
+	getUser,
+} from '../../../container/httpRequest'
+import { useDispatch, useSelector } from 'react-redux'
 
 const TutorApplication = () => {
+	const [activeStatus, setActiveStatus] = useState('pending')
 	const dispatch = useDispatch()
-	
+	const [showItem, setShowItem] = useState('pending')
+
 	useEffect(() => {
-		dispatch(getapplication())
-	},[])
+		dispatch(getapplication(activeStatus))
+	}, [])
+
+	const onTabSelectHandler = (status) => {
+		dispatch(getapplication(status))
+		setActiveStatus(status)
+	}
+
 	return (
 		<div>
 			<div className={style.container}>
 				<Tabs
-					defaultActiveKey='profile'
-					id='uncontrolled-tab-example'
+					id='1'
+					activeKey={activeStatus}
+					onSelect={onTabSelectHandler}
 					className='mb-3'
 				>
-					<Tab eventKey='home' title='Не просмотренные'>
+					<Tab eventKey='pending' title='Не просмотренные'>
+						{showItem === 'pending'}
 						<NavItem1 />
 					</Tab>
-					<Tab eventKey='profile' title='Одобренные'>
+					<Tab eventKey='confirmed' title='Одобренные'>
+						{}
 						<NavItem1 />
 					</Tab>
-					<Tab eventKey='contact' title='Отклоненные'>
-						<NavItem1/>
+					<Tab eventKey='rejected' title='Отклоненные'>
+						<NavItem1 />
 					</Tab>
 				</Tabs>
 			</div>

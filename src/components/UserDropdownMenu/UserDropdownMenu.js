@@ -3,6 +3,7 @@ import { Dropdown} from "react-bootstrap";
 import UserAvatar from "../../assects/image/user-avatar.png";
 import style from "./dropMenu.module.scss";
 import { FaUser, FaWrench, FaLock } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
@@ -41,7 +42,10 @@ const CustomMenu = React.forwardRef(
   }
 );
 
-export const Menu = () => {
+export const Menu = ({handleDelete}) => {
+
+  const state = useSelector(state => state.userRedusers.user)
+
   return (
       <Dropdown className={style.dropdowns}>
         <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components" className={style.dropdown}>
@@ -54,9 +58,9 @@ export const Menu = () => {
           style={{ paddingRight: "10px" }}
         >
           <div className={style.dropdown_header}>
-            <strong>example@gmail.com</strong>
+            <strong>{state.email}</strong>
             <br />
-            example@gmail.com
+            {state.email}
           </div>
           <Dropdown.Item eventKey="1" className={style.dropdown_item}>
             <FaUser className={style.menuIcon}/>
@@ -66,13 +70,11 @@ export const Menu = () => {
             <FaWrench className={style.menuIcon}/>
             Настройка
           </Dropdown.Item>
-          <Dropdown.Item eventKey="3" className={style.dropdown_item}>
-            <FaLock className={style.menuIcon}/>
+          <Dropdown.Item eventKey="3" onClick={handleDelete} className={style.dropdown_item}>
+            <FaLock className={style.menuIcon} />
             Выйти
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
   );
 };
-
-// export default Menu

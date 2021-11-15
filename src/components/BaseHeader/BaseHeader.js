@@ -3,8 +3,14 @@ import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {Menu} from '../UserDropdownMenu/UserDropdownMenu'
 import style from '../../assects/styles/header.module.scss'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
+import { useSelector } from 'react-redux';
+import TutorQualification from '../TutorMenu';
 
-function BaseHeader({ children }) {
+
+function BaseHeader({ children, handleDelete }){
+    const state = useSelector(state=>state.userRedusers.qual)
     return (
         <div>
             <Navbar className={style.nav} variant="dark">
@@ -15,7 +21,7 @@ function BaseHeader({ children }) {
                     {children}
                 </Nav>
                 <div className={style.dropdown}>
-                    <Menu/> 
+                    <Menu handleDelete={handleDelete}/>
                 </div>  
             </Navbar>
         </div>

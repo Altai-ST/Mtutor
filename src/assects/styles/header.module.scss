@@ -23,6 +23,22 @@
     margin-right: 15px;
 }
 
+.userAvatar {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.con{
+    margin-left: auto;
+    padding-right: 15px;
+}
 .dropdown {
     margin-left: auto;
 }

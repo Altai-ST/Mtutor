@@ -1,0 +1,43 @@
+.userAlt{
+    display: flex;
+    align-items: center;
+    .icon{
+        margin: 0;
+        padding: 4px 10px 7px 10px;
+        background-color: #c5c5c5;
+    }
+    .emailForm{
+        width: 428px;
+    }
+}
+.lock{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    .icon{
+        margin: 0;
+        padding: 4px 10px 7px 10px;
+        background-color: #c5c5c5;
+    }
+    .emailForm{
+        width: 428px;
+    }
+}
+
+.btnSignIn{
+    margin-top: 20px;
+
+}
+
+.btnGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.btnLoad{
+    width: 5%;
+    height: 5%;
+    margin-top: 30px;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { LoginContent } from '../LoginContent'
+import { Link } from "react-router-dom";
+import { LoginContent } from '../../container/LoginContent'
 import style from './header.module.scss'
 
 function PublicHeader() {
@@ -9,7 +9,7 @@ function PublicHeader() {
         <div>
             <Navbar bg="light" variant="light" className={style.navbar}>
                 <Navbar.Brand href="#home">
-                    <Link className={style.Mtutor} to='/'>Mtutor</Link>
+                    <Link className={style.Mtutor} to='/Mtutor'>Mtutor</Link>
                 </Navbar.Brand>
                 <div className={style.dropdown}>
                     <div className={style.btnGroub}>

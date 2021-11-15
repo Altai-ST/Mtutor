@@ -1,17 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router";
-import Catalog from "../Catalog";
 
-
-export const ProtectedRoute=({isAuthorized, allowedRole, currentRole, ...rest})=>{
-  console.log(isAuthorized)
-    if(!isAuthorized){
+export const ProtectedRoute=({isAuthorized, ...rest})=>{
+  const state = useSelector(state=>state.userRedusers.qual)
+    if(isAuthorized){
         return <Route {...rest}/>
       }
+    const currentRole = rest.role ? rest.role : null
+    if((state && currentRole === 5) || (currentRole === 10)){
+      return <Redirect to='/home'/>
+    }else{
+      return <Redirect to='/tutorQual'/>
+    }
     
-      if(currentRole !== allowedRole) {
-      return <Redirect to="/login"/>
-      }
-    
-      return  <Route {...rest}/>
 }

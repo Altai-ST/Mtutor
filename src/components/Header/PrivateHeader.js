@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BaseHeader from '../BaseHeader/BaseHeader';
 import style from '../../assects/styles/header.module.scss'
 import { Link } from 'react-router-dom';
+import { USER_STORE } from '../../util/constants/keys';
+import {deleteLocalStorage} from '../../util/constants/localStorage'
+import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveUser } from '../../store/actions';
 
  const MenuList = {
     admin: [
         {
-            path: '/admin',
+            path: '/admin/courses',
             title: 'Курсы'
         },
         {
@@ -34,7 +39,7 @@ import { Link } from 'react-router-dom';
     ],
     student: [
         {
-            path: '/student',
+            path: '/home',
             title: 'Главная'
         },
         {
@@ -46,10 +51,16 @@ import { Link } from 'react-router-dom';
 }
 
 function PrivateHeader({role}) {
-    console.log(role)
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const handleDelete=()=>{
+        deleteLocalStorage(USER_STORE)
+        dispatch(saveUser(''))
+        history.push('/Mtutor')
+    }
     return (
         <div>
-            <BaseHeader>
+            <BaseHeader handleDelete={handleDelete}>
             {MenuList[role].map(roleItem => {
                 return ( 
                 <Link to={roleItem.path} className={style.nav_item}>{roleItem.title}</Link>

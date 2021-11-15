@@ -1,8 +1,25 @@
 import style from '../Edit/Edit.module.scss'
 import { Card, Form, Button, Col, Image } from 'react-bootstrap'
+import { useParams } from 'react-router'
+import { useEffect, useState } from 'react'
+import { getUser } from '../../../../container/httpRequest'
+import { useSelector } from 'react-redux'
 
 
-const Edit = () => {
+const ViewApplication = () => {
+	const [user , setUser] = useState([])
+
+	const params = useParams()
+
+	const getUsers = async()=>{
+		const res = await getUser(params.userId)
+		setUser(res.user)
+	}
+	
+	useEffect(() => {
+		getUsers()
+	},[])
+
 	return (
 		<div className={style.app_body}>
 			<div className={style.forms}>
@@ -24,7 +41,7 @@ const Edit = () => {
 													<Form.Control
 														name='fullName'
 														type='fullName'
-														placeholder=' Введите ФИО'
+														placeholder={user.fullName}
 														disabled
 													/>
 												</div>
@@ -77,7 +94,7 @@ const Edit = () => {
 												<div>
 													<Col xs={6} md={4}>
 														<Image
-															src='holder.js/171x180'
+															src={'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/'+user.avatar}
 															rounded
 														/>
 													</Col>
@@ -160,6 +177,43 @@ const Edit = () => {
 											</div>
 										</Form.Group>
 									</div>
+
+									<div className={style.secondBlock}>
+										<h5>Выбор курса преподования</h5>
+										<Form.Group className='mt-3'>
+											<div className={style.formGroup}>
+												<Form.Label
+													className={style.formLabel}
+												>
+												Пожалуйста выберите курс вы собираетесь преподовать*<span>*</span>
+												</Form.Label>
+												<div className={style.control}>
+													<Form.Control
+														disabled
+														name='eduPlace'
+														type='input'
+													/>
+												</div>
+											</div>
+										</Form.Group>
+										<Form.Group className='mt-3'>
+											<div className={style.formGroup}>
+												<Form.Label
+													className={style.formLabel}
+												>
+												Цена за час(60мин) занятия в Сомах*<span>*</span>
+												</Form.Label>
+												<div className={style.control}>
+													<Form.Control
+														disabled
+														name='eduPlace'
+														type='input'
+													/>
+												</div>
+											</div>
+										</Form.Group>
+										
+									</div>
 								</div>
 								<Button variant='info'>Назад</Button>
 								<Button variant='primary' type='submit'>
@@ -177,4 +231,4 @@ const Edit = () => {
 		</div>
 	)
 }
-export default Edit
+export default ViewApplication

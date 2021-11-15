@@ -2,8 +2,26 @@ import { FaEye } from 'react-icons/fa'
 import { Table } from 'react-bootstrap'
 import style from './NavItem.module.scss'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getUser } from '../../../../container/httpRequest'
+import { setEditTutorId } from '../../../../store/actions'
 
 const NavItem1 = () => {
+	// const [currentId, setCurrentId] = useState(0)
+	const applications = useSelector(
+		(state) => state.applicationReducers.applications,
+	)
+
+	// const dispatch = useDispatch()
+
+	// useEffect(() => {
+	// 	dispatch(getUser())
+	// }, [])
+
+	// const setEditHandler = (id) => {
+	// 	dispatch(getUser(id))
+	// }
 	return (
 		<div className={style.nav_item_container}>
 			<Table striped bordered hover size='sm'>
@@ -37,61 +55,22 @@ const NavItem1 = () => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td className={style.number}></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<Link to={'/tutorapplication/edit'}>
-								<FaEye />
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td style={style.number}></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<Link to={'/tutorapplication/edit'}>
-								<FaEye />
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td className={style.number}></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<Link to={'/tutorapplication/edit'}>
-								<FaEye />
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td className={style.number}></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<Link to={'/tutorapplication/edit'}>
-								<FaEye />
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td className={style.number}></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<Link to={'/tutorapplication/edit'}>
-								<FaEye />
-							</Link>
-						</td>
-					</tr>
+					{applications.length &&
+						applications?.map((user) => (
+							<tr id={user.id}>
+								<td>{user.id}</td>
+								<td>{user.fullName}</td>
+								<td>{user.email}</td>
+								<td>{user.phone}</td>
+								<td>
+									<Link
+										to={`/admin/application-tutor/view/${user.id}`}
+									>
+										<FaEye />
+									</Link>
+								</td>
+							</tr>
+						))}
 				</tbody>
 			</Table>
 		</div>
