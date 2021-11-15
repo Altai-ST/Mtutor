@@ -177,13 +177,34 @@ export const setStatus =(data)=>{
     })
 }
 
+export const getSearchingSubjectRequest=(inputValue)=>{
+    return sendHttpRequest('GET',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/subject/list?name=${inputValue}`)
+        .then(responseData=>{
+            return responseData
+        })
+        .catch(err=>{ 
+            console.log(err)
+            return null
+        })
+}
 
-export const getId = (id)=>{
-    return sendHttpRequest('GET',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/get/${id}`)
+export const getTutorsBySubjectRequest=(subjectId)=>{
+    return sendHttpRequest('GET', `http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/tutors/${subjectId}`)
+        .then(responData=>{
+            return responData
+        })
+        .catch(err=>{
+            return null
+        })
+}
+
+export const getTutorDetailInfoRequest = (id) => {
+    console.log(id)
+    return sendHttpRequest('GET', `http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/get/${id}`)
         .then(resData=>{
             return resData
         })
-        .catch(err=>{
-                return null
-            }) 
+        .catch(err=> {
+            return null
+        })
 }

@@ -13,14 +13,19 @@ const TutorQualification = () => {
   const user = useSelector(state => state.userRedusers.user)
   const [btnActive, setBtnActive] = useState(true)
   const [show, setShow] = useState(false);
+  const [btnStatus, setBtnStatus] = useState('Отправить на расмотрение')
   useEffect(() => {
     if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted){
       setBtnActive(false)
+      setBtnActive(true)
+      setBtnStatus('На расмотрении')
     }
   }, [])
   const handleSubmit =()=>{
     setStatus({status:'pending'})
     setShow(false)
+    setBtnActive(true)
+    setBtnStatus('На расмотрении')
   }
 
   const handleClose = () =>{
@@ -29,6 +34,7 @@ const TutorQualification = () => {
 
   const handleShow = () => {
     setShow(true)
+    
   };
 
   return (
@@ -45,7 +51,7 @@ const TutorQualification = () => {
             </div>
           </ListGroup.Item>
           <ListGroup.Item style={{backgroundColor: '#b0d3c6', display: 'flex', justifyContent: 'space-between'}}>
-            <Link to='/tutorSchedule'>Add your availibility</Link>
+            <Link to='/tutorSchedule'>Запоните ваше расписание</Link>
             <div>
               <FaCalendar className={style.icons} />
               {user.isScheduleCompleted ? <FaCheck className={style.icons}/> 
@@ -53,7 +59,7 @@ const TutorQualification = () => {
             </div>
           </ListGroup.Item>
           <ListGroup.Item style={{backgroundColor: '#b0d3c6', display: 'flex', justifyContent: 'space-between'}}>
-            <Link to='/tutorAddCourse'>Add your course</Link>
+            <Link to='/tutorAddCourse'>Добавьте курс</Link>
             <div>
               <FaBook className={style.icons} />
               {user.isCourseOfferCompleted ? <FaCheck className={style.icons}/> :
@@ -63,14 +69,14 @@ const TutorQualification = () => {
           </ListGroup.Item>
         </ListGroup>
       </Card>
-      <Button disabled={btnActive} onClick={handleShow}>Отправить</Button>
+      <Button disabled={btnActive} onClick={handleShow}>{btnStatus}</Button>
       <LoginModal show={show} handleClose={handleClose} title='Отправка заявки'>
-        <div>
-          <h3>Вы действительно хотите отправить заявку?</h3>
+        <div className={style.textModule}>
+          <h5>Вы прошли предквалификационный этап и успешно отправили заявку. Чтобы получить полноценные права репетитора вам надо будет подождать некоторое время пока наши операторы ознакомятся и проверят вашу заявку как можно скорее.</h5>
         </div>
         <div className={style.btnGroupe}>
-          <Button className='mx-3' onClick={handleSubmit}>Да</Button>
-          <Button variant='danger' onClick={handleClose}>Нет</Button>
+          <Button className={style.btn1} onClick={handleSubmit}>Да</Button>
+          <Button variant='danger' className={style.btn1} onClick={handleClose}>Нет</Button>
         </div>
        
       </LoginModal>

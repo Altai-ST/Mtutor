@@ -42,7 +42,7 @@ const Courses = () => {
 
 			<div className={style.courses_container}>
 				<div className={style.courses_btn}>
-					<Link to={'/admin/add'}>
+					<Link to={'/admin/course/add'}>
 						{' '}
 						<Button variant='success'>Добавить</Button>{' '}
 					</Link>
@@ -69,7 +69,7 @@ const Courses = () => {
 									<tr id={el.id}>
 										<td>{el.name}</td>
 										<td>
-											<Link to={'/admin/edit/' + el.id}>
+											<Link to={'/admin/course/edit/' + el.id}>
 												{' '}
 												<FaEdit onClick={() => setEditElem(el)}/>
 											</Link>

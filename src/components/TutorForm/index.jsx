@@ -53,10 +53,12 @@ export const TutorForm =()=> {
                 setFormData({...formData, educationFaculty: value})
                 break
         }
-        console.log(formData)
-        if(formData.shortDescription !== '' && formData.educationName !== '' && formData.educationDegree !== '' &&
+        console.log(formData.shortDescription.length)
+        if(formData.shortDescription.length > 1 && formData.educationName !== '' && formData.educationDegree !== '' &&
         formData.resume !=='' && formData.avatar !== ''){
             setBtnActive(false)
+        }else{
+            setBtnActive(true)
         }
     }
     const handleSelect =(val)=>{
@@ -64,7 +66,8 @@ export const TutorForm =()=> {
         if(formData.shortDescription !== '' && formData.educationName !== '' && formData.educationDegree !== '' &&
         formData.resume !=='' && formData.avatar !== ''){
             setBtnActive(false)
-            
+        }else{
+            setBtnActive(true)
         }
     }
 

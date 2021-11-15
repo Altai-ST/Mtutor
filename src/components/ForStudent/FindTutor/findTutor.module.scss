@@ -1,0 +1,62 @@
+.content {
+    color: black;
+    background-color: rgb(223, 221, 221);
+    width: 100%;
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.select {
+    width: 40%;
+}
+
+.inputSearch {
+    width: 40%;
+}
+
+.btnSearch {
+    width: 13%;
+    height: 38px;
+}
+
+.list_group {
+    width: 40%;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: start;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.tutor_card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.card {
+    width: 15rem;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card:hover {
+    transform: translateY(8px);
+}

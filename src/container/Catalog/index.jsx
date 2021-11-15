@@ -20,7 +20,6 @@ const Catalog =()=>{
     if (states === null){
         dispatch(saveToken(JSON.parse(localStorage.getItem('tokens'))))
     }
-    // let { path, url } = useRouteMatch();
     if (stats.role === 10 || stats.role === 5){
         return <Redirect to='/register'/>
     }

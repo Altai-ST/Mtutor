@@ -8,9 +8,10 @@ import { useDispatch } from 'react-redux';
 import { saveToken, saveUser } from '../../store/actions';
 import {  USER_STORE } from '../../util/constants/keys';
 import { setLocalStorage } from '../../util/constants/localStorage';
+import load from '../../assects/image/loading-btn.gif'
 
 const PutPassword =()=>{
-    const regexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")
+    const regexPassword = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})")
     const [formDataPassword, setFormDataPassword]=useState('')
     const [passwords, setPasswords]=useState('')
     const [stateBtn, setStateBtn]=useState(true)
@@ -27,11 +28,14 @@ const PutPassword =()=>{
         checkPassword: 'Пароль не совпадает',
     })
 
+    const [loading, setLoading] = useState(false)
+
     const states = useSelector(state=>state.Autorization.formEmail)
     const statesRes = useSelector(state=>state.userRedusers.user)
     const dispatch = useDispatch()
     const handleSubmit = async (e)=>{
         e.preventDefault()
+        setLoading(true)
         const registerData = {
             ...states,
             password: formDataPassword,
@@ -114,7 +118,7 @@ const PutPassword =()=>{
                                 {(passwordError.password) && <div style={{color:'red'}}>
                                     {passwordNull.password}
                                     </div>}
-                                <small>Не менее 6 символов (букв, цифр)</small>
+                                <small>Не менее 8 символов (букв, цифр)</small>
                             </div>
                         </Form.Group>
                         <Form.Group className={style.formBlock+' '+'mt-3'}>
@@ -136,7 +140,10 @@ const PutPassword =()=>{
                 <Card.Footer className='mt-3'>
                     <div className={style.btnGroup}>
                         <Link></Link>
-                        <Button type='submit' disabled={stateBtn} className={style.btn}>Зарегистрировать</Button>
+                        {loading ?
+                            <img src={load} className={style.btnLoad} alt="" />:<Button type='submit' disabled={stateBtn} className={style.btn}>Зарегистрировать</Button>
+                        }
+                        
                     </div>
                 </Card.Footer>
                 </Form>
