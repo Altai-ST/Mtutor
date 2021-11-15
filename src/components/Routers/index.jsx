@@ -40,8 +40,8 @@ export function Routers(){
           <ProtectedRoute path='/register' component={Register} isAuthorized={!isAuthorized()}/>
           <ProtectedRoute path='/password' component={PutPassword} isAuthorized={!isAuthorized()}/>
           <ProtectedRoute path='/admin/courses' component={Courses} isAuthorized={isAuthorized()}/>
-          <ProtectedRoute path='/admin/courses/add' component={Add} isAuthorized={isAuthorized()}/>
-          <ProtectedRoute path='/admin/courses/edit' component={Edit} isAuthorized={isAuthorized()}/>
+          <ProtectedRoute path='/admin/add' component={Add} isAuthorized={isAuthorized()}/>
+          <ProtectedRoute path='/admin/edit' component={Edit} isAuthorized={isAuthorized()}/>
         </Switch>
         <Footer/>
       </Router>

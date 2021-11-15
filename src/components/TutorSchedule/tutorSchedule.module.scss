@@ -6,20 +6,30 @@
 .tabBlock{
     width: 100%;
     color: black;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     .btnTab{
        width: 15%;
     }
+}
+.timeText{
+    margin: 5px 5px 0 5px;
+}
+.formTime{
+    width: 20%;
+    margin-right: 10px;
 }
 .cardGroup{
     display: flex;
     justify-content: center;
     width: 100%;
+    color: black;
     .cardItem{
         width: 50%;
     }
     .timeText{
         text-align: start;
+        
     }
 }
 .btnBlock{

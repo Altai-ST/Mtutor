@@ -1,6 +1,6 @@
 import {store} from '../../store/index'
 import { errorToast } from '../ErrorToastify'
-import {setAllCourses} from '../../redux/actions'
+import {setAllCourses} from '../../store/actions'
 import { saveTutorCourses } from '../../store/actions'
 
 const sendHttpRequest=(method, url, data=null, avatar=null)=>{
@@ -175,4 +175,15 @@ export const setStatus =(data)=>{
     .catch(err=>{
         return null
     })
+}
+
+
+export const getId = (id)=>{
+    return sendHttpRequest('GET',`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/get/${id}`)
+        .then(resData=>{
+            return resData
+        })
+        .catch(err=>{
+                return null
+            }) 
 }

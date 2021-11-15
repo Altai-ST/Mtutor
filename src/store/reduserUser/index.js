@@ -4,8 +4,6 @@ const initialState={
     token:'',
     user:'',
     qualification:'',
-    qual:false,
-    saveCourse:false,
     localSaveCourse:''
 }
 

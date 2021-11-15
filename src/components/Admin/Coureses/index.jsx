@@ -8,14 +8,13 @@ import DeleteModal from './DeleteModal'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser, getData } from '../../../container/httpRequest'
-import { setEditId } from '../../../redux/actions'
+import { setEditId } from '../../../store/actions'
 
 const Courses = () => {
 	const [show, setShow] = useState(false)
 	const [currentId, setCurrentId] = useState(0)
 	const courses = useSelector((state) => state.rootReducer.courses)
 	const dispatch = useDispatch()
-
 	useEffect(() => {
 		dispatch(getData())
 	}, [])
@@ -43,7 +42,7 @@ const Courses = () => {
 
 			<div className={style.courses_container}>
 				<div className={style.courses_btn}>
-					<Link to={'/admin/courses/add'}>
+					<Link to={'/admin/add'}>
 						{' '}
 						<Button variant='success'>Добавить</Button>{' '}
 					</Link>
@@ -70,7 +69,7 @@ const Courses = () => {
 									<tr id={el.id}>
 										<td>{el.name}</td>
 										<td>
-											<Link to={'/admin/courses/edit/' + el.id}>
+											<Link to={'/admin/edit/' + el.id}>
 												{' '}
 												<FaEdit onClick={() => setEditElem(el)}/>
 											</Link>

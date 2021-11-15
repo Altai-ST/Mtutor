@@ -6,18 +6,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { saveTutorCourses } from "../../store/actions";
-import { Button } from "react-bootstrap";
-import { setStatus } from "../../container/httpRequest";
+import { Button, Form } from "react-bootstrap";
+import { getId, setStatus } from "../../container/httpRequest";
+import LoginModal from "../LoginModal";
 const TutorQualification = () => {
-  const saveCourse = useSelector(state => state.userRedusers.saveCourse)
   const user = useSelector(state => state.userRedusers.user)
   const [btnActive, setBtnActive] = useState(true)
-  const dispatch = useDispatch()
-  if(user.isCourseOfferCompleted){
-    dispatch(saveTutorCourses(true))
-  }else{
-    dispatch(saveTutorCourses(false))
-  }
+  const [show, setShow] = useState(false);
   useEffect(() => {
     if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted){
       setBtnActive(false)
@@ -25,7 +20,17 @@ const TutorQualification = () => {
   }, [])
   const handleSubmit =()=>{
     setStatus({status:'pending'})
+    setShow(false)
   }
+
+  const handleClose = () =>{
+    setShow(false)
+  };
+
+  const handleShow = () => {
+    setShow(true)
+  };
+
   return (
     <div className={style.tutorMenu}>
       <h1>Здравсвтуйте tutor,</h1>
@@ -51,14 +56,24 @@ const TutorQualification = () => {
             <Link to='/tutorAddCourse'>Add your course</Link>
             <div>
               <FaBook className={style.icons} />
-              {saveCourse ? <FaCheck className={style.icons}/> :
+              {user.isCourseOfferCompleted ? <FaCheck className={style.icons}/> :
                 <FaTimes className={style.cancelIcon} />
               }
             </div>
           </ListGroup.Item>
         </ListGroup>
       </Card>
-      <Button disabled={btnActive} onClick={handleSubmit}>Отправить</Button>
+      <Button disabled={btnActive} onClick={handleShow}>Отправить</Button>
+      <LoginModal show={show} handleClose={handleClose} title='Отправка заявки'>
+        <div>
+          <h3>Вы действительно хотите отправить заявку?</h3>
+        </div>
+        <div className={style.btnGroupe}>
+          <Button className='mx-3' onClick={handleSubmit}>Да</Button>
+          <Button variant='danger' onClick={handleClose}>Нет</Button>
+        </div>
+       
+      </LoginModal>
     </div>
   );
 };
