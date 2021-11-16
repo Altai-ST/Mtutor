@@ -4,7 +4,6 @@ import { Button, Card } from "react-bootstrap";
 import {
   getSearchingSubjectRequest,
   getTutorsBySubjectRequest,
-  getTutorDetailInfoRequest
 } from "../../../container/httpRequest";
 import Select from "react-select";
 import { Link } from "react-router-dom";
@@ -29,7 +28,6 @@ const FindTutor = () => {
   const getTutorsBySubject = async () => {
     const subject = await getTutorsBySubjectRequest(subjectId);
     setCards(subject.docs)
-    // console.log(subject.docs)
   };
   
   // const getTutorDetailInfo = async (id) => {

@@ -271,7 +271,6 @@ export const getTutorsBySubjectRequest=(subjectId)=>{
 }
 
 export const getTutorDetailInfoRequest = (id) => {
-    console.log(id)
     return sendHttpRequest('GET', `http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/get/${id}`)
         .then(resData=>{
             return resData
@@ -294,4 +293,13 @@ export const putUpdateUser = (id, status) => {
 			return resData
 		})
 		.catch((err) => console.log(err))
+}
+export const getSheduleByIdRequest = (sheduleId) => {
+    return sendHttpRequest('GET', `http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/schedule/get/${sheduleId}`)
+    .then(responseData=> {
+        return responseData
+    })
+    .catch(err => {
+        return null
+    }) 
 }
