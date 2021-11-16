@@ -1,0 +1,74 @@
+%form-lab{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.forms{
+    width: 100%;
+    padding: 20px;
+    .Card{
+        width: 100%;
+        margin: 0px auto 0px;
+    }
+    h5{
+        color: black;
+    }
+    .mainForm{
+        display: flex;
+        flex-direction: row;
+        span{
+            color: red;
+        }
+        .firstBlock{
+            width: 50%;
+            .formGroup{
+                display: flex;
+                .files{
+                    width: 337px;
+                }
+                .control{
+                    width: 337px;
+                    margin-top: 15px;
+                    color: black;
+                
+                }
+                .formLabel{
+                    color: black;
+                    @extend %form-lab;
+                    width: 120px;
+                }
+            }
+        }
+
+        .secondBlock{
+            width: 50%;
+            .formGroup{
+                display: flex;
+                .files{
+                    width: 337px;
+                }
+                .control{
+                    color: black;
+                    width: 337px;
+                    margin-top: 15px;
+                }
+                .formLabel{
+                    color: black;
+                    @extend %form-lab;
+                    width: 180px;
+                }
+            }
+            
+        }
+    }
+}
+.redBtn{
+    background-color: red;
+    color: red;
+}
+
+.btn{
+    margin-left: 7px;
+}
+
+

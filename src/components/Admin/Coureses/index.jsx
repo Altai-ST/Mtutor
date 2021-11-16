@@ -42,8 +42,7 @@ const Courses = () => {
 
 			<div className={style.courses_container}>
 				<div className={style.courses_btn}>
-					<Link to={'/admin/course/add'}>
-						{' '}
+					<Link to={'/admin/courses/add'}>
 						<Button variant='success'>Добавить</Button>{' '}
 					</Link>
 				</div>

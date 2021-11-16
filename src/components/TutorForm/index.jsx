@@ -2,6 +2,8 @@ import React,{useState, useEffect} from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import style from './tutorForm.module.scss'
 import Select from 'react-select'
+// import DatePicker from 'react-datepicker'
+// import DatePicker from 'react-datepicker'
 import DatePicker from 'react-datepicker'
 import { useSelector, useDispatch } from 'react-redux'
 import "react-datepicker/dist/react-datepicker.css";
@@ -76,9 +78,7 @@ export const TutorForm =()=> {
     const handleSubmit = async(e)=>{
         e.preventDefault()
         let formDataRequest = formData
-        delete formDataRequest.educationFaculty
         const res = await qualification(formDataRequest)
-        console.log(res)
         dispatch(setQual(formData))
         dispatch(saveFormTutor(true))
         if(res){

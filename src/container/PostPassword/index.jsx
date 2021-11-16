@@ -33,6 +33,7 @@ const PutPassword =()=>{
     const states = useSelector(state=>state.Autorization.formEmail)
     const statesRes = useSelector(state=>state.userRedusers.user)
     const dispatch = useDispatch()
+
     const handleSubmit = async (e)=>{
         e.preventDefault()
         setLoading(true)
@@ -43,6 +44,7 @@ const PutPassword =()=>{
         const res = await signup(registerData)
         dispatch(saveToken(res.token))
         dispatch(saveUser(res.user))
+        console.log(res)
         setLocalStorage(USER_STORE, JSON.stringify(res))
     }
 
@@ -139,7 +141,6 @@ const PutPassword =()=>{
                 </Card.Body>
                 <Card.Footer className='mt-3'>
                     <div className={style.btnGroup}>
-                        <Link></Link>
                         {loading ?
                             <img src={load} className={style.btnLoad} alt="" />:<Button type='submit' disabled={stateBtn} className={style.btn}>Зарегистрировать</Button>
                         }
