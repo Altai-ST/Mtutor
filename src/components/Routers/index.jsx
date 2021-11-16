@@ -13,8 +13,6 @@ import {
 import { ProtectedRoute } from '../ProtectedRoute';
 import { useSelector } from 'react-redux';
 import StateHeader from '../Header/StateHeader';
-// import FindTutor from '../ForStudent/FindTutor';
-// import { FindTutor } from '../ForStudent/FindTutor';
 import FindTutor from '../ForStudent/FindTutor/FindTutor';
 import ViewInfo from '../ForStudent/FindTutor/viewInfo/ViewInfo';
 
@@ -29,7 +27,7 @@ export function Routers(){
         <StateHeader/>
         <Switch>
           <ProtectedRoute exact path='/Mtutor' isAuthorized={!isAuthorized()} component={Main}/>
-          <ProtectedRoute exact path='/student/findTutor/:userId' component={ViewInfo} isAuthorized={isAuthorized()}/>
+          <ProtectedRoute path='/student/findTutor/:userId' component={ViewInfo} isAuthorized={isAuthorized()}/>
           <ProtectedRoute path='/student/findTutor' component={FindTutor} isAuthorized={isAuthorized()}/>
           <ProtectedRoute path='/home' component={Home} isAuthorized={isAuthorized()}/>
           <ProtectedRoute path='/chooseRole' component={Catalog} isAuthorized={!isAuthorized()}/>
