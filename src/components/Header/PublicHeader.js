@@ -8,8 +8,8 @@ function PublicHeader() {
     return (
         <div>
             <Navbar bg="light" variant="light" className={style.navbar}>
-                <Navbar.Brand href="#home">
-                    <Link className={style.Mtutor} to='/Mtutor'>Mtutor</Link>
+                <Navbar.Brand>
+                    <Link className={style.Mtutor} to='/'>Mtutor</Link>
                 </Navbar.Brand>
                 <div className={style.dropdown}>
                     <div className={style.btnGroub}>

@@ -3,14 +3,18 @@ import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router";
 
 export const ProtectedRoute=({isAuthorized, ...rest})=>{
-  const state = useSelector(state=>state.userRedusers.qual)
+  const user = useSelector(state=>state.userRedusers.user)
+  console.log(user)
     if(isAuthorized){
         return <Route {...rest}/>
       }
-    const currentRole = rest.role ? rest.role : null
-    if((state && currentRole === 5) || (currentRole === 10)){
+    const currentRole = user !== '' ? user.role.role : null
+    const currentStatus = user !== '' ? user.status : null
+    if((currentStatus === 'confirmed' && currentRole === 5) || (currentRole === 10) ||(currentRole === 1)){
       return <Redirect to='/home'/>
-    }else{
+    }else if((currentStatus === 'waiting' || currentStatus === 'pending') && currentRole === 5){
+      return <Redirect to='/tutorQual'/>
+    }else if(currentStatus === 'rejected' && currentRole === 5){
       return <Redirect to='/tutorQual'/>
     }
     

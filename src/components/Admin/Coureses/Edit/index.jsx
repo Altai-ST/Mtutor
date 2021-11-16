@@ -6,10 +6,9 @@ import { putUser } from "../../../../container/httpRequest"
 import style from '../Add/Add.module.scss'
 
 const Edit = () => {
-
     const history = useHistory()
 	const dispatch = useDispatch()
-	const editedData = useSelector(state => state.editedData)
+	const editedData = useSelector(state => state.rootReducer.editedData)
 	console.log('editData',editedData);
 
 	const [name, setName] = useState(editedData.name)

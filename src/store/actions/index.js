@@ -1,4 +1,4 @@
-import { SAVE_TOKENS, SET_FORM, SET_ROLES, SAVE_USER, SET_QUALIFICATION, SETCOURSE,SET_ALL_COURSES ,SET_EDIT, DELETE_COURSE, SAVE_TUTOR_COURSES, LOCAL_SAVE_TUTOR_COURSES } from "../actionType";
+import { SAVE_TOKENS, SET_FORM, SET_ROLES, SAVE_USER, SET_QUALIFICATION, SETCOURSE,SET_ALL_COURSES ,SET_EDIT, DELETE_COURSE, SAVE_TUTOR_COURSES, LOCAL_SAVE_TUTOR_COURSES, SAVE_FORM_TUTOR_QUAL, SET_APPLICATION, SET_EDIT_TUTOR_ID } from "../actionType";
 
 export const FormSet = (val)=>({
     type: SET_FORM,
@@ -51,4 +51,19 @@ export const saveTutorCourses =(value)=>({
 export const localSaveTutorCourse =(value)=>({
     type:LOCAL_SAVE_TUTOR_COURSES,
     payload: value
+})
+
+export const saveFormTutor = (value)=>({
+    type: SAVE_FORM_TUTOR_QUAL,
+    payload: value
+})
+
+export const setApplication = (data)=> ({
+    type: SET_APPLICATION,
+    payload: data
+})
+
+export const setEditTutorId = (id)=> ({
+    type: SET_EDIT_TUTOR_ID,
+    payload: id
 })

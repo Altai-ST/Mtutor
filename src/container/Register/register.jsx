@@ -6,6 +6,8 @@ import {IMaskInput} from 'react-imask'
 import { useDispatch } from "react-redux";
 import { FormSet } from "../../store/actions";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { SetRole } from "../../store/actions";
 const Register =()=>{
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
@@ -20,6 +22,7 @@ const Register =()=>{
     const [submits, setSubmits]=useState(true)
 
     const states = useSelector(state => state.Autorization.formEmail)
+    const history = useHistory()
     
 
     useEffect(()=>{
@@ -66,6 +69,10 @@ const Register =()=>{
         return <Redirect to='/password'/>
     }
     
+    const handleReset = ()=>{
+        dispatch(SetRole(''))
+        history.push('/chooseRole')
+    }
 
     return(
         <div className={style.register}>
@@ -124,9 +131,7 @@ const Register =()=>{
                                 <Button type='submit' disabled={submits}  className={style.btn}>
                                         Подтвердить
                                         </Button>
-                                <Link to='/chooseRole'>
-                                    <Button className={style.btn}>Отмена</Button>
-                                </Link>
+                                <Button onClick={handleReset} className={style.btn}>Отмена</Button>
                             </div>
                         </Form.Group>
                     </Form>

@@ -1,4 +1,4 @@
-import { SET_FORM, SET_ROLES } from "../actionType";
+import { SET_FORM, SET_ROLES} from "../actionType";
 
 const initialState={
     formEmail:{
@@ -11,7 +11,8 @@ const initialState={
     singInForm:{
         email:'',
         password:''
-    }
+    },
+
 }
 
 export const Autorization =(state = initialState, action)=>{
@@ -39,3 +40,5 @@ export const Autorization =(state = initialState, action)=>{
         default: return state
     }
 }
+
+

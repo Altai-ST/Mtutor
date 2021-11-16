@@ -56,7 +56,7 @@ function PrivateHeader({role}) {
     const handleDelete=()=>{
         deleteLocalStorage(USER_STORE)
         dispatch(saveUser(''))
-        history.push('/Mtutor')
+        history.push('/')
     }
     return (
         <div>
