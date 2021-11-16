@@ -40,7 +40,7 @@ const ViewInfo = () => {
           <p>{user.birthDate}</p>
           <div>{user.shortDescription}</div>
           <div>Email: {user.email}</div>
-          <div>Телефон номер: {user.Phone}</div>
+          <div>Телефон номер: {user.phone}</div>
         </div>
         <div className={style.right}>
           <div className={style.info}>
