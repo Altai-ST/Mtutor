@@ -13,7 +13,7 @@ function BaseHeader({ children, handleDelete }){
     const user = useSelector(state=>state.userRedusers.user)
     const [userStatus, setUserStatus] = useState(false)
     useEffect(()=>{
-        if((user.status === 'waiting' || user.status === 'pending') && user.role.role === 5){
+        if((user.status === 'waiting' || user.status === 'pending' || user.status === 'rejected') && user.role.role === 5){
             setUserStatus(true)
         }else{
             setUserStatus(false)

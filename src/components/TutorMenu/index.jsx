@@ -4,10 +4,8 @@ import style from "./tutorMenu.module.scss";
 import { FaUser, FaBook, FaCalendar, FaTimes, FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { saveTutorCourses } from "../../store/actions";
-import { Button, Form } from "react-bootstrap";
-import { getId, setStatus } from "../../container/httpRequest";
+import { Button} from "react-bootstrap";
+import { setStatus } from "../../container/httpRequest";
 import LoginModal from "../LoginModal";
 const TutorQualification = () => {
   const user = useSelector(state => state.userRedusers.user)
@@ -15,10 +13,12 @@ const TutorQualification = () => {
   const [show, setShow] = useState(false);
   const [btnStatus, setBtnStatus] = useState('Отправить на расмотрение')
   useEffect(() => {
-    if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted){
-      setBtnActive(false)
+    if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted && user.status === 'pending'){
       setBtnActive(true)
       setBtnStatus('На расмотрении')
+    }else if(user.status === 'rejected'){
+      setBtnActive(true)
+      setBtnStatus('Отклоненно')
     }
   }, [])
   const handleSubmit =()=>{
@@ -78,7 +78,7 @@ const TutorQualification = () => {
           <Button className={style.btn1} onClick={handleSubmit}>Да</Button>
           <Button variant='danger' className={style.btn1} onClick={handleClose}>Нет</Button>
         </div>
-       
+
       </LoginModal>
     </div>
   );

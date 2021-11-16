@@ -10,12 +10,12 @@ export const ProtectedRoute=({isAuthorized, ...rest})=>{
       }
     const currentRole = user !== '' ? user.role.role : null
     const currentStatus = user !== '' ? user.status : null
-    if((currentStatus === 'comfirm' && currentRole === 5) || (currentRole === 10) ||(currentRole === 1)){
+    if((currentStatus === 'confirmed' && currentRole === 5) || (currentRole === 10) ||(currentRole === 1)){
       return <Redirect to='/home'/>
     }else if((currentStatus === 'waiting' || currentStatus === 'pending') && currentRole === 5){
       return <Redirect to='/tutorQual'/>
-    }else{
-      return <Redirect to='/'/>
+    }else if(currentStatus === 'rejected' && currentRole === 5){
+      return <Redirect to='/tutorQual'/>
     }
     
 }
