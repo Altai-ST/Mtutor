@@ -231,18 +231,17 @@ export const getUser = (id)  => {
 }
 
 
-export const putUpdateUser = (id, status) => (dispatch) => {
+export const putUpdateUser = (id, status) => {
 	return sendHttpRequest(
 		'PUT',
 		`http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/user/${id}/status`,
         
 		{status}
-        
-        
+           
 	)
 		.then((resData) => {
 			console.log(resData)
-			return dispatch(setApplication(resData))
+			return resData
 		})
 		.catch((err) => console.log(err))
 }

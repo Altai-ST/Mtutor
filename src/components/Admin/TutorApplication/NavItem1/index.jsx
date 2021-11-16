@@ -8,20 +8,10 @@ import { getUser } from '../../../../container/httpRequest'
 import { setEditTutorId } from '../../../../store/actions'
 
 const NavItem1 = () => {
-	// const [currentId, setCurrentId] = useState(0)
 	const applications = useSelector(
 		(state) => state.applicationReducers.applications,
 	)
 
-	// const dispatch = useDispatch()
-
-	// useEffect(() => {
-	// 	dispatch(getUser())
-	// }, [])
-
-	// const setEditHandler = (id) => {
-	// 	dispatch(getUser(id))
-	// }
 	return (
 		<div className={style.nav_item_container}>
 			<Table striped bordered hover size='sm'>

@@ -1,27 +1,47 @@
 import style from '../Edit/Edit.module.scss'
 import { Card, Form, Button, Col, Image } from 'react-bootstrap'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import { getUser } from '../../../../container/httpRequest'
-import { useSelector } from 'react-redux'
+import { getUser, putUpdateUser } from '../../../../container/httpRequest'
+import { Link } from 'react-router-dom'
 
 
 const ViewApplication = () => {
 	const [user , setUser] = useState([])
+	const [statusTutor ,setStatus] = useState('')
+
+	const history = useHistory()
 
 	const params = useParams()
 
 	const getUsers = async()=>{
 		const res = await getUser(params.userId)
+		
 		setUser(res.user)
 	}
+
+	const putUpdateUsers = async(val)=>{
+		setStatus(val)
+	}
+
+	const statusUpdate =async()=>{
+		if(statusTutor !== ''){
+			const res = await putUpdateUser(params.userId, statusTutor)
+			console.log(res.user);
+			history.push('/admin/application-tutor')
+		}
+	}
+
+	useEffect(()=>{
+		statusUpdate()
+	},[statusTutor])
 	
 	useEffect(() => {
 		getUsers()
 	},[])
 
 	return (
-		<div className={style.app_body}>
+		
 			<div className={style.forms}>
 				<Card>
 					<Card.Body>
@@ -58,7 +78,7 @@ const ViewApplication = () => {
 													<Form.Control
 														disabled
 														type='fullName'
-														placeholder=' Введите дата рождения'
+														placeholder={user.birthDate}
 													/>
 												</div>
 											</div>
@@ -76,7 +96,7 @@ const ViewApplication = () => {
 														disabled
 														as='textarea'
 														name='about'
-														placeholder='Расскажите нам о себе'
+														placeholder={user.shortDescription}
 													/>
 												</div>
 											</div>
@@ -92,7 +112,7 @@ const ViewApplication = () => {
 													Аватар<span>*</span>
 												</Form.Label>
 												<div>
-													<Col xs={6} md={4}>
+													<Col md={6} md={10}>
 														<Image
 															src={'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/'+user.avatar}
 															rounded
@@ -116,7 +136,7 @@ const ViewApplication = () => {
 														disabled
 														name='eduPlace'
 														type='input'
-														placeholder='Введите наименование учреждения'
+														placeholder={user.educationName}
 													/>
 												</div>
 											</div>
@@ -133,7 +153,7 @@ const ViewApplication = () => {
 														disabled
 														name='special'
 														type='input'
-														placeholder='Введите специальность'
+														placeholder={user.educationFaculty}
 													/>
 												</div>
 											</div>
@@ -151,7 +171,7 @@ const ViewApplication = () => {
 														disabled
 														name='special'
 														type='input'
-														placeholder='Введите степень образования'
+														placeholder={user.educationDegree}
 													/>
 												</div>
 											</div>
@@ -167,18 +187,10 @@ const ViewApplication = () => {
 													Резюме<span>*</span>
 												</Form.Label>
 												<div className={style.control}>
-													<Form.Control
-														disabled
-														as='textarea'
-														name='about'
-														placeholder=' Введите резюме'
-													/>
+													<a href={'http://ec2-18-184-251-15.eu-central-1.compute.amazonaws.com:8000/'+user.resume}>resume</a>
 												</div>
 											</div>
 										</Form.Group>
-									</div>
-
-									<div className={style.secondBlock}>
 										<h5>Выбор курса преподования</h5>
 										<Form.Group className='mt-3'>
 											<div className={style.formGroup}>
@@ -192,6 +204,7 @@ const ViewApplication = () => {
 														disabled
 														name='eduPlace'
 														type='input'
+														placeholder={user.subjectId}
 													/>
 												</div>
 											</div>
@@ -208,18 +221,18 @@ const ViewApplication = () => {
 														disabled
 														name='eduPlace'
 														type='input'
+														placeholder={user.price}
 													/>
 												</div>
 											</div>
 										</Form.Group>
-										
-									</div>
+									</div>	
 								</div>
-								<Button variant='info'>Назад</Button>
-								<Button variant='primary' type='submit'>
+								<Link to='/admin/application-tutor'><Button variant='info'> Назад </Button></Link>
+								<Button className={style.btn} onClick={()=> putUpdateUsers('confirmed')} variant='primary'>
 									Одобрить
 								</Button>
-								<Button variant='danger' className='mx-2'>
+								<Button variant='danger' className='mx-2'  onClick={()=> putUpdateUsers('rejected')}>
 									Отклонить
 								</Button>
 							</Form>
@@ -228,7 +241,6 @@ const ViewApplication = () => {
 				</Card>
 				<div></div>
 			</div>
-		</div>
 	)
 }
 export default ViewApplication
