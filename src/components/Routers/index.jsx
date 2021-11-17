@@ -13,7 +13,7 @@ import { TutorForm } from '../TutorForm'
 import TutorQualification from '../TutorMenu'
 import TutorAddCourse from '../TutorAddCourse'
 import Add from '../Admin/Coureses/Add/index'
-import EditCourse from '../Admin/Coureses/Edit'
+import Edit from '../Admin/Coureses/Edit'
 import Courses from '../Admin/Coureses'
 import TutorApplication from '../Admin/TutorApplication'
 import ViewApplication from '../Admin/TutorApplication/Edit'
@@ -23,6 +23,8 @@ import TutorSchedule from '../TutorSchedule'
 
 export function Routers() {
 	const user = useSelector((state) => state.userRedusers.user)
+	const edit = useSelector((state) => state.rootReducer.editedData)
+
 	function isAuthorized() {
 		return !!user
 	}
@@ -85,8 +87,9 @@ export function Routers() {
 					isAuthorized={isAuthorized()}
 				/>
 				<ProtectedRoute
-					path='/admin/courses/edit'
-					component={EditCourse}
+					exact
+					path={'/admin/courses/edit'}
+					component={Edit}
 					isAuthorized={isAuthorized()}
 				/>
 				<ProtectedRoute

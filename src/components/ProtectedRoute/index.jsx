@@ -4,7 +4,6 @@ import { Redirect, Route } from "react-router";
 
 export const ProtectedRoute=({isAuthorized, ...rest})=>{
   const user = useSelector(state=>state.userRedusers.user)
-  console.log(user)
     if(isAuthorized){
         return <Route {...rest}/>
       }

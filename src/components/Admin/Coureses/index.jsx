@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser, getData } from '../../../container/httpRequest'
 import { setEditId } from '../../../store/actions'
+import { useHistory } from 'react-router'
 
 const Courses = () => {
 	const [show, setShow] = useState(false)
@@ -18,6 +19,7 @@ const Courses = () => {
 	useEffect(() => {
 		dispatch(getData())
 	}, [])
+	const history = useHistory()
 
 	const handleDelete = () => {
 		dispatch(deleteUser(currentId))
@@ -30,6 +32,7 @@ const Courses = () => {
 	}
 	const setEditElem = (item) => {
 		dispatch(setEditId(item))
+		history.push('/admin/courses/edit')
 	}
 	return (
 		<div>
@@ -68,10 +71,7 @@ const Courses = () => {
 									<tr id={el.id}>
 										<td>{el.name}</td>
 										<td>
-											<Link to={'/admin/course/edit/' + el.id}>
-												{' '}
 												<FaEdit onClick={() => setEditElem(el)}/>
-											</Link>
 										</td>
 										<td>
 											<FaTrashAlt

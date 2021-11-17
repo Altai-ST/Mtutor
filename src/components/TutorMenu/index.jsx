@@ -13,8 +13,8 @@ const TutorQualification = () => {
   const [show, setShow] = useState(false);
   const [btnStatus, setBtnStatus] = useState('Отправить на расмотрение')
   useEffect(() => {
-    if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted && user.status === 'pending'){
-      setBtnActive(true)
+    if(user.isCourseOfferCompleted && user.isProfileCompleted && user.isScheduleCompleted && user.status !== 'rejected'){
+      setBtnActive(false)
       setBtnStatus('На расмотрении')
     }else if(user.status === 'rejected'){
       setBtnActive(true)
